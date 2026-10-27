@@ -74,7 +74,7 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 
 /* ---------- Hero ---------- */
 /* 전체 화면 배경 영상(포트폴리오 페이지로 만든 assets/hero.mp4) + 하단 유리 검색창 */
-.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:var(--ink) url("assets/hero-poster.jpg") center/cover;color:#fff}
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:var(--ink) url("assets/hero-poster.jpg?v=4") center/cover;color:#fff}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,18,.1) 0,rgba(20,19,18,.05) 25%,rgba(20,19,18,.45) 52%,rgba(20,19,18,.82));pointer-events:none}
 .hero-cap{position:absolute;z-index:3;left:0;right:0;bottom:200px;text-align:center;text-shadow:0 2px 18px rgba(0,0,0,.35)}
@@ -456,8 +456,8 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 <main id="main">
   <!-- Hero -->
   <section class="hero" id="hero">
-    <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
-      <source src="assets/hero.mp4" type="video/mp4">
+    <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg?v=4" aria-hidden="true">
+      <source src="assets/hero.mp4?v=4" type="video/mp4">
     </video>
     <div class="hero-ctrl"><button id="vPause" aria-label="영상 정지"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button></div>
     <div class="hero-cap">
