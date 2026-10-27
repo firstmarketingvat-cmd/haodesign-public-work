@@ -10,15 +10,15 @@ SCENE_SEC, FADE_SEC = 4.0, 1.0
 SW, SH = int(FW * 1.12), int(FH * 1.12)  # 장면 캔버스 (줌/이동 여유)
 
 def bg():
-    im = Image.new("RGB", (SW, SH), "#1a1918")
+    im = Image.new("RGB", (SW, SH), "#efe9e1")
     d = ImageDraw.Draw(im)
-    for y in range(SH):  # 세로 그라데이션: 웜 차콜(위) → 더 진한 차콜(아래)
+    for y in range(SH):  # 세로 그라데이션: 밝은 아이보리(위) → 웜 그레이지(아래)
         t = y / SH
-        c = (int(20 + 26 * (1 - t)), int(19 + 24 * (1 - t)), int(18 + 22 * (1 - t)))
+        c = (int(245 - 22 * t), int(241 - 25 * t), int(235 - 28 * t))
         d.line([(0, y), (SW, y)], fill=c)
     # 오른쪽 위 하오 버밀리언 빛 번짐(아주 은은하게)
     glow = Image.new("L", (SW, SH), 0)
-    ImageDraw.Draw(glow).ellipse([SW * .62, -SH * .35, SW * 1.25, SH * .55], fill=70)
+    ImageDraw.Draw(glow).ellipse([SW * .62, -SH * .35, SW * 1.25, SH * .55], fill=34)
     glow = glow.filter(ImageFilter.GaussianBlur(220))
     im = Image.composite(Image.new("RGB", (SW, SH), "#e83817"), im, glow)
     return im
@@ -30,7 +30,7 @@ def place(canvas, name, cx, cy, h, rot=0):
     # 그림자
     pad = 60
     sh = Image.new("L", (w + pad * 2, h + pad * 2), 0)
-    ImageDraw.Draw(sh).rectangle([pad, pad + 18, pad + w, pad + h + 18], fill=150)
+    ImageDraw.Draw(sh).rectangle([pad, pad + 18, pad + w, pad + h + 18], fill=95)
     sh = sh.filter(ImageFilter.GaussianBlur(26))
     layer = Image.new("RGBA", sh.size, (0, 0, 0, 0))
     layer.putalpha(sh)
