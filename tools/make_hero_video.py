@@ -24,15 +24,15 @@ SCENE_SEC, FADE_SEC = 4.0, 1.0
 SW, SH = int(FW * 1.12 * SS), int(FH * 1.12 * SS)   # 장면 캔버스 (줌/이동 여유 포함)
 
 def bg():
-    im = Image.new("RGB", (SW, SH), "#1a1918")
+    im = Image.new("RGB", (SW, SH), "#0e1b2c")
     d = ImageDraw.Draw(im)
-    for y in range(SH):  # 세로 그라데이션: 웜 차콜(위) → 더 진한 차콜(아래)
+    for y in range(SH):  # 세로 그라데이션: 네이비 #1F3450(위) → 미드나잇 #0E1B2C(아래)
         t = y / SH
-        c = (int(20 + 26 * (1 - t)), int(19 + 24 * (1 - t)), int(18 + 22 * (1 - t)))
+        c = (int(14 + 17 * (1 - t)), int(27 + 25 * (1 - t)), int(44 + 36 * (1 - t)))
         d.line([(0, y), (SW, y)], fill=c)
     # 오른쪽 위 하오 버밀리언 빛 번짐(아주 은은하게)
     glow = Image.new("L", (SW // 4, SH // 4), 0)
-    ImageDraw.Draw(glow).ellipse([SW / 4 * .62, -SH / 4 * .35, SW / 4 * 1.25, SH / 4 * .55], fill=70)
+    ImageDraw.Draw(glow).ellipse([SW / 4 * .62, -SH / 4 * .35, SW / 4 * 1.25, SH / 4 * .55], fill=55)
     glow = glow.filter(ImageFilter.GaussianBlur(55)).resize((SW, SH), Image.BICUBIC)
     return Image.composite(Image.new("RGB", (SW, SH), "#e83817"), im, glow)
 
