@@ -11,6 +11,7 @@
 - `index.html` — 페이지 전체 (HTML + CSS + JS 한 파일)
 - `assets/works/` — 공공기관 포트폴리오 PDF에서 뽑은 표지(`*-cover.jpg`) · 내지(`*-inner.jpg`)
 - `assets/hero.mp4`, `assets/hero-poster.jpg` — 메인 배경 영상 (위 포트폴리오 페이지로 제작)
+- `assets/about/` — ABOUT · FACILITY 섹션의 제작설비 사진(인쇄 · 후가공 · 재단)
 - `tools/render_pdfs.py` — PDF → 표지·내지 JPG 변환 (PyMuPDF, Pillow)
 - `tools/make_hero_video.py` — 포트폴리오 이미지 → 배경 영상 생성 (Pillow, ffmpeg)
 - `run.bat` — 로컬 미리보기 서버
