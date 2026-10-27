@@ -46,6 +46,7 @@
 | `SEARCH_WORDS` | 메인 검색창에 타이핑되는 추천 검색어 |
 | `WORKS` | PUBLIC WORKS 포트폴리오 — 앞 절반은 1줄(왼쪽으로 흐름), 나머지는 2줄(오른쪽으로 흐름). 마우스를 올리면 멈추고, 클릭하면 표지·내지 크게 보기 |
 | `WORKS_BG` | PUBLIC WORKS 뒤의 큰 배경 문구 (단어별 블러 인) |
+| `FROM` / `TO` (ABOUT ① SINCE 스크립트 안) | 회사소개 첫 화면의 연도 롤링 시작·끝 (2013 → 2026). 해가 바뀌면 `TO`와 HTML의 `2026`만 고치면 됨 |
 | `WHY` | WHY HAO DESIGN 탭 |
 | `SERVICES` | WHAT WE MAKE 카드 |
 | `PROCESS` | PROCESS 단계 |

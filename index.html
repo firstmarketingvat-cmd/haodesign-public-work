@@ -127,7 +127,26 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 .chip.k-leaflet{background:var(--steel)}
 .chip.k-poster{background:var(--red)}
 
-/* ---------- ABOUT HAO DESIGN ---------- */
+/* ---------- ABOUT ① SINCE (스크롤 고정 연도 롤링) ---------- */
+.since{position:relative;height:320vh;background:#fff}
+.since-stick{position:sticky;top:0;height:100vh;overflow:hidden}
+.since-inner{position:relative;height:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding-top:calc(var(--header-h) + 60px);padding-bottom:12vh}
+.since-left{align-self:flex-start;margin-top:4vh}
+.since-sm{font-size:clamp(20px,1.8vw,32px);font-weight:600;letter-spacing:.14em;color:var(--red);opacity:0;transform:translateY(12px)}
+.since-slot{font-size:clamp(96px,11vw,211px);font-weight:700;line-height:1;margin-top:6px;visibility:hidden;font-variant-numeric:tabular-nums}
+.since-desc{margin-top:5vh;font-size:clamp(22px,1.75vw,32px);font-weight:700;line-height:1.45;color:var(--ink-2);opacity:0;transform:translateY(14px)}
+.since-txt{margin-top:18px;font-size:clamp(16px,1.15vw,21px);line-height:1.75;color:#7b8594;opacity:0;transform:translateY(40px)}
+.since-right{text-align:right;font-size:clamp(28px,2.9vw,55px);font-weight:600;line-height:1.42;color:var(--ink-2);letter-spacing:-.01em}
+.since-right p{overflow:hidden}
+.since-right span{display:inline-block;transform:translateY(105%)}
+.since-right em{font-style:normal;color:var(--red)}
+.since-num{position:absolute;left:0;top:0;display:flex;font-size:clamp(150px,17vw,326px);font-weight:700;line-height:1;color:var(--ink-2);font-variant-numeric:tabular-nums;transform-origin:0 0;will-change:transform;opacity:0;pointer-events:none}
+.since-num>span{display:inline-block;width:.64em;text-align:center}   /* 칸 너비 고정 → 롤링 중에도 간격 일정 */
+.since-num .reel{height:1em;overflow:hidden}
+.since-num .track{display:flex;flex-direction:column;will-change:transform}
+.since-num .track i{font-style:normal;height:1em;display:block;text-align:center}
+
+/* ---------- ABOUT ② HAO DESIGN ---------- */
 .about{background:#fff}
 .about-top{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
 .about .eyebrow{font-family:Prompt,sans-serif;font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--red)}
@@ -339,6 +358,7 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 /* ---------- Floating quick menu ---------- */
 .quick{position:fixed;right:24px;bottom:24px;z-index:90;display:flex;flex-direction:column;gap:10px;opacity:0;pointer-events:none;transform:translateY(16px);transition:opacity .3s,transform .3s}
 .quick.on{opacity:1;pointer-events:auto;transform:none}
+.quick.on.hide-since{opacity:0;pointer-events:none;transform:translateY(16px)}
 .quick a{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.2);text-align:center;line-height:1.2}
 .quick .q1{background:var(--red)}
 .quick .q2{background:#fee500;color:#3a1d1d}
@@ -392,6 +412,8 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
   .info-wrap{grid-template-columns:1fr}
   .s-card{flex-basis:calc((100% - 24px)/2)}
   .faq-wrap{grid-template-columns:1fr;gap:30px}
+  .since-inner{flex-direction:column;align-items:stretch;justify-content:space-between;padding-bottom:9vh}
+  .since-right{font-size:clamp(26px,4.6vw,40px)}
   .about-top{grid-template-columns:1fr;gap:50px}
   .about-visual{height:460px}
   .values,.fac-grid{grid-template-columns:1fr}
@@ -423,6 +445,13 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
   .w-card .chip{margin-top:8px;height:24px;padding:0 10px;font-size:11.5px}
   .m-track{gap:22px}
   .lb-imgs{grid-template-columns:1fr}
+  .since-inner{padding-top:calc(var(--header-h) + 34px);padding-bottom:8vh}
+  .since-num{font-size:30vw}
+  .since-slot{font-size:19vw}
+  .since-desc{margin-top:3vh;font-size:20px}
+  .since-txt{font-size:15px}
+  .since-txt br{display:none}
+  .since-right{font-size:25px;line-height:1.45}
   .about .lead{font-size:17px}
   .about .lead br{display:none}
   .about-visual{height:350px}
@@ -529,14 +558,34 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
     </ul>
   </section>
 
-  <!-- ABOUT HAO DESIGN (haod.co.kr/about 내용을 공공기관 관점으로 재구성) -->
-  <section class="sec about" id="about">
+  <!-- ABOUT ① SINCE: 화면 고정 → 연도 숫자 롤링(2013→2026) → 왼쪽 위 제목으로 이동 → 문구 등장 -->
+  <section class="since" id="about">
+    <div class="since-stick">
+      <div class="inner since-inner">
+        <div class="since-left">
+          <p class="since-sm en">SINCE 2013</p>
+          <p class="since-slot en" aria-hidden="true">2026</p>
+          <h2 class="since-desc">기관의 말이 시민에게 정확히 닿도록, 2013년부터</h2>
+          <p class="since-txt">하오디자인은 인쇄 디자인 한 길을 걸어온 팀입니다.<br>기획부터 납품까지, 하나의 팀이 끝까지 책임집니다.</p>
+        </div>
+        <div class="since-right">
+          <p><span>잘 만든 인쇄물 한 권은</span></p>
+          <p><span>기관이 건네는</span></p>
+          <p><span><em>가장 믿을 만한</em> 안내서입니다.</span></p>
+        </div>
+      </div>
+      <div class="since-num en" id="sinceNum" aria-label="2026">
+        <span>2</span><span>0</span><span class="reel"><span class="track" id="reelTens"></span></span><span class="reel"><span class="track" id="reelOnes"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT ② 회사 이야기 · 가치 · 제작설비 (haod.co.kr/about 내용을 공공기관 관점으로 재구성) -->
+  <section class="sec about" id="about-story">
     <div class="inner">
       <div class="about-top">
         <div class="reveal">
           <p class="eyebrow">ABOUT HAO DESIGN</p>
-          <h2>기관의 말이 시민에게<br>정확히 닿도록, <em>2013년부터</em></h2>
-          <p class="lead">하오디자인은 인쇄 디자인 한 길을 걸어온 팀입니다.<br>잘 만든 인쇄물 한 권은 기관이 건네는 가장 믿을 만한 안내서가 됩니다.</p>
           <div class="body">
             <p>2013년부터 카탈로그 · 브로슈어 · 리플렛 · 포스터 등 인쇄 디자인에 집중해 왔습니다. 화면 속 정보가 넘쳐나는 지금도, 손에 잡히는 종이 한 장이 주는 신뢰의 무게는 다르다고 믿습니다.</p>
             <p>디자인만 하고 끝내지 않습니다. 기획과 원고 정리, 사진 촬영, 인쇄 · 후가공, 납품까지 하나의 팀이 책임지기 때문에 공정 사이에서 일정과 품질이 어긋나지 않습니다.</p>
@@ -1011,6 +1060,60 @@ const ld = document.createElement('script');
 ld.type = 'application/ld+json';
 ld.textContent = JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(f=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))});
 document.head.appendChild(ld);
+
+/* ===== ABOUT ① SINCE: 스크롤 진행도에 따라 연도 롤링 → 제목 자리로 이동 → 문구 등장 ===== */
+(() => {
+  const FROM = 2013, TO = 2026;
+  const sec = $('.since'), stick = $('.since-stick'), num = $('#sinceNum'), slot = $('.since-slot');
+  // 일의 자리: 3,4,…,9,0,…,6 / 십의 자리: 1,2
+  const ones = [], tens = [];
+  for (let y = FROM; y <= TO; y++) ones.push(y % 10);
+  for (let d = Math.floor(FROM / 10) % 10; d <= Math.floor(TO / 10) % 10; d++) tens.push(d);
+  $('#reelOnes').innerHTML = ones.map(d => `<i>${d}</i>`).join('');
+  $('#reelTens').innerHTML = tens.map(d => `<i>${d}</i>`).join('');
+  const steps = TO - FROM;
+  const tensFlip = ones.indexOf(0, 1);   // 2019→2020 넘어가는 순간
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const seg = (p, a, b) => clamp((p - a) / (b - a));
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const lines = [...document.querySelectorAll('.since-right span')];
+  let L = {};
+  function measure(){
+    const sr = stick.getBoundingClientRect(), tr = slot.getBoundingClientRect();
+    const w = num.offsetWidth, h = num.offsetHeight;
+    L = {sx:(sr.width - w) / 2, sy:(sr.height - h) / 2 - sr.height * .04,
+         ex:tr.left - sr.left, ey:tr.top - sr.top, es:tr.height / h};
+  }
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;   // 움직임 줄이기: 마지막 상태로 바로 표시
+  if (RM) sec.style.height = '100vh';
+  function update(){
+    const r = sec.getBoundingClientRect();
+    const p = RM ? 1 : clamp(-r.top / (sec.offsetHeight - innerHeight));
+    // 1) 연도 롤링 (0.04~0.42)
+    const yp = ease(seg(p, .04, .42)) * steps;
+    $('#reelOnes').style.transform = `translateY(${-yp}em)`;
+    $('#reelTens').style.transform = `translateY(${-clamp(yp - (tensFlip - 1))}em)`;
+    // 2) 가운데 → 왼쪽 위 제목 자리로 이동·축소 (0.46~0.64)
+    const m = ease(seg(p, .46, .64));
+    const x = L.sx + (L.ex - L.sx) * m, y = L.sy + (L.ey - L.sy) * m, s = 1 + (L.es - 1) * m;
+    num.style.transform = `translate(${x}px,${y}px) scale(${s})`;
+    num.style.opacity = 1;
+    // 고정되어 있는 동안엔 오른쪽 아래 빠른 상담 버튼이 문장을 가리지 않도록 숨김
+    $('.quick').classList.toggle('hide-since', r.top <= 0 && r.bottom > innerHeight * .5);
+    // 3) SINCE · 설명 문구 (0.58~0.74), 오른쪽 큰 문장 줄별로 (0.66~0.9)
+    const a = ease(seg(p, .58, .68)), b = ease(seg(p, .62, .74));
+    $('.since-sm').style.cssText = `opacity:${a};transform:translateY(${12 * (1 - a)}px)`;
+    $('.since-desc').style.cssText = `opacity:${a};transform:translateY(${14 * (1 - a)}px)`;
+    $('.since-txt').style.cssText = `opacity:${b};transform:translateY(${40 * (1 - b)}px)`;
+    lines.forEach((ln, i) => { const t = ease(seg(p, .66 + i * .07, .78 + i * .07)); ln.style.transform = `translateY(${105 * (1 - t)}%)`; });
+  }
+  const run = () => { measure(); update(); };
+  addEventListener('scroll', update, {passive:true});
+  addEventListener('resize', run);
+  addEventListener('load', run);
+  document.fonts && document.fonts.ready.then(run);
+  run();
+})();
 
 /* ===== Scroll reveal ===== */
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.15});
