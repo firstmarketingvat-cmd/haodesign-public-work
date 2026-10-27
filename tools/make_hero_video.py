@@ -10,12 +10,17 @@ SCENE_SEC, FADE_SEC = 4.0, 1.0
 SW, SH = int(FW * 1.12), int(FH * 1.12)  # 장면 캔버스 (줌/이동 여유)
 
 def bg():
-    im = Image.new("RGB", (SW, SH), "#0f2140")
+    im = Image.new("RGB", (SW, SH), "#1a1918")
     d = ImageDraw.Draw(im)
-    for y in range(SH):  # 세로 그라데이션 navy → 진한 navy
+    for y in range(SH):  # 세로 그라데이션: 웜 차콜(위) → 더 진한 차콜(아래)
         t = y / SH
-        c = (int(15 + 12 * (1 - t)), int(33 + 20 * (1 - t)), int(64 + 38 * (1 - t)))
+        c = (int(20 + 26 * (1 - t)), int(19 + 24 * (1 - t)), int(18 + 22 * (1 - t)))
         d.line([(0, y), (SW, y)], fill=c)
+    # 오른쪽 위 하오 버밀리언 빛 번짐(아주 은은하게)
+    glow = Image.new("L", (SW, SH), 0)
+    ImageDraw.Draw(glow).ellipse([SW * .62, -SH * .35, SW * 1.25, SH * .55], fill=70)
+    glow = glow.filter(ImageFilter.GaussianBlur(220))
+    im = Image.composite(Image.new("RGB", (SW, SH), "#e83817"), im, glow)
     return im
 
 def place(canvas, name, cx, cy, h, rot=0):
