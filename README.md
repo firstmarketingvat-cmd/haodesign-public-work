@@ -9,7 +9,18 @@
 ## 구조
 
 - `index.html` — 페이지 전체 (HTML + CSS + JS 한 파일)
+- `assets/works/` — 공공기관 포트폴리오 PDF에서 뽑은 표지(`*-cover.jpg`) · 내지(`*-inner.jpg`)
+- `assets/hero.mp4`, `assets/hero-poster.jpg` — 메인 배경 영상 (위 포트폴리오 페이지로 제작)
+- `tools/render_pdfs.py` — PDF → 표지·내지 JPG 변환 (PyMuPDF, Pillow)
+- `tools/make_hero_video.py` — 포트폴리오 이미지 → 배경 영상 생성 (Pillow, ffmpeg)
 - `run.bat` — 로컬 미리보기 서버
+
+### 포트폴리오 추가하는 법
+
+1. PDF를 `tools/render_pdfs.py`의 `SRC` 폴더에 넣고, `SLUG`에 `"파일명 일부": "영문-슬러그"`를 추가
+2. `python tools/render_pdfs.py` 실행 → `assets/works/슬러그-cover.jpg`, `슬러그-inner.jpg` 생성
+3. `index.html`의 `WORKS` 배열에 `{..., s:'슬러그'}` 한 줄 추가
+4. (선택) 배경 영상에도 넣으려면 `tools/make_hero_video.py`의 `SCENES` 수정 후 실행
 
 ## 내용 수정 방법
 
@@ -18,20 +29,19 @@
 | 배열 | 화면 위치 |
 |---|---|
 | `MENU` | 상단 메뉴 · 전체메뉴 |
-| `HERO_IMG`, `HERO_CHIPS` | 메인 비주얼 이미지 · 바로가기 버튼 |
-| `WORKS` | PUBLIC WORKS 포트폴리오 |
+| `SEARCH_WORDS` | 메인 검색창에 타이핑되는 추천 검색어 |
+| `WORKS` | PUBLIC WORKS 포트폴리오 (카드 클릭 시 표지·내지 크게 보기) |
 | `WHY` | WHY HAO DESIGN 탭 |
 | `SERVICES` | WHAT WE MAKE 카드 |
 | `PROCESS` | PROCESS 단계 |
 | `FAQ` | FAQ (FAQPage 스키마 자동 생성) |
 
-이미지는 현재 haodesign.co.kr 서버의 이미지를 직접 참조합니다.
+로고 · 캐릭터 이미지만 haodesign.co.kr 서버를 직접 참조하고, 나머지 이미지 · 영상은 `assets/` 안에 있습니다.
 
 ## 게시 전 확인할 것
 
 - 서비스 약속 문구(견적 1일 이내, 회사 서류 제공 등)가 실제 운영과 맞는지
 - 회사소개서 · 카카오톡 상담 · 온라인 견적 · 패밀리 사이트 링크 (현재 임시 링크)
-- 메인 비주얼 · WHY 배경을 공공 분야 작업 이미지로 교체
 
 ## 함께 수정하는 방법
 
