@@ -46,27 +46,33 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 
 /* ---------- Header ---------- */
 /* UNIST 메인처럼: 영상 위에 반투명 흰 헤더 + 오른쪽 네이비 유저 메뉴 박스 */
-.header{position:fixed;inset:0 0 auto 0;height:var(--header-h);z-index:100;background:rgba(255,255,255,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .3s,box-shadow .3s}
-.header .inner{height:100%;display:flex;align-items:center;justify-content:space-between;max-width:none;padding-right:24px}
+/* 히어로 위: 투명 + 흰 글자(위쪽만 네이비로 살짝 어둡게) / 스크롤·메뉴 열림: 흰 바탕 + 네이비 글자 */
+.header{position:fixed;inset:0 0 auto 0;height:var(--header-h);z-index:100;background:transparent;transition:background .3s,box-shadow .3s}
+.header::before{content:"";position:absolute;inset:0 0 -40px 0;background:linear-gradient(180deg,rgba(14,27,44,.55),rgba(14,27,44,0));pointer-events:none;transition:opacity .3s}
+.header.is-white::before,.header.is-open::before{opacity:0}
+.header .inner{position:relative;height:100%;display:flex;align-items:center;justify-content:space-between;max-width:none;padding-right:24px}
 .logo{display:flex;align-items:center;gap:12px}
 .logo img{height:46px;width:auto}
 .logo .badge{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--steel);border:1px solid var(--steel);border-radius:20px;padding:4px 10px}
 .gnb{display:flex;gap:52px;height:100%;margin-left:60px}
 .gnb>li{height:100%;display:flex;align-items:center}
-.gnb>li>a{font-size:17px;font-weight:700;color:var(--text);transition:color .2s}
+.gnb>li>a{font-size:17px;font-weight:700;color:#fff;transition:color .2s}
+.header.is-white .gnb>li>a,.header.is-open .gnb>li>a{color:var(--text)}
 .gnb>li>a:hover{color:var(--red)}
 .util{display:flex;align-items:center;gap:34px;margin-left:auto}
-.util-links{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:600;color:#333}
+.util-links{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:600;color:rgba(255,255,255,.88);transition:color .2s}
+.header.is-white .util-links,.header.is-open .util-links{color:#333}
 .util-links a:hover{color:var(--red)}
-.user-box{display:flex;align-items:center;height:64px;padding:0 10px 0 26px;background:var(--ink);color:#fff;border-radius:6px 6px 22px 6px;box-shadow:0 8px 24px rgba(14,27,44,.25)}
+.user-box{display:flex;align-items:center;height:64px;padding:0 10px 0 26px;background:var(--ink);color:#fff;border-radius:6px 6px 22px 6px;box-shadow:0 8px 24px rgba(14,27,44,.25);border:1px solid rgba(255,255,255,.16)}
+.header.is-white .user-box,.header.is-open .user-box{border-color:transparent}
 .user-box .um{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:.02em;padding-right:22px;border-right:1px solid rgba(255,255,255,.25);height:26px}
 .user-box .um svg{width:24px;height:24px}
 .user-box .ub{width:58px;height:64px;display:grid;place-items:center;color:#fff}
 .user-box .ub+.ub{border-left:1px solid rgba(255,255,255,.25);height:26px}
 .user-box .ub svg{width:26px;height:26px}
-.header.is-white,.header.is-open{background:#fff;box-shadow:0 4px 24px rgba(0,0,0,.06)}
-.mega{position:absolute;top:var(--header-h);left:0;right:0;background:#fff;border-top:1px solid var(--line);box-shadow:0 20px 40px rgba(0,0,0,.08);max-height:0;overflow:hidden;transition:max-height .35s ease}
-.header.is-open .mega{max-height:460px}
+.header.is-white,.header.is-open{background:#fff;box-shadow:0 1px 0 var(--line),0 6px 24px rgba(14,27,44,.06)}
+.mega{position:absolute;top:var(--header-h);left:0;right:0;background:#fff;max-height:0;overflow:hidden;transition:max-height .35s ease}
+.header.is-open .mega{max-height:460px;border-top:1px solid var(--line);box-shadow:0 20px 40px rgba(14,27,44,.08)}
 .mega .inner{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;padding-top:36px;padding-bottom:44px;height:auto;align-items:start;max-width:var(--wrap)}
 .mega h3{font-size:17px;font-weight:800;color:var(--ink);padding-bottom:14px;margin-bottom:14px;border-bottom:2px solid var(--ink)}
 .mega li a{display:block;font-size:14.5px;color:#444;padding:6px 0}
