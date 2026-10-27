@@ -53,23 +53,18 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 .header .inner{position:relative;height:100%;display:flex;align-items:center;justify-content:space-between;max-width:none;padding-right:24px}
 .logo{display:flex;align-items:center;gap:12px}
 .logo img{height:46px;width:auto}
-.logo .badge{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--steel);border:1px solid var(--steel);border-radius:20px;padding:4px 10px}
 .gnb{display:flex;gap:52px;height:100%;margin-left:60px}
 .gnb>li{height:100%;display:flex;align-items:center}
 .gnb>li>a{font-size:17px;font-weight:700;color:#fff;transition:color .2s}
 .header.is-white .gnb>li>a,.header.is-open .gnb>li>a{color:var(--text)}
 .gnb>li>a:hover{color:var(--red)}
-.util{display:flex;align-items:center;gap:34px;margin-left:auto}
-.util-links{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:600;color:rgba(255,255,255,.88);transition:color .2s}
-.header.is-white .util-links,.header.is-open .util-links{color:#333}
-.util-links a:hover{color:var(--red)}
-.user-box{display:flex;align-items:center;height:64px;padding:0 10px 0 26px;background:var(--ink);color:#fff;border-radius:6px 6px 22px 6px;box-shadow:0 8px 24px rgba(14,27,44,.25);border:1px solid rgba(255,255,255,.16)}
-.header.is-white .user-box,.header.is-open .user-box{border-color:transparent}
-.user-box .um{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:.02em;padding-right:22px;border-right:1px solid rgba(255,255,255,.25);height:26px}
-.user-box .um svg{width:24px;height:24px}
-.user-box .ub{width:58px;height:64px;display:grid;place-items:center;color:#fff}
-.user-box .ub+.ub{border-left:1px solid rgba(255,255,255,.25);height:26px}
-.user-box .ub svg{width:26px;height:26px}
+.util{display:flex;align-items:center;gap:10px;margin-left:auto}
+/* 문의하기: 하오 버밀리언 박스(기존 메뉴 박스와 같은 모서리) */
+.ask{display:flex;align-items:center;gap:10px;height:58px;padding:0 30px 0 26px;background:var(--red);color:#fff;font-size:16px;font-weight:700;letter-spacing:.01em;border-radius:6px 6px 22px 6px;box-shadow:0 10px 26px rgba(232,56,23,.32);transition:background .2s,transform .2s}
+.ask:hover{background:var(--red-d);transform:translateY(-1px)}
+.ask svg{width:22px;height:22px}
+.ham{display:none;width:48px;height:48px;border-radius:6px 6px 16px 6px;background:var(--ink);color:#fff;place-items:center;border:1px solid rgba(255,255,255,.16)}
+.ham svg{width:22px;height:22px}
 .header.is-white,.header.is-open{background:#fff;box-shadow:0 1px 0 var(--line),0 6px 24px rgba(14,27,44,.06)}
 .mega{position:absolute;top:var(--header-h);left:0;right:0;background:#fff;max-height:0;overflow:hidden;transition:max-height .35s ease}
 .header.is-open .mega{max-height:460px;border-top:1px solid var(--line);box-shadow:0 20px 40px rgba(14,27,44,.08)}
@@ -377,15 +372,13 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 /* ---------- Responsive ---------- */
 @media (max-width:1280px){
   .gnb{gap:30px;margin-left:40px}
-  .util-links{display:none}
 }
 @media (max-width:1024px){
   :root{--header-h:68px}
   .gnb,.mega{display:none}
   .header .inner{padding-right:12px}
-  .user-box{height:52px;padding:0 4px 0 16px;border-radius:6px 6px 18px 6px}
-  .user-box .um{padding-right:14px;font-size:14px}
-  .user-box .ub{width:46px;height:52px}
+  .ask{height:48px;padding:0 18px;font-size:14.5px;border-radius:6px 6px 16px 6px}
+  .ham{display:grid}
   .logo img{height:38px}
   .inner{padding:0 24px}
   .sec{padding:80px 0}
@@ -410,11 +403,9 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 @media (min-width:1025px){.drawer{display:none}}
 @media (max-width:640px){
   .inner{padding:0 16px}
-  .logo .badge{display:none}
   .sec-tit{font-size:24px}
   .sec-sub{font-size:15px}
-  .user-box .um span{display:none}
-  .user-box .um{border-right:0;padding-right:4px}
+  .ask svg{display:none}
   .hero-cap{bottom:180px;padding:0 16px}
   .hero-search{bottom:100px}
   .hero-cap{bottom:196px}
@@ -495,19 +486,11 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
   <div class="inner">
     <h1 class="logo"><a href="#">
       <img src="https://haodesign.co.kr/resource/home/assets/images/logo-o.png?version=20200113" alt="하오디자인">
-    </a><span class="badge en">PUBLIC</span></h1>
+    </a></h1>
     <ul class="gnb" id="gnb"></ul>
     <div class="util">
-      <ul class="util-links">
-        <li><a href="#info">회사소개서</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a class="en" href="tel:1666-2027">1666-2027</a></li>
-      </ul>
-      <div class="user-box">
-        <a class="um" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span class="en">견적문의</span></a>
-        <button class="ub" id="searchBtn" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 4h12v8M4 4v12h8"/><path d="M14 14l6 6"/></svg></button>
-        <button class="ub" id="hamBtn" aria-label="전체메뉴"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="4" height="4"/><rect x="10" y="3" width="4" height="4"/><rect x="17" y="3" width="4" height="4"/><rect x="3" y="10" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="10" width="4" height="4"/><rect x="10" y="17" width="4" height="4"/><rect x="17" y="17" width="4" height="4"/></svg></button>
-      </div>
+      <a class="ask" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg>문의하기</a>
+      <button class="ham" id="hamBtn" aria-label="전체메뉴"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </div>
   <div class="mega"><div class="inner" id="mega"></div></div>
@@ -893,7 +876,6 @@ $('#heroSearch').addEventListener('submit', e => {
   e.preventDefault();
   findAndGo(q.value.trim() || SEARCH_WORDS[si0]);
 });
-$('#searchBtn').onclick = () => { scrollTo({top:0, behavior:'smooth'}); setTimeout(() => q.focus(), 400); };
 
 /* ===== PUBLIC WORKS ===== */
 // 배경 큰 문구: ① 카드 앞에서 단어별로 블러가 풀리며 날아 들어옴(진한 색) → ② 연해지며 카드 뒤로 물러남
