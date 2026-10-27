@@ -30,7 +30,8 @@
 |---|---|
 | `MENU` | 상단 메뉴 · 전체메뉴 |
 | `SEARCH_WORDS` | 메인 검색창에 타이핑되는 추천 검색어 |
-| `WORKS` | PUBLIC WORKS 포트폴리오 (카드 클릭 시 표지·내지 크게 보기) |
+| `WORKS` | PUBLIC WORKS 포트폴리오 — 앞 절반은 1줄(왼쪽으로 흐름), 나머지는 2줄(오른쪽으로 흐름). 마우스를 올리면 멈추고, 클릭하면 표지·내지 크게 보기 |
+| `WORKS_BG` | PUBLIC WORKS 뒤의 큰 배경 문구 (단어별 블러 인) |
 | `WHY` | WHY HAO DESIGN 탭 |
 | `SERVICES` | WHAT WE MAKE 카드 |
 | `PROCESS` | PROCESS 단계 |
