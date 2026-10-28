@@ -128,7 +128,7 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 .chip.k-poster{background:var(--red)}
 
 /* ---------- ABOUT ① SINCE (스크롤 고정 연도 롤링) ---------- */
-.since{position:relative;height:720vh;background:#fff}
+section.since{position:relative;height:720vh;background:#fff}
 .since-stick{position:sticky;top:0;height:100vh;overflow:hidden}
 .since-inner{position:relative;height:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding-top:calc(var(--header-h) + 60px);padding-bottom:12vh}
 .since-left{align-self:flex-start;margin-top:4vh}
@@ -180,10 +180,10 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 .about-visual img{position:absolute;border-radius:14px;box-shadow:0 24px 60px rgba(14,27,44,.18);object-fit:cover;background:#fff}
 .about-visual .v1{left:0;top:30px;width:52%;height:440px}
 .about-visual .v2{right:0;top:110px;width:60%;height:340px;object-fit:contain;padding:14px}
-.about-visual .since{position:absolute;left:38%;bottom:0;background:var(--ink);color:#fff;border-radius:6px 6px 22px 6px;padding:22px 26px;box-shadow:0 14px 34px rgba(14,27,44,.3)}
-.about-visual .since small{display:block;font-family:Prompt,sans-serif;font-size:12px;letter-spacing:.2em;color:var(--steel)}
-.about-visual .since b{display:block;margin-top:4px;font-family:Prompt,sans-serif;font-size:40px;line-height:1}
-.about-visual .since span{display:block;margin-top:8px;font-size:13px;opacity:.85}
+.about-visual .since-badge{position:absolute;left:38%;bottom:0;background:var(--ink);color:#fff;border-radius:6px 6px 22px 6px;padding:22px 26px;box-shadow:0 14px 34px rgba(14,27,44,.3)}
+.about-visual .since-badge small{display:block;font-family:Prompt,sans-serif;font-size:12px;letter-spacing:.2em;color:var(--steel)}
+.about-visual .since-badge b{display:block;margin-top:4px;font-family:Prompt,sans-serif;font-size:40px;line-height:1}
+.about-visual .since-badge span{display:block;margin-top:8px;font-size:13px;opacity:.85}
 .msg{display:grid;grid-template-columns:1fr 1.15fr;gap:70px;align-items:center;margin-top:110px;padding:56px;border-radius:28px;background:var(--ink);color:#fff;overflow:hidden;position:relative}
 .msg::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(232,56,23,.32),rgba(232,56,23,0) 70%);pointer-events:none}
 .msg-ph{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--ink-2)}
@@ -494,8 +494,8 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
   .about-visual{height:350px}
   .about-visual .v1{top:10px;height:290px;width:54%}
   .about-visual .v2{top:70px;height:210px;width:62%;padding:8px}
-  .about-visual .since{left:auto;right:8px;padding:16px 18px}
-  .about-visual .since b{font-size:30px}
+  .about-visual .since-badge{left:auto;right:8px;padding:16px 18px}
+  .about-visual .since-badge b{font-size:30px}
   .values li{padding:30px 26px}
   .fac-grid .tx{padding:22px 22px 26px}
   .lb-imgs img{max-height:38vh}
@@ -641,7 +641,7 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
         <div class="about-visual reveal" aria-hidden="true">
           <img class="v1" src="assets/works/kmf-brochure-cover.jpg" alt="">
           <img class="v2" src="assets/works/lh-inner.jpg" alt="">
-          <div class="since"><small>SINCE</small><b>2013</b><span>국내외 기업 · 관공서 제작</span></div>
+          <div class="since-badge"><small>SINCE</small><b>2013</b><span>국내외 기업 · 관공서 제작</span></div>
         </div>
       </div>
 
@@ -1127,7 +1127,7 @@ document.head.appendChild(ld);
 /* ===== ABOUT ① SINCE: 스크롤 진행도에 따라 연도 롤링 → 제목 자리로 이동 → 문구 등장 ===== */
 (() => {
   const FROM = 2013, TO = 2026;
-  const sec = $('.since'), stick = $('.since-stick'), num = $('#sinceNum'), slot = $('.since-slot');
+  const sec = $('section.since'), stick = $('.since-stick'), num = $('#sinceNum'), slot = $('.since-slot');
   // 일의 자리: 3,4,…,9,0,…,6 / 십의 자리: 1,2
   const ones = [], tens = [];
   for (let y = FROM; y <= TO; y++) ones.push(y % 10);
