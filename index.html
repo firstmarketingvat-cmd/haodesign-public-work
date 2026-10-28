@@ -4,409 +4,257 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>하오디자인 공공기관 | 연차보고서·정책 리플렛·기관 브로슈어 제작</title>
-<meta name="description" content="공공기관·대학·협회 전문 인쇄물 디자인. 기관 CI 규정 준수, 읽기 쉬운 정보 설계, 다국어 안내물까지 기획부터 인쇄·납품까지 하오디자인이 원스톱으로 진행합니다.">
+<meta name="description" content="공공기관·공기업·협회 전문 인쇄물 디자인. 기관 CI 규정 준수, 읽기 쉬운 정보 설계, 다국어 안내물까지 기획부터 인쇄·납품까지 하오디자인이 원스톱으로 진행합니다.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* =========================================================
-   하오디자인 공공기관 전용 홈페이지
-   - 레이아웃 뼈대: E:\unist-clone 클론 구조 재사용
-   - 포트폴리오·배경 이미지: assets/works (공공기관 납품 PDF 표지·내지), 배경 영상: assets/hero.mp4
-   - 로고·캐릭터만 haodesign.co.kr 이미지 직접 참조
+   UNIST 메인 레이아웃·효과(1920px 실측) + 하오디자인 공공기관 콘텐츠
+   - 이미지·영상: 하오디자인 자체 자료(assets/ · haodesign.co.kr)
+   - 문구: 하오디자인 공공기관 콘텐츠
    ========================================================= */
 :root{
-  /* 네이비 미드나잇: 거의 검정에 가까운 네이비 + 하오 버밀리언 포인트 (보색 대비, 신뢰감) */
-  --ink:#0e1b2c;      /* 주조색: 히어로 영상 배경 · 헤더 메뉴 박스 · 탭 · 푸터 */
-  --ink-2:#1f3450;    /* 주조색 보조(그라데이션 끝 · 칩) */
-  --red:#e83817;      /* 하오 로고 버밀리언 — 포인트 */
-  --red-d:#b82a0f;
-  --red-l:#fbd6cc;
-  --steel:#8fa3b8;    /* 스틸 블루 그레이 — 배지 · 보조 칩 · 체크 표시 */
-  --text:#121c29;
-  --gray:#5e6977;
-  --line:#e4e1da;
-  --bg-soft:#f5f2ec;  /* 아이보리 */
-  --radius:20px;
-  --header-h:84px;
-  --wrap:1440px;
+  --navy:#000e2d;      /* 실측: 푸터·메뉴 박스 */
+  --navy-t:#000e2d;    /* 실측: GNB 글자 */
+  --blue:#1450f5;
+  --mint:#3fd0c9;
+  --bgtxt-d:#afbed4;   /* 실측: 배경 문구(진할 때) */
+  --bgtxt-l:#e6eaf0;   /* 실측: 배경 문구(연할 때) */
+  --ink:#111;
+  --gray:#666;
+  --line:#e5e7ee;
+  --header-h:85px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-/* Lenis 부드러운 스크롤 (관성 스크롤) */
+/* Lenis 부드러운 스크롤 (원본 UNIST와 같은 관성 스크롤) */
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
-body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;color:var(--text);background:#fff;word-break:keep-all;-webkit-font-smoothing:antialiased}
+body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;color:var(--ink);background:#fff;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 ul,ol{list-style:none}
 img{display:block;max-width:100%}
 button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 .en{font-family:Prompt,Pretendard,sans-serif}
-.inner{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 40px}
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:16px;top:16px;z-index:9999;background:#fff;padding:8px 12px}
-.red{color:var(--red)}
 
-/* ---------- Header ---------- */
-/* UNIST 메인처럼: 영상 위에 반투명 흰 헤더 + 오른쪽 네이비 유저 메뉴 박스 */
-/* 히어로 위: 투명 + 흰 글자(위쪽만 네이비로 살짝 어둡게) / 스크롤·메뉴 열림: 흰 바탕 + 네이비 글자 */
-.header{position:fixed;inset:0 0 auto 0;height:var(--header-h);z-index:100;background:transparent;transition:background .3s,box-shadow .3s}
-.header::before{content:"";position:absolute;inset:0 0 -40px 0;background:linear-gradient(180deg,rgba(14,27,44,.55),rgba(14,27,44,0));pointer-events:none;transition:opacity .3s}
-.header.is-white::before,.header.is-open::before{opacity:0}
-.header .inner{position:relative;height:100%;display:flex;align-items:center;justify-content:space-between;max-width:none;padding-right:24px}
-.logo{display:flex;align-items:center;gap:12px}
-.logo img{height:46px;width:auto}
-.gnb{display:flex;gap:52px;height:100%;margin-left:60px}
-.gnb>li{height:100%;display:flex;align-items:center}
-.gnb>li>a{font-size:17px;font-weight:700;color:#fff;transition:color .2s}
-.header.is-white .gnb>li>a,.header.is-open .gnb>li>a{color:var(--text)}
-.gnb>li>a:hover{color:var(--red)}
-.util{display:flex;align-items:center;gap:10px;margin-left:auto}
-/* 문의하기: 하오 버밀리언 박스(기존 메뉴 박스와 같은 모서리) */
-.ask{display:flex;align-items:center;gap:10px;height:58px;padding:0 30px 0 26px;background:var(--red);color:#fff;font-size:16px;font-weight:700;letter-spacing:.01em;border-radius:6px 6px 22px 6px;box-shadow:0 10px 26px rgba(232,56,23,.32);transition:background .2s,transform .2s}
-.ask:hover{background:var(--red-d);transform:translateY(-1px)}
-.ask svg{width:22px;height:22px}
-.ham{display:none;width:48px;height:48px;border-radius:6px 6px 16px 6px;background:var(--ink);color:#fff;place-items:center;border:1px solid rgba(255,255,255,.16)}
-.ham svg{width:22px;height:22px}
-.header.is-white,.header.is-open{background:#fff;box-shadow:0 1px 0 var(--line),0 6px 24px rgba(14,27,44,.06)}
-.mega{position:absolute;top:var(--header-h);left:0;right:0;background:#fff;max-height:0;overflow:hidden;transition:max-height .35s ease}
-.header.is-open .mega{max-height:460px;border-top:1px solid var(--line);box-shadow:0 20px 40px rgba(14,27,44,.08)}
-.mega .inner{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;padding-top:36px;padding-bottom:44px;height:auto;align-items:start;max-width:var(--wrap)}
-.mega h3{font-size:17px;font-weight:800;color:var(--ink);padding-bottom:14px;margin-bottom:14px;border-bottom:2px solid var(--ink)}
-.mega li a{display:block;font-size:14.5px;color:#444;padding:6px 0}
-.mega li a:hover{color:var(--red);text-decoration:underline}
-
-/* ---------- Hero ---------- */
-/* 전체 화면 배경 영상(포트폴리오 페이지로 만든 assets/hero.mp4) + 하단 유리 검색창 */
-.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:var(--ink) url("assets/hero-poster.jpg?v=5") center/cover;color:#fff}
-.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,44,.1) 0,rgba(14,27,44,.05) 25%,rgba(14,27,44,.45) 52%,rgba(14,27,44,.82));pointer-events:none}
-.hero-cap{position:absolute;z-index:3;left:0;right:0;bottom:200px;text-align:center;text-shadow:0 2px 18px rgba(0,0,0,.35)}
-.hero-cap .eyebrow{font-size:14px;font-weight:700;letter-spacing:.2em;color:#a9bccf}
-.hero-cap h2{margin-top:14px;font-size:clamp(30px,4.2vw,58px);line-height:1.25;font-weight:800;letter-spacing:-.02em}
-.hero-cap h2 em{font-style:normal;color:#ff6b47}
-.hero-ctrl{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);z-index:4;opacity:0;transition:opacity .3s}
-.hero:hover .hero-ctrl{opacity:1}
-.hero-ctrl button{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);color:#fff;display:grid;place-items:center}
-.hero-ctrl svg{width:22px;height:22px}
-.hero-search{position:absolute;left:50%;bottom:84px;transform:translateX(-50%);width:min(640px,calc(100% - 32px));z-index:4}
-.hero-search form{display:flex;align-items:center;height:64px;border-radius:40px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:0 16px 0 34px;box-shadow:0 10px 40px rgba(0,0,0,.18)}
-.hero-search input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font-size:18px;font-weight:600;font-family:inherit}
-.hero-search input::placeholder{color:rgba(255,255,255,.92)}
-.hero-search button{width:48px;height:48px;color:#fff;display:grid;place-items:center}
-.hero-search button svg{width:30px;height:30px}
-.hero-search .hint{position:absolute;left:0;right:0;top:calc(100% + 10px);text-align:center;font-size:13px;opacity:0;transition:opacity .3s}
-.hero-search .hint.on{opacity:.9}
-.flash{animation:flash 1.6s ease}
-@keyframes flash{0%,100%{box-shadow:0 6px 30px rgba(14,27,44,.06)}30%{box-shadow:0 0 0 4px var(--red),0 6px 30px rgba(14,27,44,.2)}}
-.scroll-down{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:3;color:#fff;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:8px}
-.scroll-down i{width:1px;height:28px;background:rgba(255,255,255,.4);position:relative;overflow:hidden}
-.scroll-down i::after{content:"";position:absolute;left:0;top:-28px;width:1px;height:28px;background:var(--red);animation:drop 1.8s infinite}
-@keyframes drop{to{top:28px}}
-
-/* ---------- Stats band ---------- */
-.stats{background:var(--bg-soft);color:var(--text);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stats .inner{display:grid;grid-template-columns:repeat(4,1fr)}
-.stats li{padding:38px 10px;text-align:center;border-left:1px solid var(--line)}
-.stats li:first-child{border-left:0}
-.stats b{display:block;font-family:Prompt,sans-serif;font-size:clamp(28px,3vw,42px);font-weight:700}
-.stats b em{font-style:normal;color:var(--red)}
-.stats span{display:block;margin-top:6px;font-size:14.5px;color:var(--gray)}
-
-/* ---------- Section common ---------- */
-.sec{padding:110px 0}
-.sec-tit{text-align:center;font-size:30px;font-weight:700;letter-spacing:-.01em}
-.sec-tit::after{content:"";display:block;width:8px;height:8px;margin:18px auto 0;border-radius:50%;background:var(--red)}
-.sec-sub{text-align:center;margin-top:16px;color:var(--gray);font-size:17px;line-height:1.6}
-.dark .sec-tit,.dark .sec-sub{color:#fff}
-.reveal{opacity:0;transform:translateY(50px);transition:opacity .9s ease,transform .9s ease}
+/* ---------- 섹션 제목 (실측: Prompt 28px/700, ls .56px + 별 아이콘) ---------- */
+.s-tit{position:relative;z-index:3;text-align:center;font-family:Prompt,sans-serif;font-size:28px;font-weight:700;letter-spacing:.02em;line-height:1.1}
+.s-tit::after{content:"";display:block;width:12px;height:13px;margin:20px auto 0;background:url("https://www.unist.ac.kr/_res/unist/unist/img/common/star.png") center/contain no-repeat}
+.s-tit.w{color:#fff;letter-spacing:.06em}
+.s-tit.w::after{background-image:url("https://www.unist.ac.kr/_res/unist/unist/img/common/star-white.png")}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease}
 .reveal.in{opacity:1;transform:none}
-.btn-more{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 26px;border:1px solid #d3d9e0;border-radius:30px;font-weight:600;background:#fff}
-.btn-more::after{content:"+";font-size:22px;font-weight:300}
-.round-arrows{display:flex;gap:8px}
-.round-arrows button{width:50px;height:50px;border-radius:50%;border:1px solid #d3d9e0;display:grid;place-items:center;background:#fff}
-.chip{display:inline-flex;align-items:center;height:30px;padding:0 14px;border-radius:20px;font-size:13px;font-weight:700;color:#fff;background:var(--ink)}
-.chip.k-catalog{background:var(--ink-2)}
-.chip.k-leaflet{background:var(--steel)}
-.chip.k-poster{background:var(--red)}
+.ctrl{display:flex;align-items:center;justify-content:center;gap:14px}
+.dots{display:flex;gap:8px}
+.dots i{width:6px;height:6px;border-radius:50%;background:#cfd3dc;transition:background .3s,width .3s}
+.dots i.on{background:var(--navy)}
+.arr{display:flex;gap:6px}
+.arr button{width:34px;height:34px;border-radius:50%;border:1px solid #d3d7de;display:grid;place-items:center;font-size:16px;color:#555;background:#fff}
+.more{height:38px;padding:0 18px;border:1px solid #d3d7de;border-radius:20px;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;background:#fff}
+.more::after{content:"+";font-size:18px;font-weight:300}
+.chip{display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:14px;font-size:12px;font-weight:700;color:#fff}
+.c-res{background:#5ac43a}.c-com{background:#3cc0c8}.c-news{background:#1f4fc8}
 
-/* ---------- ABOUT ① SINCE (스크롤 고정 연도 롤링) ---------- */
-section.since{position:relative;height:720vh;background:#fff}
-.since-stick{position:sticky;top:0;height:100vh;overflow:hidden}
-.since-inner{position:relative;height:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding-top:calc(var(--header-h) + 60px);padding-bottom:12vh}
-.since-left{align-self:flex-start;margin-top:4vh}
-.since-sm{font-size:clamp(20px,1.8vw,32px);font-weight:600;letter-spacing:.14em;color:var(--red);opacity:0;transform:translateY(12px)}
-.since-slot{font-size:clamp(96px,11vw,211px);font-weight:700;line-height:1;margin-top:6px;visibility:hidden;font-variant-numeric:tabular-nums}
-.since-desc{margin-top:5vh;font-size:clamp(22px,1.75vw,32px);font-weight:700;line-height:1.45;color:var(--ink-2);opacity:0;transform:translateY(14px)}
-.since-txt{margin-top:18px;font-size:clamp(16px,1.15vw,21px);line-height:1.75;color:#7b8594;opacity:0;transform:translateY(40px)}
-/* 오른쪽: 연도별 이정표 → 마지막에 큰 문장 */
-.since-right{position:relative;width:min(600px,44%);min-height:330px}
-.ms-nav{display:flex;gap:0;margin-bottom:34px;opacity:0;transition:opacity .5s}
-.ms-nav li{flex:1;position:relative;padding-top:16px;font-size:14px;font-weight:600;color:#a7b3c0;border-top:2px solid var(--line);transition:color .4s}
-.ms-nav li::before{content:"";position:absolute;left:0;top:-2px;height:2px;width:0;background:var(--red);transition:width .6s ease}
-.ms-nav li::after{content:"";position:absolute;left:0;top:-6px;width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid var(--line);transition:border-color .4s,background .4s}
-.ms-nav li.done{color:var(--ink-2)}
-.ms-nav li.done::before{width:100%}
-.ms-nav li.done::after,.ms-nav li.on::after{border-color:var(--red);background:var(--red)}
-.ms-nav li.on{color:var(--red)}
-.ms-nav li.on::before{width:0}
-.ms-stage{position:relative;min-height:250px}
-.ms{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
-.ms.on{opacity:1;transform:none}
-.ms .yr{font-family:Prompt,sans-serif;font-size:15px;font-weight:700;letter-spacing:.16em;color:var(--red)}
-.ms h3{margin-top:10px;font-size:clamp(24px,2.1vw,36px);line-height:1.35;color:var(--ink);letter-spacing:-.01em}
-.ms p{margin-top:16px;font-size:clamp(15px,1.05vw,18px);line-height:1.8;color:#5e6977}
-.ms ul{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.ms li{height:32px;padding:0 14px;border-radius:16px;border:1px solid var(--line);background:var(--bg-soft);font-size:13px;font-weight:600;color:var(--ink-2);display:flex;align-items:center}
-.since-final{position:absolute;right:0;bottom:0;text-align:right;white-space:nowrap;font-size:clamp(28px,2.9vw,55px);font-weight:600;line-height:1.42;color:var(--ink-2);letter-spacing:-.01em;pointer-events:none}
-.since-final p{overflow:hidden}
-.since-final span{display:inline-block;transform:translateY(105%)}
-.since-final em{font-style:normal;color:var(--red)}
-.since-num{position:absolute;left:0;top:0;display:flex;font-size:clamp(150px,17vw,326px);font-weight:700;line-height:1;color:var(--ink-2);font-variant-numeric:tabular-nums;transform-origin:0 0;will-change:transform;opacity:0;pointer-events:none}
-.since-num>span{display:inline-block;width:.64em;text-align:center}   /* 칸 너비 고정 → 롤링 중에도 간격 일정 */
-.since-num .reel{height:1em;overflow:hidden}
-.since-num .track{display:flex;flex-direction:column;will-change:transform}
-.since-num .track i{font-style:normal;height:1em;display:block;text-align:center}
+/* ---------- Header (실측 85px, padding 0 10px 0 40px, GNB 18px/700) ---------- */
+.header{position:fixed;inset:0 0 auto 0;height:var(--header-h);z-index:100;background:rgba(255,255,255,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:background .3s,box-shadow .3s}
+.header.is-white,.header.is-open{background:#fff;box-shadow:0 1px 0 var(--line)}
+.header-inner{height:100%;display:flex;align-items:center;padding:0 10px 0 40px}
+.logo img{height:34px;width:auto}
+.gnb{display:flex;height:100%;margin-left:auto;margin-right:auto;padding-left:120px}
+.gnb>li>a{display:flex;align-items:center;height:100%;padding:0 25px;font-size:18px;font-weight:700;color:var(--navy-t)}
+.gnb>li>a:hover{color:var(--blue)}
+.util{display:flex;align-items:center;gap:30px;margin-right:44px;font-size:15px;font-weight:500;color:#333}
+.util .lang{display:flex;align-items:center;gap:6px;font-family:Prompt,sans-serif;font-weight:700;color:var(--navy)}
+.util .lang i{width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-style:normal;font-size:11px;display:grid;place-items:center}
+.user-box{display:flex;align-items:center;height:64px;padding:0 6px 0 26px;background:var(--navy);color:#fff;border-radius:6px 6px 22px 6px}
+.user-box .um{display:flex;align-items:center;gap:10px;font-family:Prompt,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding-right:22px;border-right:1px solid rgba(255,255,255,.25);height:26px}
+.user-box .um svg{width:22px;height:22px}
+.user-box .ub{width:62px;height:64px;display:grid;place-items:center}
+.user-box .ub+.ub{border-left:1px solid rgba(255,255,255,.25);height:26px}
+.user-box .ub svg{width:24px;height:24px}
+.mega{position:absolute;top:var(--header-h);left:0;right:0;background:#fff;max-height:0;overflow:hidden;transition:max-height .35s ease}
+.header.is-open .mega{max-height:520px;border-top:1px solid var(--line);box-shadow:0 20px 40px rgba(0,14,45,.08)}
+.mega-in{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(7,1fr);gap:24px;padding:36px 40px 44px}
+.mega h3{font-size:16px;font-weight:800;color:var(--navy);padding-bottom:12px;margin-bottom:12px;border-bottom:2px solid var(--navy)}
+.mega li a{display:block;font-size:14px;color:#444;padding:5px 0}
+.mega li a:hover{color:var(--blue);text-decoration:underline}
 
-/* ---------- ABOUT ② HAO DESIGN ---------- */
-.about{background:#fff}
-.about-top{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
-.about .eyebrow{font-family:Prompt,sans-serif;font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--red)}
-.about h2{margin-top:16px;font-size:clamp(30px,3.4vw,48px);line-height:1.3;font-weight:800;letter-spacing:-.02em}
-.about h2 em{font-style:normal;color:var(--red)}
-.about .lead{margin-top:22px;font-size:19px;line-height:1.7;font-weight:600;color:var(--ink-2)}
-.about .body p{margin-top:16px;font-size:16px;line-height:1.85;color:#3c4757}
-.about-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
-.about-facts li{height:38px;padding:0 16px;border:1px solid var(--line);border-radius:20px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ink-2);background:var(--bg-soft)}
-.about-facts b{font-family:Prompt,sans-serif;color:var(--red)}
-.about-visual{position:relative;height:540px}
-.about-visual img{position:absolute;border-radius:14px;box-shadow:0 24px 60px rgba(14,27,44,.18);object-fit:cover;background:#fff}
-.about-visual .v1{left:0;top:30px;width:52%;height:440px}
-.about-visual .v2{right:0;top:110px;width:60%;height:340px;object-fit:contain;padding:14px}
-.about-visual .since-badge{position:absolute;left:38%;bottom:0;background:var(--ink);color:#fff;border-radius:6px 6px 22px 6px;padding:22px 26px;box-shadow:0 14px 34px rgba(14,27,44,.3)}
-.about-visual .since-badge small{display:block;font-family:Prompt,sans-serif;font-size:12px;letter-spacing:.2em;color:var(--steel)}
-.about-visual .since-badge b{display:block;margin-top:4px;font-family:Prompt,sans-serif;font-size:40px;line-height:1}
-.about-visual .since-badge span{display:block;margin-top:8px;font-size:13px;opacity:.85}
-.msg{display:grid;grid-template-columns:1fr 1.15fr;gap:70px;align-items:center;margin-top:110px;padding:56px;border-radius:28px;background:var(--ink);color:#fff;overflow:hidden;position:relative}
-.msg::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(232,56,23,.32),rgba(232,56,23,0) 70%);pointer-events:none}
-.msg-ph{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--ink-2)}
-.msg-ph img{width:100%;height:100%;object-fit:cover}
-.msg-tx{position:relative;z-index:1}
-.msg-tx small{font-size:13px;font-weight:700;letter-spacing:.2em;color:var(--steel)}
-.msg-tx h3{margin-top:12px;font-size:clamp(26px,2.6vw,40px);line-height:1.3}
-.msg-tx p{margin-top:16px;font-size:16px;line-height:1.85;color:rgba(255,255,255,.78)}
-.msg-tx .sign{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:18px;font-weight:700;color:#fff}
-.values{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
-.values li{position:relative;padding:40px 36px 38px;border-radius:var(--radius);background:var(--bg-soft);border:1px solid var(--line);overflow:hidden}
-.values li::after{content:attr(data-n);position:absolute;right:24px;top:14px;font-family:Prompt,sans-serif;font-size:70px;font-weight:800;color:rgba(14,27,44,.05)}
-.values small{font-family:Prompt,sans-serif;font-size:13px;font-weight:700;letter-spacing:.16em;color:var(--steel)}
-.values h3{margin-top:10px;font-size:23px}
-.values p{margin-top:14px;font-size:15.5px;line-height:1.75;color:var(--gray)}
-.facility{margin-top:110px;scroll-margin-top:calc(var(--header-h) + 30px)}
-.facility-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
-.facility-head h3{font-size:clamp(24px,2.4vw,32px);line-height:1.35}
-.facility-head h3 small{display:block;font-family:Prompt,sans-serif;font-size:14px;letter-spacing:.2em;color:var(--red);margin-bottom:10px}
-.facility-head p{max-width:520px;font-size:15.5px;line-height:1.75;color:var(--gray)}
-.fac-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
-.fac-grid article{border-radius:var(--radius);overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px rgba(14,27,44,.06)}
-.fac-grid .ph{aspect-ratio:16/9;overflow:hidden;background:var(--bg-soft)}
-.fac-grid .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
-.fac-grid article:hover .ph img{transform:scale(1.05)}
-.fac-grid .tx{padding:28px 28px 32px}
-.fac-grid .tx small{font-family:Prompt,sans-serif;font-size:13px;font-weight:700;color:var(--red)}
-.fac-grid h4{margin-top:6px;font-size:21px;line-height:1.4}
-.fac-grid p{margin-top:12px;font-size:15px;line-height:1.75;color:var(--gray)}
-.fac-grid .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
-.fac-grid .chips span{height:28px;padding:0 12px;border-radius:14px;background:var(--bg-soft);border:1px solid var(--line);font-size:12.5px;display:flex;align-items:center;color:#45505e}
+/* ---------- Hero (유튜브 배경 영상 + 하단 유리 검색창) ---------- */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:#000}
+.hero .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s;background:#000 center/cover no-repeat}
+.hero .slide.on{opacity:1}
+.hero .slide iframe{position:absolute;top:50%;left:50%;width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);pointer-events:none;border:0}
+.hero-ctrl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;gap:12px;z-index:3;opacity:0;transition:opacity .3s}
+.hero:hover .hero-ctrl{opacity:1}
+.hero-ctrl button{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.25);backdrop-filter:blur(6px);color:#fff;display:grid;place-items:center;font-size:18px}
+.hero-search{position:absolute;left:50%;bottom:92px;transform:translateX(-50%);width:min(520px,calc(100% - 32px));z-index:3}
+.hero-search form{display:flex;align-items:center;height:58px;border-radius:40px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.55);backdrop-filter:blur(10px);padding:0 14px 0 30px}
+.hero-search input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font-size:16px;font-weight:600;font-family:inherit}
+.hero-search input::placeholder{color:rgba(255,255,255,.9)}
+.hero-search button{width:44px;height:44px;color:#fff;display:grid;place-items:center}
+.scroll-down{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:3;color:#fff;font-family:Prompt,sans-serif;font-size:12px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-down i{width:1px;height:30px;background:rgba(255,255,255,.4);position:relative;overflow:hidden}
+.scroll-down i::after{content:"";position:absolute;left:0;top:-30px;width:1px;height:30px;background:#fff;animation:drop 1.8s infinite}
+@keyframes drop{to{top:30px}}
 
-/* ---------- 01 PUBLIC WORKS ---------- */
-.tabs{display:flex;justify-content:center;gap:8px;margin:40px 0 46px;flex-wrap:wrap}
-.tabs button{height:44px;padding:0 24px;border-radius:30px;border:1px solid var(--line);font-weight:600;color:#555;background:#fff}
-.tabs button.on{background:var(--ink);border-color:var(--ink);color:#fff}
-/* UNIST TODAY식: 큰 배경 문구(블러 인) + 반대 방향으로 흐르는 유리 카드 2줄 + 하단 스크럽 바 */
-#works{position:relative;overflow:hidden;padding-bottom:90px}
-/* 배경 문구 2겹: 앞(.front, 카드 위·진한 색)으로 날아 들어온 뒤 → 흐려지며 뒤(.back, 카드 아래·연한 색)로 물러남 */
-.works-bg{position:absolute;left:0;right:0;top:250px;text-align:center;pointer-events:none;user-select:none;font-family:Prompt,sans-serif;font-weight:800;font-size:clamp(70px,9.4vw,170px);line-height:1.02;letter-spacing:-.01em}
-.works-bg.front{z-index:3;color:#9fb0c2;transition:opacity 1.1s ease,color 1.1s ease}
-.works-bg.back{z-index:0;color:#e7ebf0;opacity:0;transition:opacity 1.1s ease}
-.works-bg span{display:inline-block;margin:0 .12em}
-.works-bg.front span{opacity:0;filter:blur(20px);transform:translateX(40px);transition:opacity 1s ease,filter 1s ease,transform 1s ease}
-.works-bg.front.in span{opacity:1;filter:none;transform:none}
-.works-bg.front.out{opacity:0;color:#e7ebf0}
-.works-bg.back.in{opacity:1}
-.marquee,#works .range-wrap,#works .work-foot{position:relative;z-index:1}
-/* 카드는 문구가 다 나온 뒤에 날아 들어옴: 1줄은 오른쪽에서, 2줄은 왼쪽에서 */
-.m-row{opacity:0;transition:opacity .9s ease,transform 1.1s cubic-bezier(.2,.8,.2,1)}
+/* ---------- 01 TODAY: 배경 문구(앞→뒤) + 유리 카드 2줄 마키 + range ---------- */
+.today{position:relative;padding:120px 0 90px;overflow:hidden;background:#fff}
+.bgtxt{position:absolute;left:0;right:0;text-align:center;pointer-events:none;user-select:none;font-family:Prompt,sans-serif;font-weight:900;font-size:clamp(80px,10.4vw,200px);line-height:.81;text-transform:uppercase}
+.bgtxt span{display:inline-block;margin:0 .08em}
+.bgtxt.front{z-index:3;color:var(--bgtxt-d);transition:opacity 1.1s ease}
+.bgtxt.front span{opacity:0;filter:blur(20px);transform:translateX(40px);transition:opacity 1s ease,filter 1s ease,transform 1s ease}
+.bgtxt.front.in span{opacity:1;filter:none;transform:none}
+.bgtxt.front.out{opacity:0}
+.bgtxt.back{z-index:0;color:var(--bgtxt-l);opacity:0;transition:opacity 1.1s ease}
+.bgtxt.back.in{opacity:1}
+.today .bgtxt{top:233px}
+.marquee{position:relative;z-index:1;margin-top:60px}
+.m-row{overflow:hidden;padding:20px 0 38px;opacity:0;transition:opacity .9s ease,transform 1.1s cubic-bezier(.2,.8,.2,1)}
 .m-row:first-child{transform:translate(160px,50px)}
-.m-row:last-child{transform:translate(-160px,50px);transition-delay:.18s}
+.m-row:last-child{transform:translate(-160px,50px);transition-delay:.18s;margin-top:-10px}
 .marquee.in .m-row{opacity:1;transform:none}
-#works .range-wrap,#works .work-foot{opacity:0;transition:opacity .8s ease .5s}
-#works.cards-in .range-wrap,#works.cards-in .work-foot{opacity:1}
-@media (prefers-reduced-motion:reduce){.m-row,#works .range-wrap,#works .work-foot{opacity:1;transform:none;transition:none}}
-.marquee{position:relative;margin-top:56px}
-.m-row{overflow:hidden;padding:20px 0 36px}
-.m-row+.m-row{margin-top:-6px}
-.m-track{display:flex;gap:96px;width:max-content;will-change:transform}
-.w-card{position:relative;flex:0 0 auto;width:738px;height:259px;display:flex;align-items:center;gap:28px;padding:30px 30px 30px 40px;border-radius:15px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 17px rgba(0,0,0,.1);cursor:pointer;transition:background .3s,box-shadow .3s}
-.w-card:nth-child(even){transform:translateY(20px)}
-.w-card:hover{background:rgba(255,255,255,.85);box-shadow:0 14px 40px rgba(14,27,44,.16)}
-.w-card .txt{flex:1;min-width:0}
-.w-card .thumb{flex:0 0 280px;height:199px;border-radius:120px 40px 120px 120px;overflow:hidden;position:relative;background:#e5e9ee}
-.w-card .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform .8s}
-.w-card .thumb img.cv{opacity:0}
-.w-card:hover .thumb img.in{opacity:0;transform:scale(1.05)}
-.w-card:hover .thumb img.cv{opacity:1}
-.w-card .y{display:block;margin-top:12px;font-size:14px;color:#555}
-.range-wrap{position:relative;width:min(882px,calc(100% - 32px));margin:44px auto 0}
+.m-track{display:flex;gap:95px;width:max-content;will-change:transform}
+.t-card{position:relative;flex:0 0 auto;width:738px;height:259px;display:flex;align-items:center;gap:30px;padding:37.5px 30px 37.5px 40px;border-radius:15px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 17px rgba(0,0,0,.1);transition:background .3s}
+.t-card:nth-child(even){transform:translateY(20px)}
+.t-card:hover{background:rgba(255,255,255,.85)}
+.t-card .tx{flex:1;min-width:0}
+.t-card h3{font-size:25px;font-weight:700;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.t-card time{display:block;margin-top:12px;font-size:14px;color:#555}
+.t-card .chip{margin-top:14px}
+.t-card .ph{flex:0 0 280px;height:199px;border-radius:120px 40px 120px 120px;overflow:hidden;background:#e4e9f2}
+.t-card .ph img{width:100%;height:100%;object-fit:cover}
+.range-wrap{position:relative;z-index:1;width:min(882px,calc(100% - 32px));margin:40px auto 0;opacity:0;transition:opacity .8s ease .5s}
+.today.cards-in .range-wrap{opacity:1}
 .range{-webkit-appearance:none;appearance:none;width:100%;height:14px;background:transparent;cursor:pointer}
 .range::-webkit-slider-runnable-track{height:14px;background:rgba(221,221,221,.5)}
 .range::-moz-range-track{height:14px;background:rgba(221,221,221,.5)}
-.range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-2px;border-radius:50%;background:#fff;border:1px solid #a7b3c0;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-.range::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:1px solid #a7b3c0}
-/* 포트폴리오 크게 보기 */
-.lb{position:fixed;inset:0;z-index:210;background:rgba(14,27,44,.9);display:grid;place-items:center;padding:24px}
-.lb[hidden]{display:none}
-.lb-box{width:min(1200px,100%);color:#fff}
-.lb-box h3{font-size:22px}
-.lb-box small{opacity:.7;font-size:14px}
-.lb-imgs{display:grid;grid-template-columns:1fr 1.6fr;gap:20px;margin-top:18px;align-items:center}
-.lb-imgs img{width:100%;max-height:72vh;object-fit:contain;background:#fff;border-radius:6px}
-.lb .x{position:fixed;top:18px;right:18px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:26px}
-.w-card small{font-size:13px;color:var(--gray);font-weight:600}
-.w-card h3{margin-top:4px;font-size:25px;font-weight:700;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.w-card .chip{margin-top:14px;height:28px;font-size:12.5px}
-.work-foot{text-align:center;margin-top:36px}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-2px;border-radius:50%;background:#fff;border:1px solid #9aa3b2}
+.range::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:1px solid #9aa3b2}
 
-/* ---------- 02 Information for 담당자 ---------- */
-.info-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;margin-top:50px}
-.info-slider{position:relative;border-radius:var(--radius);overflow:hidden;min-height:460px;background:var(--ink)}
-.info-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s;background:center/cover;color:var(--text);padding:48px 50px}
+/* ---------- 02 Information for UNISTar (실측 컨테이너 1509px, 슬라이드 877x400) ---------- */
+.info{padding:30px 0 120px}
+.info-wrap{width:min(1509px,calc(100% - 80px));margin:50px auto 0;display:grid;grid-template-columns:877fr 608fr;gap:24px}
+.info-slider{position:relative;height:400px;border-radius:10px;overflow:hidden;background:#223}
+.info-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s;background:center/cover;color:#fff;padding:64px 80px}
 .info-slide.on{opacity:1}
-.info-slide::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,248,245,.97) 0,rgba(250,248,245,.9) 48%,rgba(250,248,245,.25))}
+.info-slide::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,14,45,.6),rgba(0,14,45,0) 70%)}
 .info-slide>*{position:relative}
-.info-slide .k{font-size:14px;font-weight:700;color:var(--red);letter-spacing:.06em}
-.info-slide p{margin-top:12px;font-size:28px;font-weight:700;line-height:1.45}
-.info-slide ul{margin-top:22px;display:grid;gap:10px;font-size:15.5px;color:#3c4757}
-.info-slide li::before{content:"✓";color:var(--steel);font-weight:800;margin-right:10px}
-.info-slide .go{display:inline-flex;align-items:center;gap:14px;margin-top:28px;height:50px;padding:0 22px;border:1px solid var(--ink);border-radius:30px;font-weight:600}
-.info-slider .round-arrows{position:absolute;right:30px;bottom:30px;z-index:2}
-.info-slider .round-arrows button{background:#fff;border-color:var(--line);color:var(--ink)}
-.info-banners{display:grid;grid-template-rows:1.2fr 1fr;grid-template-columns:1fr 1fr;gap:24px}
-.info-banners a{position:relative;border-radius:var(--radius);padding:30px;overflow:hidden;background:var(--bg-soft);transition:transform .3s}
-.info-banners a:hover{transform:translateY(-4px)}
-.info-banners a.wide{grid-column:span 2;color:#fff;background:radial-gradient(circle at 90% 100%,rgba(255,255,255,.22),rgba(255,255,255,0) 45%),linear-gradient(120deg,var(--red),var(--red-d))}
-.info-banners strong{display:block;font-size:22px;font-weight:700}
+.info-slide p{font-size:30px;font-weight:700;line-height:1.45}
+.info-slide .go{display:inline-flex;align-items:center;gap:14px;margin-top:30px;height:46px;padding:0 22px;border:1px solid rgba(255,255,255,.6);border-radius:30px;font-weight:600;font-size:14px}
+.info-slider .sl-arr{position:absolute;top:50%;left:12px;right:12px;display:flex;justify-content:space-between;transform:translateY(-50%);z-index:2;pointer-events:none}
+.info-slider .sl-arr button{pointer-events:auto;width:40px;height:40px;color:#fff;font-size:26px}
+.info-dots{position:absolute;left:0;right:0;bottom:-26px;justify-content:center}
+.info-banners{display:grid;grid-template-rows:1.25fr 1fr;grid-template-columns:1fr 1fr;gap:16px}
+.info-banners a{position:relative;border-radius:10px;padding:28px 30px;overflow:hidden;background:#f2f4f8}
+.info-banners a.wide{grid-column:span 2;color:#fff;background:#0b1a4a url("https://www.unist.ac.kr/_res/unist/unist/img/main/sec02-bg.jpg") center/cover}
+.info-banners strong{display:block;font-size:20px;font-weight:700}
 .info-banners strong::after{content:" ›"}
-.info-banners span{display:block;margin-top:10px;font-size:15px;line-height:1.5;opacity:.8;max-width:240px}
-.info-banners .mascot{position:absolute;right:16px;bottom:-30px;height:200px;width:auto}
-.info-banners .ico{position:absolute;right:22px;bottom:20px;width:64px;height:64px;color:var(--ink-2)}
+.info-banners span{display:block;margin-top:8px;font-size:13.5px;line-height:1.5;opacity:.8;max-width:200px}
+.info-banners img{position:absolute;right:20px;bottom:16px;height:70px;width:auto}
+.info-banners a.wide img{height:120px;bottom:6px}
 
-/* ---------- 03 WHY HAO ---------- */
-.why{position:relative;overflow:hidden}
-.why-bigtext{position:absolute;left:0;right:0;top:170px;text-align:center;font-size:clamp(70px,12vw,190px);font-weight:800;line-height:.92;color:#edf0f4;letter-spacing:-.02em;pointer-events:none;user-select:none}
-.why-card{position:relative;display:none;border-radius:28px;overflow:hidden;min-height:560px;background:#111 center/cover no-repeat;color:#fff;padding:56px 60px}
-.why-card.on{display:flex;flex-direction:column;justify-content:flex-end;animation:fade .6s}
-@keyframes fade{from{opacity:0;transform:scale(.98)}to{opacity:1}}
-.why-card::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,27,44,.86) 0,rgba(14,27,44,.62) 38%,rgba(14,27,44,.12) 72%,rgba(14,27,44,0))}
-.why-card>*{position:relative}
-.why-card .label{position:absolute;top:36px;left:40px;background:#fff;color:var(--ink);height:34px;padding:0 16px;border-radius:20px;font-size:14px;font-weight:700;display:flex;align-items:center}
-.why-card .num{font-family:Prompt,sans-serif;font-size:15px;font-weight:700;color:#f4b49e;margin-bottom:14px}
-.why-card p{font-size:clamp(22px,2.4vw,34px);font-weight:700;line-height:1.45;max-width:780px}
-.why-card .desc{margin-top:16px;font-size:16px;font-weight:400;line-height:1.7;opacity:.85;max-width:680px}
-.why-card ul{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;max-width:720px}
-.why-card li{height:36px;padding:0 16px;border-radius:20px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(6px);display:flex;align-items:center;font-size:14px;font-weight:600}
-.why-card .more{position:absolute;right:50px;bottom:50px;width:74px;height:74px;border-radius:50%;background:var(--red);display:grid;place-items:center;color:#fff}
-.why-card .more svg{width:30px;height:30px}
+/* ---------- 03 WHY UNIST (고정: 배경 문구 → 세로 카드 4장 443x640) ---------- */
+.why{position:relative;height:210vh}
+.why-stick{position:sticky;top:0;height:100vh;overflow:hidden;padding-top:calc(var(--header-h) + 50px);background:#fff}
+.why .bgtxt{top:calc(var(--header-h) + 150px);line-height:.85}
+.why .bgtxt.front{color:#cfd8e5}
+.why .bgtxt.back{color:#eef1f6}
+.why-cards{position:relative;z-index:1;display:flex;justify-content:center;gap:24px;margin-top:70px;padding:0 40px}
+.w-card{position:relative;flex:0 1 443px;height:min(640px,calc(100vh - 250px));border-radius:20px;overflow:hidden;background:rgba(255,255,255,.33) center/cover no-repeat;backdrop-filter:blur(6px);color:#fff;opacity:0;transform:translateY(120px);box-shadow:0 20px 40px rgba(0,14,45,.12)}
+.w-card:nth-child(even){margin-top:28px}
+.w-card::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72),rgba(0,0,0,0) 55%)}
+.w-card>*{position:relative}
+.w-card .lab{position:absolute;top:22px;left:22px;height:30px;padding:0 14px;border-radius:16px;background:#fff;color:var(--navy);font-size:12.5px;font-weight:700;display:flex;align-items:center}
+.w-card .bot{position:absolute;left:28px;right:28px;bottom:30px}
+.w-card .bot img{width:50px;margin-bottom:16px}
+.w-card .bot b{display:block;font-family:Prompt,sans-serif;font-size:26px;line-height:1.05;font-weight:700;text-transform:uppercase}
+.w-card .bot span{display:block;margin-top:12px;font-size:13.5px;line-height:1.5;opacity:.85}
 
-/* ---------- 04 SERVICES ---------- */
-.services{background:var(--bg-soft)}
-.s-track-wrap{overflow:hidden;margin-top:50px}
-.s-track{display:flex;gap:24px;transition:transform .5s ease}
-.s-card{flex:0 0 calc((100% - 48px)/3);background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 6px 30px rgba(14,27,44,.06)}
-.s-card .thumb{aspect-ratio:16/9;overflow:hidden;background:#e5e9ee}
-.s-card .thumb img{width:100%;height:100%;object-fit:cover}
-.s-card .txt{padding:26px 26px 30px}
-.s-card small{font-family:Prompt,sans-serif;font-size:13px;font-weight:700;color:var(--red)}
-.s-card h3{margin-top:6px;font-size:21px;font-weight:700;line-height:1.4}
-.s-card p{margin-top:12px;font-size:15px;line-height:1.65;color:var(--gray)}
-.s-card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
-.s-card .tags span{height:30px;padding:0 12px;border:1px solid var(--line);border-radius:16px;font-size:13px;display:flex;align-items:center;color:#444}
-.s-foot{display:flex;justify-content:center;gap:12px;margin-top:46px}
+/* ---------- 04 RESEARCH IMPACT (배경 점 지도, 카드 470x565) ---------- */
+.research{padding:120px 0 110px;background:#fff url("https://www.unist.ac.kr/_res/unist/unist/img/main/bg-research-impact.png") center top/cover no-repeat}
+.r-wrap{overflow:hidden;margin-top:56px;padding:0 0 10px}
+.r-track{display:flex;gap:30px;padding-left:calc(50vw - 735px);transition:transform .6s ease}
+.r-card{flex:0 0 470px;height:565px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 6px 30px rgba(10,20,60,.07)}
+.r-card .ph{height:250px;overflow:hidden;background:#e4e9f2}
+.r-card .ph img{width:100%;height:100%;object-fit:cover}
+.r-card .tx{padding:26px 28px}
+.r-card h3{font-size:20px;font-weight:700;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.r-card p{margin-top:12px;font-size:14px;line-height:1.65;color:#777;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.r-card time{display:block;margin-top:12px;font-size:13px;color:#888}
+.r-card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.r-card .tags span{height:28px;padding:0 12px;border:1px solid var(--line);border-radius:14px;font-size:12px;display:flex;align-items:center;color:#444}
+.r-foot{margin-top:40px}
 
-/* ---------- 05 PROCESS (pinned horizontal) ---------- */
-.process{position:relative;height:400vh;background:var(--bg-soft)}
-.process .stick{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg-soft) url("assets/works/nano-inner.jpg") center/cover}
-.process .stick::before{content:"";position:absolute;inset:0;background:rgba(246,243,239,.93)}
-.process .sec-tit{position:relative;z-index:2;padding-top:110px}
-.process .sec-sub{position:relative;z-index:2}
-.process-big{position:absolute;left:0;right:0;top:50%;transform:translateY(-30%);text-align:center;font-size:clamp(60px,9vw,150px);font-weight:800;line-height:.95;color:rgba(14,27,44,.045);pointer-events:none}
-.p-track{position:absolute;left:0;top:200px;height:calc(100% - 200px);display:flex;align-items:center;gap:32px;padding:0 6vw;will-change:transform}
-.p-card{position:relative;flex:0 0 340px;height:min(400px,calc(100vh - 290px));border-radius:24px;padding:36px 32px;background:rgba(255,255,255,.88);border:1px solid var(--line);backdrop-filter:blur(10px);color:var(--text);display:flex;flex-direction:column;box-shadow:0 14px 40px rgba(14,27,44,.08)}
-.p-card:nth-child(even){margin-top:-60px}
-.p-card:nth-child(odd){margin-top:60px}
-.p-card .step{font-family:Prompt,sans-serif;font-size:56px;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--red)}
-.p-card h3{margin-top:auto;font-size:26px;line-height:1.35}
-.p-card p{margin-top:14px;font-size:15px;line-height:1.7;color:var(--gray)}
-.p-card .when{margin-top:18px;display:inline-flex;align-self:flex-start;height:30px;padding:0 14px;border-radius:16px;background:var(--red);color:#fff;font-size:13px;font-weight:700;align-items:center}
+/* ---------- 05 UNIST INSIGHT (고정 + 2열 카드가 서로 다른 속도로 올라감 → 마지막에 캠퍼스 + 십자) ---------- */
+.insight{position:relative;height:360vh;background:#1a2230}
+.ins-stick{position:sticky;top:0;height:100vh;overflow:hidden;background:#1a2230 url("https://www.unist.ac.kr/_res/unist/unist/img/main/bg-unist-insight.jpg") center/cover}
+.ins-shade{position:absolute;inset:0;background:rgba(20,26,38,.62);transition:opacity .2s linear}
+.insight .s-tit{position:absolute;left:0;right:0;top:calc(var(--header-h) + 40px)}
+.ins-big{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-family:Prompt,sans-serif;font-weight:900;font-size:clamp(60px,6.8vw,130px);line-height:.95;color:rgba(255,255,255,.14);text-transform:uppercase;pointer-events:none}
+.ins-cols{position:absolute;left:50%;top:0;transform:translateX(-50%);display:flex;gap:30px;width:1030px}
+.ins-col{flex:0 0 500px;display:flex;flex-direction:column;gap:30px;will-change:transform}
+.ins-card{position:relative;height:550px;border-radius:16px;overflow:hidden;background:#334 center/cover;color:#fff}
+.ins-card::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.82),rgba(0,0,0,0) 60%)}
+.ins-card>*{position:relative}
+.ins-card .chip{position:absolute;top:22px;left:22px;background:#5a2ce8}
+.ins-card .chip.b{background:#1450f5}.ins-card .chip.g{background:#2ab0b8}
+.ins-card .bd{position:absolute;left:30px;right:90px;bottom:32px}
+.ins-card small{font-size:12px;opacity:.75}
+.ins-card h3{margin-top:8px;font-size:25px;line-height:1.35}
+.ins-card p{margin-top:12px;font-size:13.5px;line-height:1.6;opacity:.85;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ins-card .go{position:absolute;right:28px;bottom:34px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.55);display:grid;place-items:center}
+.ins-cross{position:absolute;left:50%;top:50%;width:70px;height:70px;transform:translate(-50%,-50%);opacity:0}
+.ins-cross::before,.ins-cross::after{content:"";position:absolute;background:#fff}
+.ins-cross::before{left:50%;top:0;bottom:0;width:2px;margin-left:-1px}
+.ins-cross::after{top:50%;left:0;right:0;height:2px;margin-top:-1px}
 
-/* ---------- 06 FAQ ---------- */
-.faq-wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:60px;align-items:start}
-.faq-wrap .sec-tit,.faq-wrap .sec-sub{text-align:left}
-.faq-wrap .sec-tit::after{margin-left:0}
-.faq-side .btn-more{margin-top:30px}
-.faq details{border-top:1px solid var(--line)}
-.faq details:last-child{border-bottom:1px solid var(--line)}
-.faq summary{list-style:none;cursor:pointer;display:flex;gap:16px;align-items:flex-start;padding:24px 4px;font-size:18px;font-weight:700;line-height:1.5}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary b{font-family:Prompt,sans-serif;color:var(--red)}
-.faq summary::after{content:"+";margin-left:auto;font-size:26px;font-weight:300;line-height:1;color:#999}
-.faq details[open] summary::after{content:"–"}
-.faq .a{padding:0 4px 26px 38px;color:#45505e;font-size:16px;line-height:1.8}
+/* ---------- 06 LIFE AT UNIST (영상 카드 400px 슬라이더) ---------- */
+.life{padding:120px 0 100px}
+.l-wrap{overflow:hidden;margin-top:56px}
+.l-track{display:flex;gap:26px;padding-left:calc(50vw - 735px);transition:transform .6s ease}
+.l-card{flex:0 0 400px}
+.l-card .ph{position:relative;height:225px;border-radius:12px;overflow:hidden;background:#e4e9f2}
+.l-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.l-card:hover .ph img{transform:scale(1.05)}
+.l-card .ph::after{content:"";position:absolute;left:50%;top:50%;width:48px;height:34px;margin:-17px 0 0 -24px;border-radius:9px;background:#e62117 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 7v10l8-5z'/%3E%3C/svg%3E") center/20px no-repeat}
+.l-card h3{margin-top:14px;font-size:15px;font-weight:600;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.l-card time{display:block;margin-top:6px;font-size:12.5px;color:#888}
+.l-foot{margin-top:40px}
 
-/* ---------- CTA ---------- */
-.cta{position:relative;overflow:hidden;background:radial-gradient(circle at 88% 10%,rgba(255,255,255,.2),rgba(255,255,255,0) 40%),linear-gradient(120deg,var(--red),var(--red-d));color:#fff}
-.cta .inner{display:flex;align-items:center;justify-content:space-between;gap:30px;padding-top:80px;padding-bottom:80px}
-.cta h2{font-size:clamp(26px,3vw,40px);line-height:1.35}
-.cta p{margin-top:14px;opacity:.9;font-size:17px}
-.cta .btns{display:flex;gap:12px;flex-wrap:wrap}
-.cta .btns a{height:58px;padding:0 30px;border-radius:32px;display:flex;align-items:center;font-weight:700;font-size:17px;border:1px solid rgba(255,255,255,.7)}
-.cta .btns a.main{background:#fff;border-color:#fff;color:var(--red)}
-
-/* ---------- Footer ---------- */
-.footer{background:#0a1421;color:rgba(255,255,255,.7);padding:64px 0 46px;font-size:14px}
-.f-top{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.12)}
-.f-top .logo img{height:52px}
-.f-top .slogan{margin-top:14px;font-size:15px;color:#fff}
-.f-sel{display:flex;gap:10px}
-.f-sel select{appearance:none;width:200px;height:50px;padding:0 20px;border-radius:8px;background:rgba(255,255,255,.06) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") right 16px center/16px no-repeat;border:1px solid rgba(255,255,255,.2);color:#fff;font-family:inherit;font-size:14px}
-.f-sel option{color:#000}
-.f-mid{display:flex;justify-content:space-between;gap:30px;padding:32px 0;flex-wrap:wrap}
-.f-addr p{line-height:1.9}
-.f-links{display:flex;flex-wrap:wrap;gap:6px 22px;max-width:560px;justify-content:flex-end}
+/* ---------- Footer (실측 #000e2d, 483px) ---------- */
+.footer{background:var(--navy);color:rgba(255,255,255,.72);font-size:13px}
+.f-in{max-width:1400px;margin:0 auto;padding:0 40px}
+.f-sel{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(255,255,255,.12)}
+.f-sel button{display:flex;align-items:center;justify-content:space-between;height:74px;padding:0 30px;color:#fff;font-size:14px;font-weight:600;text-align:left}
+.f-sel button+button{border-left:1px solid rgba(255,255,255,.12)}
+.f-sel button::after{content:"";width:9px;height:9px;border-right:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(45deg) translateY(-3px)}
+.f-body{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding:56px 0 60px}
+.f-body .logo img{height:30px}
+.f-body address{font-style:normal;margin-top:22px;line-height:1.9}
+.f-links{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:22px;max-width:820px}
 .f-links a{color:#fff}
-.f-bot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-
-/* ---------- Floating quick menu ---------- */
-.quick{position:fixed;right:24px;bottom:24px;z-index:90;display:flex;flex-direction:column;gap:10px;opacity:0;pointer-events:none;transform:translateY(16px);transition:opacity .3s,transform .3s}
-.quick.on{opacity:1;pointer-events:auto;transform:none}
-.quick.on.hide-since{opacity:0;pointer-events:none;transform:translateY(16px)}
-.quick a{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.2);text-align:center;line-height:1.2}
-.quick .q1{background:var(--red)}
-.quick .q2{background:#fee500;color:#3a1d1d}
-.quick .q3{background:var(--ink)}
+.f-links a.pv{color:#7fb2ff}
+.f-copy{margin-top:22px;opacity:.6}
+.f-right{text-align:right}
+.f-right .slogan{height:62px;width:auto;margin-left:auto}
+.sns{display:flex;gap:14px;justify-content:flex-end;margin-top:26px}
+.sns a{width:22px;height:22px;opacity:.75}
+.sns svg{width:100%;height:100%;fill:#fff}
 
 /* ---------- Layer popup ---------- */
 .pop{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:rgba(0,0,0,.55);padding:16px}
 .pop[hidden]{display:none}
-.pop .box{width:min(560px,100%);border-radius:18px;overflow:hidden;background:#fff}
-.pop .box .top{background:radial-gradient(circle at 90% 10%,rgba(255,255,255,.22),rgba(255,255,255,0) 45%),linear-gradient(130deg,var(--red),var(--red-d));color:#fff;padding:40px 40px 34px}
-.pop .box .top small{color:#ffe2d8;font-weight:700;letter-spacing:.06em}
-.pop .box h2{font-size:clamp(26px,5vw,36px);line-height:1.3;margin-top:12px}
-.pop .box .body{padding:28px 40px 34px;color:#444;line-height:1.75;font-size:15.5px}
-.pop .box .body a{display:flex;justify-content:center;align-items:center;height:52px;margin-top:20px;border-radius:30px;background:var(--red);color:#fff;font-weight:700}
-.pop .acts{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
-.pop .acts button{height:42px;padding:0 22px;border-radius:24px;background:rgba(255,255,255,.95);color:var(--ink);font-weight:600;font-size:14px}
-.pop .acts button.close{background:var(--ink);color:#fff}
+.pop .box{width:min(620px,100%);border:8px solid rgba(255,255,255,.75);border-radius:6px;overflow:hidden;background:#071338}
+.pop .box a{display:block;background:radial-gradient(circle at 75% 40%,#2de1d1 0,#123a8a 30%,#071338 65%);color:#fff;padding:40px 44px}
+.pop .box em{font-style:normal;color:#5ff3e6}
+.pop .box h2{font-size:clamp(34px,6vw,54px);line-height:1.15;margin:16px 0;color:#5ff3e6}
+.pop .box .cta{margin-top:26px;width:max-content;height:52px;padding:0 30px;border-radius:30px;background:#5ff3e6;color:#071338;font-weight:800;display:flex;align-items:center}
+.pop .acts{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.pop .acts button{height:42px;padding:0 22px;border-radius:24px;background:var(--navy);color:#fff;font-weight:600;font-size:14px}
+.pop .acts button.close{background:#1f4fc8}
 
 /* ---------- Mobile drawer ---------- */
 .drawer{position:fixed;inset:0;z-index:150;background:#fff;transform:translateX(100%);transition:transform .35s;overflow-y:auto;padding:90px 24px 40px}
@@ -416,113 +264,120 @@ section.since{position:relative;height:720vh;background:#fff}
 .drawer summary::after{content:"+";font-weight:300}
 .drawer details[open] summary::after{content:"–"}
 .drawer details a{display:block;padding:8px 0 8px 10px;color:#555;font-size:15px}
-.drawer details ul{padding-bottom:14px}
-.drawer .call{display:flex;justify-content:center;align-items:center;height:54px;margin-top:28px;border-radius:30px;background:var(--red);color:#fff;font-weight:700}
-.drawer .x{position:fixed;top:20px;right:18px;width:44px;height:44px;border-radius:8px;background:var(--ink);color:#fff;font-size:22px}
+.drawer .x{position:fixed;top:18px;right:18px;width:44px;height:44px;border-radius:8px;background:var(--navy);color:#fff;font-size:22px}
 
 /* ---------- Responsive ---------- */
-@media (max-width:1280px){
-  .gnb{gap:30px;margin-left:40px}
+@media (max-width:1500px){
+  .gnb{padding-left:40px}
+  .gnb>li>a{padding:0 16px;font-size:17px}
+  .util{gap:20px;margin-right:24px}
+  .r-track,.l-track{padding-left:40px}
+}
+@media (max-width:1200px){
+  .util{display:none}
+  .ins-cols{width:880px}.ins-col{flex-basis:425px}
 }
 @media (max-width:1024px){
-  :root{--header-h:68px}
+  :root{--header-h:64px}
   .gnb,.mega{display:none}
-  .header .inner{padding-right:12px}
-  .ask{height:48px;padding:0 18px;font-size:14.5px;border-radius:6px 6px 16px 6px}
-  .ham{display:grid}
-  .logo img{height:38px}
-  .inner{padding:0 24px}
-  .sec{padding:80px 0}
-  .stats .inner{grid-template-columns:repeat(2,1fr)}
-  .stats li:nth-child(3){border-left:0}
-  .stats li{padding:26px 10px}
-  .w-card{width:600px;height:230px;padding:24px 24px 24px 30px}
-  .w-card .thumb{flex-basis:230px;height:170px}
-  .w-card h3{font-size:21px}
-  .m-track{gap:56px}
-  .info-wrap{grid-template-columns:1fr}
-  .s-card{flex-basis:calc((100% - 24px)/2)}
-  .faq-wrap{grid-template-columns:1fr;gap:30px}
-  .since-inner{flex-direction:column;align-items:stretch;justify-content:space-between;padding-bottom:9vh}
-  .since-right{width:100%;min-height:300px}
-  .since-final{font-size:clamp(26px,4.6vw,40px)}
-  .about-top{grid-template-columns:1fr;gap:50px}
-  .about-visual{height:460px}
-  .values,.fac-grid{grid-template-columns:1fr}
-  .values{margin-top:40px}
-  .msg{grid-template-columns:1fr;gap:30px;padding:32px;margin-top:70px}
-  .facility{margin-top:70px}
-  .cta .inner,.f-top,.f-mid{flex-direction:column;align-items:flex-start}
-  .f-links{justify-content:flex-start}
+  .header-inner{padding:0 10px 0 20px}
+  .logo img{height:26px}
+  .user-box{height:48px;padding:0 2px 0 14px;margin-left:auto;border-radius:6px 6px 16px 6px}
+  .user-box .um span{display:none}
+  .user-box .um{border-right:0;padding-right:4px}
+  .user-box .ub{width:44px;height:48px}
+  .info-wrap{grid-template-columns:1fr;width:calc(100% - 40px)}
+  .why{height:auto}
+  .why-stick{position:relative;height:auto;padding-bottom:80px}
+  .why-cards{flex-wrap:wrap}
+  .w-card{flex:0 0 calc(50% - 12px);height:440px;opacity:1;transform:none}
+  .ins-cols{width:calc(100% - 40px)}.ins-col{flex:1 1 0}
+  .ins-card{height:420px}
 }
 @media (min-width:1025px){.drawer{display:none}}
 @media (max-width:640px){
-  .inner{padding:0 16px}
-  .sec-tit{font-size:24px}
-  .sec-sub{font-size:15px}
-  .ask svg{display:none}
-  .hero-cap{bottom:180px;padding:0 16px}
-  .hero-search{bottom:100px}
-  .hero-cap{bottom:196px}
-  .hero-search form{height:56px;padding:0 10px 0 24px}
-  .hero-search input{font-size:16px}
-  .hero-ctrl{display:none}
-  .works-bg{top:220px;font-size:62px}
-  .marquee{margin-top:34px}
-  .m-row{padding:12px 0 26px}
-  .w-card{width:82vw;height:auto;min-height:150px;padding:18px;gap:14px}
-  .w-card:nth-child(even){transform:translateY(12px)}
-  .w-card .thumb{flex-basis:38%;height:118px;border-radius:70px 24px 70px 70px}
-  .w-card h3{font-size:16px;-webkit-line-clamp:3}
-  .w-card .y{font-size:12.5px;margin-top:6px}
-  .w-card .chip{margin-top:8px;height:24px;padding:0 10px;font-size:11.5px}
+  .s-tit{font-size:22px}
+  .today{padding:90px 0 70px}
+  .today .bgtxt{top:190px;font-size:64px}
+  .t-card{width:84vw;height:auto;min-height:150px;padding:18px;gap:14px}
+  .t-card:nth-child(even){transform:translateY(12px)}
+  .t-card .ph{flex-basis:38%;height:118px;border-radius:70px 24px 70px 70px}
+  .t-card h3{font-size:16px}
+  .t-card time{font-size:12px;margin-top:6px}
+  .t-card .chip{margin-top:8px}
   .m-track{gap:22px}
-  .lb-imgs{grid-template-columns:1fr}
-  .since-inner{padding-top:calc(var(--header-h) + 34px);padding-bottom:8vh}
-  .since-num{font-size:30vw}
-  .since-slot{font-size:19vw}
-  .since-desc{margin-top:3vh;font-size:20px}
-  .since-txt{font-size:15px}
-  .since-txt br{display:none}
-  .since-right{min-height:340px}
-  .ms-nav{margin-bottom:20px}
-  .ms-nav li{font-size:12px;padding-top:12px}
-  .ms h3{font-size:21px}
-  .ms p{font-size:14.5px;margin-top:10px}
-  .ms ul{margin-top:12px}
-  .ms li{height:28px;font-size:12px;padding:0 10px}
-  .since-final{font-size:25px;line-height:1.45}
-  .about .lead{font-size:17px}
-  .about .lead br{display:none}
-  .about-visual{height:350px}
-  .about-visual .v1{top:10px;height:290px;width:54%}
-  .about-visual .v2{top:70px;height:210px;width:62%;padding:8px}
-  .about-visual .since-badge{left:auto;right:8px;padding:16px 18px}
-  .about-visual .since-badge b{font-size:30px}
-  .values li{padding:30px 26px}
-  .fac-grid .tx{padding:22px 22px 26px}
-  .lb-imgs img{max-height:38vh}
-  .info-slide{padding:32px 26px}
+  .info-slide{padding:36px 28px}
   .info-slide p{font-size:21px}
   .info-banners{grid-template-columns:1fr;grid-template-rows:auto}
-  .info-banners a.wide{grid-column:auto;min-height:190px}
-  .info-banners a{min-height:150px}
-  .info-banners .mascot{height:150px}
-  .why-card{padding:40px 24px 110px;min-height:560px}
-  .why-card .label{left:24px;top:24px}
-  .why-card .more{right:24px;bottom:24px;width:60px;height:60px}
-  .s-card{flex-basis:100%}
-  .p-track{top:170px;height:calc(100% - 170px)}
-  .p-card{flex-basis:78vw;height:min(380px,calc(100vh - 250px))}
-  .p-card:nth-child(n){margin-top:0}
-  .faq summary{font-size:16px}
-  .faq .a{padding-left:4px}
-  .cta .btns{width:100%}
-  .cta .btns a{flex:1;justify-content:center}
-  .f-sel{flex-direction:column;width:100%}
-  .f-sel select{width:100%}
-  .quick{right:14px;bottom:14px}
-  .quick a{width:50px;height:50px}
+  .info-banners a.wide{grid-column:auto}
+  .info-banners a{min-height:140px}
+  .w-card{flex-basis:100%;height:420px}
+  .w-card:nth-child(even){margin-top:0}
+  .r-card{flex-basis:84vw;height:auto}
+  .r-track,.l-track{padding-left:16px;gap:16px}
+  .l-card{flex-basis:76vw}
+  .ins-cols{gap:14px}.ins-col{gap:14px}
+  .ins-card{height:300px}
+  .ins-card h3{font-size:18px}
+  .ins-card p{display:none}
+  .ins-card .bd{left:16px;right:16px;bottom:18px}
+  .ins-card .go{display:none}
+  .f-in{padding:0 20px}
+  .f-body{flex-direction:column;align-items:flex-start}
+  .f-right{text-align:left}
+  .f-right .slogan{margin-left:0;height:44px}
+  .sns{justify-content:flex-start}
+}
+
+/* =========================================================
+   하오디자인 콘텐츠 적용 (레이아웃·효과는 위 CSS 그대로, 색·로고·이미지만 교체)
+   ========================================================= */
+:root{--navy:#0e1b2c;--navy-t:#0e1b2c;--blue:#e83817;--bgtxt-d:#9fb0c2;--bgtxt-l:#e7ebf0;--red:#e83817;--red-d:#b82a0f;--steel:#8fa3b8;--ivory:#f5f2ec}
+.s-tit::after,.s-tit.w::after{width:8px;height:8px;border-radius:50%;background:var(--red)}
+.logo img{height:46px}
+.user-box .um{font-family:Pretendard,sans-serif;font-size:15px;letter-spacing:0}
+.util .lang a{font-family:Prompt,sans-serif;font-weight:700;color:var(--navy)}
+.c-cat{background:#1f3450}.c-leaf{background:var(--steel)}
+.hero{background:var(--navy) url("assets/hero-poster.jpg?v=6") center/cover}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,44,.05),rgba(14,27,44,0) 30%,rgba(14,27,44,.35) 62%,rgba(14,27,44,.75));pointer-events:none}
+.hero-ctrl,.hero-search,.scroll-down{z-index:4}
+.t-card .t-g{display:block;font-size:13px;font-weight:600;color:#5e6977;margin-bottom:4px}
+.t-card .ph{background:#e5e9ee}
+.info-slide::before{background:linear-gradient(90deg,rgba(250,248,245,.96) 0,rgba(250,248,245,.88) 50%,rgba(250,248,245,.2))}
+.info-slide{color:var(--navy)}
+.info-slide .go{border-color:var(--navy)}
+.info-slider .sl-arr button{color:var(--navy)}
+.info-banners a{background:var(--ivory)}
+.info-banners a.wide{background:radial-gradient(circle at 90% 100%,rgba(255,255,255,.22),rgba(255,255,255,0) 45%),linear-gradient(120deg,var(--red),var(--red-d))}
+.info-banners a.wide img{height:150px;bottom:-26px;right:14px}
+.info-banners .ico{position:absolute;right:20px;bottom:16px;width:58px;height:58px;color:#1f3450}
+.w-card .w-ico{display:block;width:48px;height:48px;margin-bottom:16px}
+.w-card::before{background:linear-gradient(0deg,rgba(14,27,44,.9) 0,rgba(14,27,44,.55) 40%,rgba(14,27,44,.05) 75%)}
+.w-card .lab{color:var(--navy)}
+.research{background:var(--ivory) radial-gradient(rgba(14,27,44,.09) 1.2px,transparent 1.6px) 0 0/22px 22px}
+.r-card .r-n{display:block;font-size:13px;font-weight:700;color:var(--red);margin-bottom:6px}
+.ins-stick{background-color:var(--navy)}
+.ins-shade{background:rgba(14,27,44,.72)}
+.ins-card .chip{background:var(--red)}
+.ins-card .chip.b{background:#1f3450}.ins-card .chip.g{background:var(--steel)}
+.l-card.ms .ph::after{display:none}
+.l-card.ms .ph::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,27,44,.65),rgba(14,27,44,0) 60%);z-index:1}
+.l-card.ms .ph b{position:absolute;left:18px;bottom:12px;z-index:2;font-size:34px;font-weight:800;color:#fff}
+.l-card.ms time{color:var(--red);font-weight:700;letter-spacing:.08em}
+.footer{background:var(--navy)}
+.f-body .logo img{height:52px}
+.slogan-tx{font-family:Prompt,sans-serif;font-weight:900;font-size:clamp(28px,3vw,46px);line-height:1;color:rgba(255,255,255,.18);text-align:right}
+.slogan-tx b{color:var(--red);font-weight:900}
+.slogan-sub{margin-top:16px;color:#fff;font-size:14px;text-align:right}
+.pop .box{background:var(--navy)}
+.pop .box a.pop-hao{background:radial-gradient(circle at 90% 10%,rgba(255,255,255,.22),rgba(255,255,255,0) 45%),linear-gradient(130deg,var(--red),var(--red-d))}
+.pop .box a.pop-hao h2{color:#fff;font-size:clamp(28px,4.6vw,40px);line-height:1.3}
+.pop .box a.pop-hao .cta{background:#fff;color:var(--red)}
+.pop .acts button.close{background:var(--red)}
+@media (max-width:640px){
+  .slogan-tx,.slogan-sub{text-align:left}
+  .logo img{height:36px}
 }
 </style>
 </head>
@@ -533,387 +388,203 @@ section.since{position:relative;height:720vh;background:#fff}
 <div class="pop" id="pop" hidden>
   <div>
     <div class="box">
-      <div class="top">
-        <small>PUBLIC SECTOR</small>
+      <a href="#contact" class="pop-hao">
+        <div style="font-size:15px;font-weight:700;letter-spacing:.12em;color:#ffd9cc" class="en">PUBLIC SECTOR</div>
         <h2>회계연도 마감 전<br>납품 일정, 지금 역산해 드립니다</h2>
-      </div>
-      <div class="body">
-        납품 희망일만 알려주시면 원고 정리 · 시안 · 검수 · 인쇄 일정을 거꾸로 계산해 드립니다. 견적서와 회사 서류도 함께 준비해 드려요.
-        <a href="#contact">일정 상담 신청하기 →</a>
-      </div>
+        <div style="font-size:16px;line-height:1.7;opacity:.9">납품 희망일만 알려주시면 원고 정리 · 시안 · 검수 · 인쇄 일정을 거꾸로 계산해 드립니다.</div>
+        <span class="cta">일정 상담 신청하기 →</span>
+      </a>
     </div>
-    <div class="acts">
-      <button data-hide="1">오늘하루 열지않기</button>
-      <button data-hide="7">일주일간 열지않기</button>
-      <button class="close" data-hide="0">닫기</button>
-    </div>
+    <div class="acts"><button data-hide="1">오늘하루 열지않기</button><button data-hide="7">일주일간 열지않기</button><button class="close" data-hide="0">닫기</button></div>
   </div>
 </div>
 
 <!-- Header -->
 <header class="header" id="header">
-  <div class="inner">
-    <h1 class="logo"><a href="#">
-      <img src="https://haodesign.co.kr/resource/home/assets/images/logo-o.png?version=20200113" alt="하오디자인">
-    </a></h1>
+  <div class="header-inner">
+    <h1 class="logo"><a href="#"><img src="https://haodesign.co.kr/resource/home/assets/images/logo-o.png?version=20200113" alt="하오디자인"></a></h1>
     <ul class="gnb" id="gnb"></ul>
-    <div class="util">
-      <a class="ask" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg>문의하기</a>
-      <button class="ham" id="hamBtn" aria-label="전체메뉴"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <ul class="util"><li><a href="#info">회사소개서</a></li><li><a href="#faq-info">FAQ</a></li><li class="lang"><a href="tel:1666-2027">1666-2027</a></li></ul>
+    <div class="user-box">
+      <a class="um" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg><span>견적문의</span></a>
+      <button class="ub" id="searchBtn" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 4h12v8M4 4v12h8"/><path d="M14 14l6 6"/></svg></button>
+      <button class="ub" id="hamBtn" aria-label="전체메뉴"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="4" height="4"/><rect x="10" y="3" width="4" height="4"/><rect x="17" y="3" width="4" height="4"/><rect x="3" y="10" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="17" y="10" width="4" height="4"/><rect x="10" y="17" width="4" height="4"/><rect x="17" y="17" width="4" height="4"/></svg></button>
     </div>
   </div>
-  <div class="mega"><div class="inner" id="mega"></div></div>
+  <div class="mega"><div class="mega-in" id="mega"></div></div>
 </header>
-
-<nav class="drawer" id="drawer" aria-label="모바일 메뉴"><button class="x" id="drawerX" aria-label="닫기">×</button><div id="drawerBody"></div><a class="call" href="tel:1666-2027">전화 상담 1666-2027</a></nav>
+<nav class="drawer" id="drawer" aria-label="모바일 메뉴"><button class="x" id="drawerX" aria-label="닫기">×</button><div id="drawerBody"></div></nav>
 
 <main id="main">
-  <!-- Hero -->
+  <!-- Hero: 공공기관 포트폴리오로 만든 배경 영상 -->
   <section class="hero" id="hero">
-    <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg?v=5" aria-hidden="true">
-      <source src="assets/hero.mp4?v=5" type="video/mp4">
-    </video>
-    <div class="hero-ctrl"><button id="vPause" aria-label="영상 정지"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button></div>
-    <div class="hero-cap">
-      <p class="eyebrow en">PUBLIC SECTOR DESIGN</p>
-      <h2>공공기관 인쇄물,<br>규정은 지키고 <em>읽히게</em> 만듭니다</h2>
-    </div>
-    <div class="hero-search" id="search">
-      <form id="heroSearch" role="search">
-        <input type="text" id="heroQ" placeholder="" aria-label="필요한 인쇄물 검색">
-        <button aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h12v8M4 4v12h8"/><path d="M14 14l6 6"/></svg></button>
-      </form>
-      <p class="hint" id="heroHint"></p>
-    </div>
-    <a class="scroll-down en" href="#works">Scroll Down<i></i></a>
+    <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg?v=6" aria-hidden="true"><source src="assets/hero.mp4?v=6" type="video/mp4"></video>
+    <div class="hero-ctrl"><button id="vPause" aria-label="영상 정지">❚❚</button></div>
+    <div class="hero-search" id="search"><form id="heroSearch"><input type="text" id="heroQ" placeholder="필요한 인쇄물을 검색해 보세요" aria-label="필요한 인쇄물 검색"><button aria-label="검색"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h12v8M4 4v12h8"/><path d="M14 14l6 6"/></svg></button></form></div>
+    <a class="scroll-down" href="#works">Scroll Down<i></i></a>
   </section>
 
-  <!-- Stats -->
-  <section class="stats" aria-label="하오디자인 실적">
-    <ul class="inner">
-      <li><b>4,500<em>+</em></b><span>누적 제작 건수</span></li>
-      <li><b>98<em>%</em></b><span>재의뢰율</span></li>
-      <li><b>10<em>년+</em></b><span>경력 디자이너</span></li>
-      <li><b>ONE<em>STOP</em></b><span>기획 · 디자인 · 촬영 · 인쇄</span></li>
-    </ul>
-  </section>
-
-  <!-- ABOUT ① SINCE: 화면 고정 → 연도 숫자 롤링(2013→2026) → 왼쪽 위 제목으로 이동 → 문구 등장 -->
-  <section class="since" id="about">
-    <div class="since-stick">
-      <div class="inner since-inner">
-        <div class="since-left">
-          <p class="since-sm en">SINCE 2013</p>
-          <p class="since-slot en" aria-hidden="true">2026</p>
-          <h2 class="since-desc">기관의 말이 시민에게 정확히 닿도록, 2013년부터</h2>
-          <p class="since-txt">하오디자인은 인쇄 디자인 한 길을 걸어온 팀입니다.<br>기획부터 납품까지, 하나의 팀이 끝까지 책임집니다.</p>
-        </div>
-        <div class="since-right">
-          <ol class="ms-nav en" id="msNav"></ol>
-          <div class="ms-stage" id="msStage"></div>
-          <div class="since-final">
-            <p><span>잘 만든 인쇄물 한 권은</span></p>
-            <p><span>기관이 건네는</span></p>
-            <p><span><em>가장 믿을 만한</em> 안내서입니다.</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="since-num en" id="sinceNum" aria-label="2026">
-        <span>2</span><span>0</span><span class="reel"><span class="track" id="reelTens"></span></span><span class="reel"><span class="track" id="reelOnes"></span></span>
-      </div>
+  <!-- 01 PUBLIC WORKS (UNIST TODAY 레이아웃) -->
+  <section class="today" id="works">
+    <div class="bgtxt back" id="tBgBack" aria-hidden="true"></div>
+    <div class="bgtxt front" id="tBg" aria-hidden="true"></div>
+    <h2 class="s-tit">PUBLIC WORKS</h2>
+    <div class="marquee" id="tMarquee">
+      <div class="m-row"><div class="m-track" id="tRow1"></div></div>
+      <div class="m-row"><div class="m-track" id="tRow2"></div></div>
     </div>
-  </section>
-
-  <!-- ABOUT ② 회사 이야기 · 가치 · 제작설비 (haod.co.kr/about 내용을 공공기관 관점으로 재구성) -->
-  <section class="sec about" id="about-story">
-    <div class="inner">
-      <div class="about-top">
-        <div class="reveal">
-          <p class="eyebrow">ABOUT HAO DESIGN</p>
-          <div class="body">
-            <p>하오디자인은 차별화된 디자인으로 수많은 브랜드와 기관의 성장을 함께해 왔습니다. 최고의 결과물을 언제나 첫 번째 과제로 삼아 온 덕분에, 해마다 한 걸음씩 더 성장하고 있습니다.</p>
-            <p>하오디자인의 가장 큰 자산은 사람입니다. 다양한 경험과 노하우를 가진 전문가들이 모여, 하나의 결과를 위해 함께 고민합니다. 기관과 시민 모두가 만족하는 디자인, 그것 하나만 생각합니다.</p>
-            <p>공기업 · 정부 산하기관 · 의료재단 · 협회 — 기관마다 쓰는 언어와 규정이 다릅니다. 그 기관의 언어를 먼저 이해하고, 해외 협력기관을 위한 다국어까지 한 번에 담아냅니다.</p>
-          </div>
-          <ul class="about-facts">
-            <li><b>2013</b>인쇄 디자인 전문</li>
-            <li><b>4,500+</b>누적 제작</li>
-            <li><b>ONE TEAM</b>기획부터 납품까지</li>
-          </ul>
-        </div>
-        <div class="about-visual reveal" aria-hidden="true">
-          <img class="v1" src="assets/works/kmf-brochure-cover.jpg" alt="">
-          <img class="v2" src="assets/works/lh-inner.jpg" alt="">
-          <div class="since-badge"><small>SINCE</small><b>2013</b><span>국내외 기업 · 관공서 제작</span></div>
-        </div>
-      </div>
-
-      <!-- 하오디자인의 메시지 (haodesign.co.kr 회사소개 '디자인은 소통이다' 요약) -->
-      <div class="msg reveal">
-        <div class="msg-ph"><img src="https://haodesign.co.kr/resource/home/assets/images/sub1-1/sub1-1-2.jpg" alt="성과를 함께 기뻐하는 하오디자인 팀원들" loading="lazy"></div>
-        <div class="msg-tx">
-          <small class="en">OUR MESSAGE</small>
-          <h3>“디자인은 소통입니다.”</h3>
-          <p>고객과 디자이너가 처음 마주 앉으면, 둘 사이에는 딱 탁자 하나만큼의 거리가 있습니다. 디자인은 그 거리를 좁히는 데서 시작됩니다. 아이디어를 풀고, 조립하고, 지우고 다시 쓰며 생각과 생각의 거리가 0이 되는 순간 — 좋은 결과물은 어김없이 찾아옵니다.</p>
-          <p>그래서 하오디자인은 외주에 기대지 않고, 하나부터 열까지 직접 기획하고 직접 만듭니다. 첫 만남부터 마지막 악수까지, 우리의 생각이 기관에 제대로 닿는지 끝까지 살핍니다.</p>
-          <p class="sign">어제보다 나은 결과를 위해, 항상 처음처럼 일하겠습니다.</p>
-        </div>
-      </div>
-
-      <ul class="values">
-        <li class="reveal" data-n="01"><small>CREATIVE</small><h3>차별화된 디자인</h3><p>대기업 · 공기업 등 다양한 제작 경험으로 더 섬세하고 트렌디한 결과물을 드립니다. 상황과 시간을 읽고, 기관의 격에 맞게 빛나는 디자인을 약속합니다.</p></li>
-        <li class="reveal" data-n="02"><small>PROFESSIONAL</small><h3>분야별 전문가</h3><p>가장 자신 있고 잘하는 분야를 맡은 대표 전문가들이, 높은 완성도와 기관의 만족을 최우선 목표로 삼습니다.</p></li>
-        <li class="reveal" data-n="03"><small>PROCESS</small><h3>1:1 전담 시스템</h3><p>기관과 사업의 특성을 고려해 콘텐츠를 기획하고, 니즈에 맞춘 1:1 전담 프로세스로 진행합니다. 함께 일하는 동안은 오직 그 기관에만 집중합니다.</p></li>
-      </ul>
-
-      <div class="facility" id="facility">
-        <div class="facility-head reveal">
-          <h3><small>FACILITY</small>인쇄 · 후가공까지 직접 관리합니다</h3>
-          <p>디자인이 좋아도 실물이 어긋나면 소용없습니다. 용지 선택부터 인쇄기 세팅, 후가공, 납품 직전 검수까지 하오디자인이 직접 확인합니다.</p>
-        </div>
-        <div class="fac-grid">
-          <article class="reveal">
-            <div class="ph"><img src="assets/about/print.gif" alt="하오디자인 제작설비 - 옵셋 인쇄 공정" loading="lazy"></div>
-            <div class="tx"><small>01 PRINTING</small><h4>용도에 맞는 인쇄 방식</h4><p>배포 수량 · 예산 · 사용 기간에 맞춰 가장 적합한 용지와 인쇄 방식을 고릅니다. 합리적인 가격과 품질이 함께 가도록 전 과정을 관리합니다.</p>
-              <div class="chips"><span>스노우지</span><span>아트지</span><span>랑데뷰</span><span>아르떼</span><span>몽블랑</span><span>옵셋 · UV 인쇄</span></div></div>
-          </article>
-          <article class="reveal">
-            <div class="ph"><img src="assets/about/finish.jpg" alt="하오디자인 제작설비 - 코팅 후가공" loading="lazy"></div>
-            <div class="tx"><small>02 POST-PROCESSING</small><h4>꼭 필요한 후가공만</h4><p>후가공은 완성도를 높이지만 단가도 함께 오릅니다. 기관 예산 안에서 효과가 가장 큰 후가공만 골라 제안합니다.</p>
-              <div class="chips"><span>금 · 은박</span><span>일반 코팅</span><span>부분 UV</span></div></div>
-          </article>
-          <article class="reveal">
-            <div class="ph"><img src="assets/about/quality.jpg" alt="하오디자인 제작설비 - 재단 및 품질 관리" loading="lazy"></div>
-            <div class="tx"><small>03 QUALITY</small><h4>직접 해 온다는 약속</h4><p>인쇄기 세팅, 건조, 코팅, 재단까지 직접 확인합니다. 국내외 기업 · 관공서 제작으로 쌓은 노하우로 납품 기준에 맞는 품질을 지킵니다.</p>
-              <div class="chips"><span>인쇄 감리</span><span>재단 · 제본 검수</span><span>납품 전 최종 확인</span></div></div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 01 PUBLIC WORKS -->
-  <section class="sec" id="works">
-    <div class="works-bg back" id="worksBgBack" aria-hidden="true"></div>
-    <div class="works-bg front" id="worksBg" aria-hidden="true"></div>
-    <div class="inner" style="position:relative">
-      <h2 class="sec-tit en reveal">PUBLIC WORKS</h2>
-      <p class="sec-sub reveal">공기업 · 공공기관 · 의료재단 · 협회와 함께 만든 인쇄물입니다</p>
-    </div>
-    <div class="marquee" id="workGrid">
-      <div class="m-row"><div class="m-track" id="mRow1"></div></div>
-      <div class="m-row"><div class="m-track" id="mRow2"></div></div>
-    </div>
-    <div class="range-wrap"><input class="range" id="mRange" type="range" min="0" max="1000" value="0" aria-label="포트폴리오 넘겨보기"></div>
-    <div class="work-foot"><a class="btn-more" href="https://haodesign.co.kr/" target="_blank" rel="noopener">포트폴리오 전체보기</a></div>
+    <div class="range-wrap"><input class="range" id="tRange" type="range" min="0" max="1000" value="0" aria-label="포트폴리오 넘겨보기"></div>
   </section>
 
   <!-- 02 Information for 담당자 -->
-  <section class="sec" style="padding-top:20px" id="info">
-    <div class="inner">
-      <h2 class="sec-tit en reveal">Information for 담당자</h2>
-      <p class="sec-sub reveal">처음 발주하시는 담당자님도 막히지 않도록 미리 정리했습니다</p>
-      <div class="info-wrap reveal">
-        <div class="info-slider" id="infoSlider">
-          <div class="info-slide on" style="background-image:url('assets/works/kmf-brochure-inner.jpg')">
-            <span class="k en">DOCUMENTS</span>
-            <p>견적부터 정산까지,<br>행정 서류를 먼저 챙겨 드립니다.</p>
-            <ul><li>항목별 견적서(디자인 · 인쇄 · 후가공 분리)</li><li>사업자등록증 · 통장사본 등 회사 서류</li><li>납품 후 정산 서류 안내</li></ul>
-            <a class="go" href="#contact">견적 서류 요청하기 →</a>
-          </div>
-          <div class="info-slide" style="background-image:url('assets/works/daebul-fez-inner.jpg')">
-            <span class="k en">SCHEDULE</span>
-            <p>납품일만 정해 주세요.<br>일정은 거꾸로 계산합니다.</p>
-            <ul><li>원고 확정일 · 시안 보고일 · 최종 검수일 역산</li><li>내부 결재 일정을 반영한 수정 회차 설계</li><li>인쇄 · 후가공 · 배송 기간까지 포함</li></ul>
-            <a class="go" href="#process">진행 절차 보기 →</a>
-          </div>
-          <div class="round-arrows"><button data-dir="-1" aria-label="이전">‹</button><button data-dir="1" aria-label="다음">›</button></div>
-        </div>
-        <div class="info-banners">
-          <a class="wide" href="#" aria-label="회사소개서 다운로드"><strong>회사소개서 받기</strong><span>내부 보고용으로 바로 쓰실 수 있는 하오디자인 소개 자료입니다</span><img class="mascot" src="https://haodesign.co.kr/resource/home/assets/images/character.webp" alt="하오디자인 캐릭터"></a>
-          <a href="#faq"><strong>자주 묻는 질문</strong><span>예산 · 일정 · 수정 횟수 궁금증</span>
-            <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="8" y="10" width="48" height="36" rx="6"/><path d="M20 46l-6 10 16-10"/><path d="M27 24a5 5 0 1 1 7 4.6c-1.4.6-2 1.6-2 3V33"/><circle cx="32" cy="38" r="1.2" fill="currentColor"/></svg></a>
-          <a href="#process"><strong>제작 설비</strong><span>인쇄 · 후가공 품질을 직접 관리합니다</span>
-            <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="14" y="8" width="36" height="16" rx="2"/><rect x="6" y="24" width="52" height="22" rx="4"/><rect x="16" y="38" width="32" height="18" rx="2"/><path d="M22 46h20M22 51h14"/><circle cx="48" cy="32" r="2" fill="currentColor"/></svg></a>
-        </div>
+  <section class="info" id="info">
+    <h2 class="s-tit reveal">Information for 담당자</h2>
+    <div class="info-wrap reveal">
+      <div class="info-slider" id="infoSlider">
+        <a class="info-slide on" href="#contact" style="background-image:url('assets/works/kmf-brochure-inner.jpg')"><p>견적부터 정산까지,<br>행정 서류를 먼저 챙겨 드립니다.</p><span class="go">견적 서류 요청하기 →</span></a>
+        <a class="info-slide" href="#process" style="background-image:url('assets/works/daebul-fez-inner.jpg')"><p>납품일만 정해 주세요.<br>일정은 거꾸로 계산합니다.</p><span class="go">진행 절차 보기 →</span></a>
+        <div class="sl-arr"><button data-dir="-1" aria-label="이전">‹</button><button data-dir="1" aria-label="다음">›</button></div>
+        <div class="dots info-dots" id="infoDots"><i class="on"></i><i></i></div>
+      </div>
+      <div class="info-banners">
+        <a class="wide" href="#"><strong>회사소개서 받기</strong><span>내부 보고용으로 바로 쓰실 수 있는 하오디자인 소개 자료</span><img src="https://haodesign.co.kr/resource/home/assets/images/character.webp" alt="하오디자인 캐릭터"></a>
+        <a href="#faq-info" id="faq-info"><strong>자주 묻는 질문</strong><span>예산 · 일정 · 수정 횟수</span>
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="8" y="10" width="48" height="36" rx="6"/><path d="M20 46l-6 10 16-10"/><path d="M27 24a5 5 0 1 1 7 4.6c-1.4.6-2 1.6-2 3V33"/><circle cx="32" cy="38" r="1.2" fill="currentColor"/></svg></a>
+        <a href="#process"><strong>제작 설비</strong><span>인쇄 · 후가공 품질 직접 관리</span>
+          <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="14" y="8" width="36" height="16" rx="2"/><rect x="6" y="24" width="52" height="22" rx="4"/><rect x="16" y="38" width="32" height="18" rx="2"/><path d="M22 46h20M22 51h14"/><circle cx="48" cy="32" r="2" fill="currentColor"/></svg></a>
       </div>
     </div>
   </section>
 
-  <!-- 03 WHY HAO -->
-  <section class="sec why" id="why">
-    <div class="why-bigtext en">TRUSTED<br>DESIGN FOR<br>PUBLIC<br>SERVICE</div>
-    <div class="inner" style="position:relative">
-      <h2 class="sec-tit en reveal">WHY HAO DESIGN</h2>
-      <div class="tabs" id="whyTabs"></div>
-      <div id="whyCards" class="reveal"></div>
+  <!-- 03 WHY HAO DESIGN (WHY UNIST 레이아웃) -->
+  <section class="why" id="why">
+    <div class="why-stick">
+      <div class="bgtxt back" id="wBgBack" aria-hidden="true"></div>
+      <div class="bgtxt front" id="wBg" aria-hidden="true"></div>
+      <h2 class="s-tit">WHY HAO DESIGN</h2>
+      <div class="why-cards" id="whyCards"></div>
     </div>
   </section>
 
-  <!-- 04 SERVICES -->
-  <section class="sec services" id="services">
-    <div class="inner">
-      <h2 class="sec-tit en reveal">WHAT WE MAKE</h2>
-      <p class="sec-sub reveal">공공기관에서 가장 많이 의뢰하시는 인쇄물입니다</p>
-      <div class="s-track-wrap reveal"><div class="s-track" id="sTrack"></div></div>
-      <div class="s-foot">
-        <div class="round-arrows"><button id="sPrev" aria-label="이전">‹</button><button id="sNext" aria-label="다음">›</button></div>
-        <a class="btn-more" href="#contact">제작 상담하기</a>
-      </div>
+  <!-- 04 WHAT WE MAKE (RESEARCH IMPACT 레이아웃) -->
+  <section class="research" id="services">
+    <h2 class="s-tit reveal">WHAT WE MAKE</h2>
+    <div class="r-wrap reveal"><div class="r-track" id="rTrack"></div></div>
+    <div class="ctrl r-foot"><div class="dots" id="rDots"></div><div class="arr"><button id="rPrev" aria-label="이전">‹</button><button id="rNext" aria-label="다음">›</button></div><a class="more" href="#contact">제작 상담</a></div>
+  </section>
+
+  <!-- 05 PROCESS (UNIST INSIGHT 레이아웃) -->
+  <section class="insight" id="process">
+    <div class="ins-stick" style="background-image:url('assets/about/finish.jpg')">
+      <div class="ins-shade" id="insShade"></div>
+      <h2 class="s-tit w">PROCESS</h2>
+      <div class="ins-big" id="insBig">FROM BRIEF<br>TO DELIVERY,<br>ONE TEAM</div>
+      <div class="ins-cols"><div class="ins-col" id="insColA"></div><div class="ins-col" id="insColB"></div></div>
+      <div class="ins-cross" id="insCross"></div>
     </div>
   </section>
 
-  <!-- 05 PROCESS -->
-  <section class="process" id="process">
-    <div class="stick">
-      <h2 class="sec-tit en">PROCESS</h2>
-      <p class="sec-sub">상담부터 납품까지, 담당자님의 결재 흐름에 맞춰 진행합니다</p>
-      <div class="process-big en">FROM BRIEF<br>TO DELIVERY</div>
-      <div class="p-track" id="pTrack"></div>
-    </div>
-  </section>
-
-  <!-- 06 FAQ -->
-  <section class="sec" id="faq">
-    <div class="inner faq-wrap">
-      <div class="faq-side reveal">
-        <h2 class="sec-tit en">FAQ</h2>
-        <p class="sec-sub">공공기관 담당자님들이 가장 많이 물어보신 질문입니다</p>
-        <a class="btn-more" href="#contact">다른 질문 남기기</a>
-      </div>
-      <div class="faq reveal" id="faqList"></div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta" id="contact">
-    <div class="inner">
-      <div>
-        <h2>기관명과 납품 희망일만 알려주세요.<br>견적과 일정표를 함께 보내드립니다.</h2>
-        <p>평일 AM 9:00 – PM 6:00 · sales@haodesign.co.kr</p>
-      </div>
-      <div class="btns">
-        <a class="main" href="https://haodesign.co.kr/" target="_blank" rel="noopener">온라인 견적문의</a>
-        <a class="en" href="tel:1666-2027">1666-2027</a>
-      </div>
-    </div>
+  <!-- 06 SINCE 2013 (LIFE AT UNIST 레이아웃) -->
+  <section class="life" id="since">
+    <h2 class="s-tit reveal">SINCE 2013</h2>
+    <div class="l-wrap reveal"><div class="l-track" id="lTrack"></div></div>
+    <div class="ctrl l-foot"><div class="dots" id="lDots"></div><div class="arr"><button id="lPrev" aria-label="이전">‹</button><button id="lNext" aria-label="다음">›</button></div><a class="more" href="https://haodesign.co.kr/" target="_blank" rel="noopener">포트폴리오 전체보기</a></div>
   </section>
 </main>
 
-<footer class="footer">
-  <div class="inner">
-    <div class="f-top">
+<footer class="footer" id="contact">
+  <div class="f-in">
+    <div class="f-sel"><button>FAMILY SITE</button><button>운영 채널</button></div>
+    <div class="f-body">
       <div>
         <a class="logo" href="#"><img src="https://haodesign.co.kr/resource/home/assets/images/logo-footer.png?version=20200113" alt="하오디자인"></a>
-        <p class="slogan">좋은 사람들이 가치를 만드는 기업</p>
+        <address>주식회사 하오커뮤니케이션 &nbsp;·&nbsp; 대표이사 : 박창민 &nbsp;·&nbsp; 사업자등록번호 : 528-87-01037<br>주소 : 서울시 광진구 능동로49길 9, 2F &nbsp;·&nbsp; 대표번호 : 1666-2027 (평일 09:00–18:00) &nbsp;·&nbsp; E-mail : sales@haodesign.co.kr</address>
+        <div class="f-links"><a href="#works">공공 포트폴리오</a><a href="#services">제작 분야</a><a href="#process">진행 절차</a><a href="#since">연혁</a><a class="pv" href="#">개인정보처리방침</a><a href="tel:1666-2027">전화 상담</a></div>
+        <p class="f-copy en">Copyright © HAO COMMUNICATION. All rights reserved</p>
       </div>
-      <div class="f-sel">
-        <select aria-label="패밀리 사이트" onchange="if(this.value)window.open(this.value)"><option value="">FAMILY SITE</option><option value="https://haodesign.co.kr/">하오디자인</option><option value="">하오웹</option><option value="">하오스튜디오</option></select>
+      <div class="f-right">
+        <p class="slogan-tx en">CLEAR &amp; CREDIBLE<br><b>PRINT FOR PUBLIC.</b></p>
+        <p class="slogan-sub">좋은 사람들이 가치를 만드는 기업</p>
       </div>
-    </div>
-    <div class="f-mid">
-      <div class="f-addr">
-        <p>주식회사 하오커뮤니케이션 &nbsp;|&nbsp; 대표이사 : 박창민 &nbsp;|&nbsp; 사업자등록번호 : 528-87-01037</p>
-        <p>주소 : 서울시 광진구 능동로49길 9, 2F &nbsp;|&nbsp; 대표번호 : 1666-2027 &nbsp;|&nbsp; E-mail : sales@haodesign.co.kr</p>
-      </div>
-      <div class="f-links">
-        <a href="#">회사소개</a><a href="#works">공공 포트폴리오</a><a href="#services">제작 분야</a><a href="#process">진행 절차</a><a href="#faq">FAQ</a><a href="#contact">견적문의</a>
-      </div>
-    </div>
-    <div class="f-bot">
-      <p class="en">Copyright © HAO COMMUNICATION. All rights reserved</p>
     </div>
   </div>
 </footer>
 
-<div class="lb" id="lb" hidden role="dialog" aria-label="포트폴리오 크게 보기">
-  <button class="x" aria-label="닫기">×</button>
-  <div class="lb-box">
-    <h3 id="lbTit"></h3><small id="lbSub"></small>
-    <div class="lb-imgs"><img id="lbCover" alt=""><img id="lbInner" alt=""></div>
-  </div>
-</div>
-
-<div class="quick" aria-label="빠른 상담">
-  <a class="q1" href="#contact">견적<br>문의</a>
-  <a class="q2" href="#contact">카톡<br>상담</a>
-  <a class="q3" href="#hero" aria-label="맨 위로">TOP</a>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
-/* ===== 데이터 (문구는 여기만 고치면 됩니다) ===== */
-const W = 'assets/works/';   // 공공기관 포트폴리오 PDF에서 뽑은 표지(-cover) · 내지(-inner)
+/* ===== 데이터 (하오디자인 공공기관 콘텐츠 · 이미지는 assets/ 와 haodesign.co.kr) ===== */
+const W = 'assets/works/';
+const PROC = 'https://haodesign.co.kr/resource/home/assets/images/sub1-1/';
 const MENU = [
   ['회사소개',['하오디자인 소개','제작설비','오시는길','회사소개서']],
   ['공공 포트폴리오',['정부·공공기관','공공의료·연구기관','대학·교육기관','협회·단체']],
-  ['제작 분야',['연차보고서·백서','정책 홍보 리플렛','기관 소개 브로슈어','행사·공모 포스터','다국어 안내물','CI·로고 디자인']],
-  ['진행 절차',['상담·견적','기획·원고 정리','시안·검수','인쇄·납품']],
-  ['자료실',['Column','FAQ','공지사항']],
-  ['견적문의',['온라인 견적','전화 상담 1666-2027','카카오톡 상담']]
+  ['제작 분야',['연차보고서·백서','정책 홍보 리플렛','기관 소개 브로슈어','행사·포럼 프로그램북','다국어 안내물','투자유치 카탈로그']],
+  ['진행 절차',['의뢰 및 상담','담당자 배정·계약','디자인·제작','최종 검수·납품']],
+  ['연혁',['SINCE 2013','공공 포트폴리오']],
+  ['견적문의',['온라인 견적','전화 상담 1666-2027']]
 ];
-const SEARCH_WORDS = ['연차보고서','정책 리플렛','기관 소개 브로슈어','협회 카탈로그','행사 프로그램북','다국어 안내물'];
-
-// 공공 분야 포트폴리오 (하오디자인 실제 납품작 · 최신순)
-const WORKS_BG = ['CLEAR & CREDIBLE', 'PRINT FOR', 'PUBLIC SERVICE'];   // PUBLIC WORKS 배경 큰 문구
+const LINK = {'회사소개':'#info','공공 포트폴리오':'#works','제작 분야':'#services','진행 절차':'#process','연혁':'#since','견적문의':'#contact'};
+const TODAY_BG = ['CLEAR &', 'CREDIBLE', 'PRINT FOR', 'PUBLIC SERVICE'];
+const CHIP = {'브로슈어·카탈로그':'c-cat', '리플렛':'c-leaf'};
+// 공공 분야 포트폴리오 (하오디자인 실제 납품작, 파일명 날짜 기준)
 const WORKS = [
-  {k:'브로슈어·카탈로그',c:'k-catalog',g:'연구기관',y:'2026.06',t:'나노기술연구회 브로슈어 16P',s:'nano',tag:'#연구기관 #기관소개 브로슈어'},
-  {k:'브로슈어·카탈로그',c:'k-catalog',g:'의료재단',y:'2026.06',t:'한국의료재단 종합검진센터 브로슈어 24P',s:'kmf-brochure',tag:'#공공의료 #서비스 안내'},
-  {k:'리플렛',c:'k-leaflet',g:'의료재단',y:'2026.03',t:'한국의료재단 4단 리플렛',s:'kmf-leaflet',tag:'#4단 리플렛 #검진 안내'},
-  {k:'브로슈어·카탈로그',c:'k-catalog',g:'공공기관',y:'2025.06',t:'자동차손해배상진흥원 브로슈어',s:'kaib',tag:'#공공기관 #정책 · 사업 소개'},
-  {k:'브로슈어·카탈로그',c:'k-catalog',g:'정부 산하기관',y:'2025.03',t:'대불자유무역지역 카탈로그',s:'daebul-fez',tag:'#투자유치 #국 · 영문'},
-  {k:'리플렛',c:'k-leaflet',g:'협회',y:'2025.03',t:'한국공기청정협회 3단 리플렛',s:'kaca',tag:'#국제 심포지엄 #3단 리플렛'},
-  {k:'브로슈어·카탈로그',c:'k-catalog',g:'국제단체',y:'2024.11',t:'국제로타리 연수회 브로슈어',s:'rotary',tag:'#행사 프로그램북 #기부자 소개'},
-  {k:'브로슈어·카탈로그',c:'k-catalog',g:'공기업',y:'2024.07',t:'한국토지주택공사(LH) 브로슈어 28P',s:'lh',tag:'#공기업 #정책 사업 안내'},
-  {k:'브로슈어·카탈로그',c:'k-catalog',g:'협회',y:'2024.03',t:'한국공작기계협회 해외전시 디렉토리',s:'komma',tag:'#해외 전시 #영문 디렉토리'}
+  {k:'브로슈어·카탈로그',g:'연구기관',y:'2026.06',t:'나노기술연구회 브로슈어 16P',s:'nano'},
+  {k:'브로슈어·카탈로그',g:'의료재단',y:'2026.06',t:'한국의료재단 종합검진센터 브로슈어 24P',s:'kmf-brochure'},
+  {k:'리플렛',g:'의료재단',y:'2026.03',t:'한국의료재단 4단 리플렛',s:'kmf-leaflet'},
+  {k:'브로슈어·카탈로그',g:'공공기관',y:'2025.06',t:'자동차손해배상진흥원 브로슈어',s:'kaib'},
+  {k:'브로슈어·카탈로그',g:'정부 산하기관',y:'2025.03',t:'대불자유무역지역 카탈로그',s:'daebul-fez'},
+  {k:'리플렛',g:'협회',y:'2025.03',t:'한국공기청정협회 3단 리플렛',s:'kaca'},
+  {k:'브로슈어·카탈로그',g:'국제단체',y:'2024.11',t:'국제로타리 연수회 브로슈어',s:'rotary'},
+  {k:'브로슈어·카탈로그',g:'공기업',y:'2024.07',t:'한국토지주택공사(LH) 브로슈어 28P',s:'lh'},
+  {k:'브로슈어·카탈로그',g:'협회',y:'2024.03',t:'한국공작기계협회 해외전시 디렉토리',s:'komma'}
 ];
-
+const WHY_BG = ['TRUSTED', 'DESIGN FOR', 'PUBLIC', 'SERVICE'];
+const ICO = {
+  rule:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 16h16M16 23h16M16 30h9"/><path d="M28 34l4 4 8-9"/></svg>',
+  info:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2"><rect x="6" y="10" width="36" height="28" rx="3"/><path d="M13 30l7-8 6 5 9-11"/><circle cx="35" cy="16" r="1.5" fill="#fff"/></svg>',
+  time:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2"><rect x="6" y="10" width="36" height="30" rx="3"/><path d="M6 18h36M16 6v8M32 6v8"/><path d="M24 24v6l4 3"/></svg>',
+  lang:'<svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="2"><circle cx="24" cy="24" r="17"/><path d="M7 24h34M24 7c5 5 7 11 7 17s-2 12-7 17c-5-5-7-11-7-17s2-12 7-17z"/></svg>'
+};
 const WHY = [
-  {k:'규정 준수',img:'kaib-cover.jpg',p:'기관 CI · 표기 규정을<br>디자인 전에 먼저 확인합니다.',d:'로고 사용 규정, 전용 색상, 기관명 표기 순서, 협력기관 로고 배열까지 착수 전에 체크리스트로 정리합니다. 결재 단계에서 규정 때문에 되돌아오는 일을 줄입니다.',tags:['기관 CI 매뉴얼 검토','공동 주최 로고 배열','표기 · 맞춤법 검수','저작권 확인 이미지']},
-  {k:'읽히는 정보 설계',img:'lh-inner.jpg',p:'어려운 정책 문장을<br>한눈에 읽히는 구조로 바꿉니다.',d:'긴 보고 문안을 인포그래픽 · 표 · 단계도로 재구성합니다. 큰 글자와 충분한 대비, 색만으로 구분하지 않는 배색으로 누구나 읽기 쉽게 만듭니다.',tags:['인포그래픽 재구성','큰 글자 · 고대비','색약 고려 배색','쉬운 말 다듬기']},
-  {k:'일정 · 행정 대응',img:'kaib-inner.jpg',p:'결재 일정에 맞춘<br>검수 회차로 진행합니다.',d:'납품일에서 거꾸로 계산한 일정표를 첫 미팅에서 드립니다. 내부 보고용 시안 PDF, 항목별 견적서, 회사 서류를 필요한 시점에 맞춰 준비합니다.',tags:['역산 일정표','보고용 시안 PDF','항목별 견적서','만족할 때까지 수정']},
-  {k:'원스톱 · 다국어',img:'komma-inner.jpg',p:'기획 · 촬영 · 디자인 · 인쇄,<br>다국어까지 한 팀이 끝냅니다.',d:'중국어 · 영어 · 일본어 · 프랑스어 등 외국인 대상 안내물도 같은 디자인 시스템으로 제작합니다. 인쇄 · 후가공까지 직접 관리해 실물 품질을 맞춥니다.',tags:['다국어 디자인','촬영 서비스','인쇄 · 후가공 감리','납품까지 원스톱']}
+  {lab:'규정 준수',img:'kaib-cover.jpg',ico:'rule',en:'Brand<br>Compliance',ko:'기관 CI · 표기 규정을 디자인 전에 먼저 확인합니다'},
+  {lab:'읽히는 정보 설계',img:'lh-inner.jpg',ico:'info',en:'Clear<br>Information',ko:'어려운 정책 문장을 한눈에 읽히는 구조로 바꿉니다'},
+  {lab:'일정 · 행정 대응',img:'kaib-inner.jpg',ico:'time',en:'Schedule<br>&amp; Admin',ko:'결재 일정에 맞춘 검수 회차, 만족할 때까지 수정합니다'},
+  {lab:'원스톱 · 다국어',img:'komma-inner.jpg',ico:'lang',en:'One-stop<br>Multilingual',ko:'기획 · 촬영 · 디자인 · 인쇄, 다국어까지 한 팀이 끝냅니다'}
 ];
-
 const SERVICES = [
-  {n:'01',t:'연차보고서 · 백서 · 성과보고서',p:'한 해 성과를 숫자와 사례로 정리해 기관의 신뢰도를 보여주는 대표 인쇄물입니다.',i:W+'kaib-inner.jpg',tags:['데이터 시각화','표 · 그래프 정리','국문 · 영문판']},
-  {n:'02',t:'정책 · 사업 홍보 리플렛',p:'시민이 30초 안에 이해하도록 핵심 혜택과 신청 방법을 3단 · 4단 구성으로 정리합니다.',i:W+'kmf-leaflet-inner.jpg',tags:['3단 · 4단 리플렛','신청 절차 도식','QR 연결']},
-  {n:'03',t:'기관 소개 브로슈어 · 카탈로그',p:'기관의 역할과 주요 사업을 방문객 · 협력기관 눈높이로 소개하는 브로슈어입니다.',i:W+'lh-cover.jpg',tags:['기관 소개','사업 안내','방문객용']},
-  {n:'04',t:'행사 · 포럼 · 프로그램북',p:'연수회 · 심포지엄 · 포럼에서 일정과 참가 정보가 먼저 보이도록 구성한 행사 인쇄물입니다.',i:W+'rotary-cover.jpg',tags:['행사 프로그램북','국제 심포지엄','연수회']},
-  {n:'05',t:'다국어 안내물 · 해외 디렉토리',p:'해외 전시 · 투자유치 · 외국인 대상 안내물을 언어별 판형 차이까지 고려해 제작합니다.',i:W+'komma-inner.jpg',tags:['영문 디렉토리','국 · 영문 병기','해외 전시']},
-  {n:'06',t:'투자유치 · 사업 카탈로그',p:'입주 조건 · 인센티브 · 입지 정보를 투자자 시선으로 정리하는 카탈로그입니다.',i:W+'daebul-fez-inner.jpg',tags:['투자유치','입주 안내','인센티브 정리']}
+  {t:'연차보고서 · 백서 · 성과보고서',p:'한 해 성과를 숫자와 사례로 정리해 기관의 신뢰도를 보여주는 대표 인쇄물입니다.',i:'kaib-inner.jpg',tags:['데이터 시각화','국문 · 영문판']},
+  {t:'정책 · 사업 홍보 리플렛',p:'시민이 30초 안에 이해하도록 핵심 혜택과 신청 방법을 3단 · 4단 구성으로 정리합니다.',i:'kmf-leaflet-inner.jpg',tags:['3단 · 4단 리플렛','신청 절차 도식']},
+  {t:'기관 소개 브로슈어 · 카탈로그',p:'기관의 역할과 주요 사업을 방문객 · 협력기관 눈높이로 소개하는 브로슈어입니다.',i:'lh-cover.jpg',tags:['기관 소개','사업 안내']},
+  {t:'행사 · 포럼 · 프로그램북',p:'연수회 · 심포지엄 · 포럼에서 일정과 참가 정보가 먼저 보이도록 구성한 행사 인쇄물입니다.',i:'rotary-cover.jpg',tags:['프로그램북','국제 심포지엄']},
+  {t:'다국어 안내물 · 해외 디렉토리',p:'해외 전시 · 투자유치 · 외국인 대상 안내물을 언어별 판형 차이까지 고려해 제작합니다.',i:'komma-inner.jpg',tags:['영문 디렉토리','해외 전시']},
+  {t:'투자유치 · 사업 카탈로그',p:'입주 조건 · 인센티브 · 입지 정보를 투자자 시선으로 정리하는 카탈로그입니다.',i:'daebul-fez-inner.jpg',tags:['투자유치','입주 안내']}
 ];
-
-// 회사소개 연도별 이정표 — 실제 납품 포트폴리오(파일명 날짜) · 회사 정보 기준. 새 이정표는 연도 순서대로 추가
-const HISTORY = [
-  {y:2013, t:'하오디자인의 시작', d:'카탈로그 · 브로슈어 · 리플렛 · 포스터. 손에 잡히는 인쇄물 한 길로 첫발을 내디뎠습니다.', tags:['인쇄 디자인 전문','기획부터 납품까지']},
-  {y:2023, t:'공공기관 포트폴리오를 쌓다', d:'우정사업본부 카다로그, 한국지식재산보호원 포스터, 전북대병원 유효성평가센터 카다로그 등 공공 분야 작업을 선보였습니다.', tags:['우정사업본부','한국지식재산보호원','전북대병원']},
-  {y:2024, t:'공기업 · 해외 전시까지', d:'한국공작기계협회 해외전시 디렉토리(3월), 한국토지주택공사 브로슈어 28P(7월), 국제로타리 연수회 브로슈어(11월)를 만들었습니다.', tags:['LH','한국공작기계협회','국제로타리']},
-  {y:2025, t:'정부 산하기관 · 협회로 넓히다', d:'대한보건의료정보관리사협회 리플렛, 대불자유무역지역 카탈로그 · 한국공기청정협회 리플렛(3월), 자동차손해배상진흥원 브로슈어(6월)를 맡았습니다.', tags:['대불자유무역지역','자동차손해배상진흥원','협회']},
-  {y:2026, t:'누적 4,500건, 재의뢰율 98%', d:'한국의료재단 리플렛 · 브로슈어 24P, 나노기술연구회 브로슈어 16P까지. 지금도 한 권 한 권을 처음처럼 만듭니다.', tags:['한국의료재단','나노기술연구회','4,500+ · 98%']}
-];
-
+// haodesign.co.kr 회사소개의 '의뢰 및 제작과정' 6단계와 사진
 const PROCESS = [
-  // haodesign.co.kr 회사소개의 '의뢰 및 제작과정' 6단계 기준
-  {t:'의뢰 및 상담',p:'문의하신 내용을 접수해, 제작 범위와 견적을 자세히 안내해 드립니다.',w:'견적 안내'},
-  {t:'담당자 배정 · 계약',p:'계약 전 업무를 최종 확인하고, 분야에 맞는 전문가를 전담자로 배정합니다.',w:'1:1 전담'},
-  {t:'심층 상담 · 실무 진행',p:'진행 방향을 자세히 논의하고, 기관과 함께 호흡하며 작업 상황을 실시간으로 공유합니다.',w:'실시간 공유'},
-  {t:'디자인 완료 · 제작',p:'최종 확인된 디자인으로 결과물을 제작합니다. 전 과정을 실시간으로 함께 확인합니다.',w:'인쇄 · 후가공'},
-  {t:'제작 완료 · 최종 검수',p:'제작된 결과물을 꼼꼼하게 자체 검수합니다. 전문 검수팀이 균일한 품질을 지킵니다.',w:'전문 검수팀'},
-  {t:'최종 납품',p:'인연은 계속되기에, 부끄러움 없는 완성된 결과물을 요청하신 대로 납품합니다.',w:'맞춤 납품'}
+  {c:'STEP 01',img:'sub1-1_17.jpg',s:'의뢰 및 상담',t:'제작 범위와 견적을<br>자세히 안내합니다',p:'문의하신 내용을 접수해 인쇄물 종류 · 수량 · 납품 희망일에 맞춘 견적을 안내해 드립니다.'},
+  {c:'STEP 02',cc:'b',img:'sub1-1_19.jpg',s:'담당자 배정 · 계약',t:'분야에 맞는 전문가가<br>전담합니다',p:'계약 전 업무를 최종 확인하고, 기관에 가장 적합한 전문가를 1:1 전담자로 배정합니다.'},
+  {c:'STEP 03',cc:'g',img:'sub1-1_21.jpg',s:'심층 상담 · 실무 진행',t:'결재 흐름에 맞춰<br>실시간으로 공유합니다',p:'진행 방향을 자세히 논의하고, 기관과 함께 호흡하며 작업 상황을 실시간으로 공유합니다.'},
+  {c:'STEP 04',img:'sub1-1_30.jpg',s:'디자인 완료 · 제작',t:'확정된 디자인으로<br>인쇄 · 후가공을 진행합니다',p:'최종 확인된 디자인으로 결과물을 제작하고, 전 과정을 함께 확인합니다.'},
+  {c:'STEP 05',cc:'b',img:'sub1-1_31.jpg',s:'제작 완료 · 최종 검수',t:'전문 검수팀이<br>품질을 지킵니다',p:'제작된 결과물을 꼼꼼하게 자체 검수해 균일한 품질을 약속합니다.'},
+  {c:'STEP 06',cc:'g',img:'sub1-1_32.jpg',s:'최종 납품',t:'요청하신 일정과 장소로<br>납품합니다',p:'인연은 계속되기에, 부끄러움 없는 완성된 결과물을 요청하신 대로 납품합니다.'}
 ];
-
-const FAQ = [
-  {q:'기관 로고 사용 규정이 까다로운데, 맞춰서 작업이 가능한가요?',a:'가능합니다. 착수 전에 기관 CI 매뉴얼(로고 여백 · 전용 색상 · 금지 사례)을 받아 체크리스트로 정리하고, 공동 주최 · 후원 기관 로고 배열 순서까지 시안 단계에서 함께 확인합니다.'},
-  {q:'납품 날짜가 정해져 있는데 일정이 촉박합니다. 어떻게 진행되나요?',a:'납품일을 기준으로 원고 확정일 · 시안 보고일 · 최종 검수일을 거꾸로 계산한 일정표를 첫 상담에서 드립니다. 인쇄 · 후가공 · 배송 기간까지 포함해 무리 없는 일정인지 먼저 판단해 드립니다.'},
-  {q:'견적서나 회사 서류는 어떤 것을 받을 수 있나요?',a:'디자인 · 인쇄 · 후가공을 나눈 항목별 견적서와 사업자등록증 등 회사 서류를 준비해 드립니다. 기관별로 필요한 서류 양식이 다르면 말씀해 주세요. 가능한 범위에서 맞춰 드립니다.'},
-  {q:'원고가 길고 어려운 보고서 문장뿐인데 정리도 해 주시나요?',a:'네. 긴 문안을 핵심 메시지 · 수치 · 절차로 나눠 인포그래픽과 표로 재구성하는 정보 설계 단계를 거칩니다. 의미가 바뀌지 않도록 담당자님 확인을 받은 뒤 디자인에 들어갑니다.'},
-  {q:'외국인 대상 안내물도 함께 만들 수 있나요?',a:'중국어 · 영어 · 일본어 · 프랑스어 등 다국어 디자인이 가능합니다. 언어마다 글자 길이가 달라지는 점을 고려해 국문판과 같은 디자인 시스템으로 판형을 맞춰 제작합니다.'}
+// 연혁 (실제 납품 포트폴리오 날짜 · 회사 정보 기준)
+const HISTORY = [
+  {y:'2013',t:'하오디자인의 시작 — 인쇄 디자인 한 길',i:'nano-cover.jpg'},
+  {y:'2023',t:'우정사업본부 · 한국지식재산보호원 등 공공 포트폴리오',i:'kaib-cover.jpg'},
+  {y:'2024',t:'한국공작기계협회 · LH · 국제로타리 제작',i:'lh-cover.jpg'},
+  {y:'2025',t:'대불자유무역지역 · 자동차손해배상진흥원 · 협회',i:'daebul-fez-cover.jpg'},
+  {y:'2026',t:'한국의료재단 · 나노기술연구회, 누적 4,500건+',i:'kmf-brochure-cover.jpg'},
+  {y:'NOW',t:'재의뢰율 98% — 오늘도 처음처럼',i:'rotary-cover.jpg'}
 ];
 
 const $ = s => document.querySelector(s);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const seg = (p, a, b) => clamp((p - a) / (b - a));
+const ease = t => 1 - Math.pow(1 - t, 3);
+const words = lines => lines.map(l => `<p>${l.split(' ').map(w => `<span>${w}</span>`).join(' ')}</p>`).join('');
 
-/* ===== Lenis: 휠 스크롤을 관성 있게 보간 → 스크롤 연동 효과(SINCE 롤링 · PROCESS · 카드)도 매끄럽게 ===== */
+/* ===== Lenis: 휠 스크롤을 관성 있게 보간 → 스크롤 연동 효과도 매끄럽게 (움직임 줄이기 설정이면 사용 안 함) ===== */
 let lenis = null;
 if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   lenis = new Lenis({lerp: .09, smoothWheel: true, wheelMultiplier: 1});
@@ -921,306 +592,149 @@ if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   requestAnimationFrame(raf);
 }
 const goTo = target => lenis ? lenis.scrollTo(target, {duration: 1.2}) : (typeof target === 'number' ? scrollTo({top: target, behavior: 'smooth'}) : document.querySelector(target).scrollIntoView({behavior: 'smooth'}));
-// 페이지 안 링크(#…)도 Lenis로 부드럽게 이동 (포트폴리오 카드처럼 자체 클릭 처리하는 링크는 제외)
+// 페이지 안 링크(#…)도 Lenis로 부드럽게 이동
 document.addEventListener('click', e => {
-  const a = e.target.closest('a[href^="#"]'); if (!a || a.closest('#workGrid')) return;
+  const a = e.target.closest('a[href^="#"]'); if (!a) return;
   const id = a.getAttribute('href'); if (id.length < 2 || !document.querySelector(id)) return;
   e.preventDefault(); goTo(id);
 });
 const lockScroll = on => lenis && (on ? lenis.stop() : lenis.start());
 
-/* ===== Header / menu ===== */
-// 메뉴 이름 → 이동할 섹션 (없는 항목은 '#')
-const LINK = {'회사소개':'#about','하오디자인 소개':'#about','제작설비':'#facility','오시는길':'#contact','회사소개서':'#info',
-  '공공 포트폴리오':'#works','제작 분야':'#services','진행 절차':'#process','자료실':'#faq','FAQ':'#faq',
-  '견적문의':'#contact','온라인 견적':'#contact','전화 상담 1666-2027':'tel:1666-2027'};
-const href = x => LINK[x] || (MENU.find(m => m[1].includes(x)) ? LINK[MENU.find(m => m[1].includes(x))[0]] : '#');
-$('#gnb').innerHTML = MENU.slice(0,5).map(m => `<li><a href="${href(m[0])}">${m[0]}</a></li>`).join('');
-$('#mega').innerHTML = MENU.map(m => `<div><h3>${m[0]}</h3><ul>${m[1].map(x=>`<li><a href="${href(x)}">${x}</a></li>`).join('')}</ul></div>`).join('');
-$('#drawerBody').innerHTML = MENU.map(m => `<details><summary>${m[0]}</summary><ul>${m[1].map(x=>`<li><a href="${href(x)}">${x}</a></li>`).join('')}</ul></details>`).join('');
-$('#mega').addEventListener('click', e => { if (e.target.closest('a')) header.classList.remove('is-open'); });
+/* ===== Header ===== */
+$('#gnb').innerHTML = MENU.map(m => `<li><a href="${LINK[m[0]] || '#'}">${m[0]}</a></li>`).join('');
+$('#mega').innerHTML = MENU.map(m => `<div><h3>${m[0]}</h3><ul>${m[1].map(x => `<li><a href="${LINK[m[0]] || '#'}">${x}</a></li>`).join('')}</ul></div>`).join('');
+$('#drawerBody').innerHTML = MENU.map(m => `<details><summary>${m[0]}</summary><ul>${m[1].map(x => `<li><a href="${LINK[m[0]] || '#'}">${x}</a></li>`).join('')}</ul></details>`).join('');
 const header = $('#header');
 header.addEventListener('mouseenter', () => { if (innerWidth > 1024) header.classList.add('is-open'); });
 header.addEventListener('mouseleave', () => header.classList.remove('is-open'));
-const onScroll = () => {
-  header.classList.toggle('is-white', scrollY > innerHeight - 100);
-  $('.quick').classList.toggle('on', scrollY > innerHeight * .6);
-};
-addEventListener('scroll', onScroll, {passive:true}); onScroll();
+$('#mega').addEventListener('click', e => { if (e.target.closest('a')) header.classList.remove('is-open'); });
+$('#drawer').addEventListener('click', e => { if (e.target.closest('a')) { $('#drawer').classList.remove('on'); lockScroll(false); } });
+addEventListener('scroll', () => header.classList.toggle('is-white', scrollY > innerHeight - 100), {passive:true});
 $('#hamBtn').onclick = () => { if (innerWidth > 1024) header.classList.toggle('is-open'); else { $('#drawer').classList.add('on'); lockScroll(true); } };
 $('#drawerX').onclick = () => { $('#drawer').classList.remove('on'); lockScroll(false); };
-$('#drawer').addEventListener('click', e => { if (e.target.closest('a')) { $('#drawer').classList.remove('on'); lockScroll(false); } });
+$('#searchBtn').onclick = () => { goTo(0); setTimeout(() => $('#heroQ').focus({preventScroll: true}), 900); };
 
 /* ===== Popup ===== */
-const POP_KEY = 'haoPublicPopUntil';
+const POP_KEY = 'haoCloneLayoutPopUntil';
 let until = 0; try { until = +localStorage.getItem(POP_KEY) || 0; } catch(e) {}
 if (Date.now() > until) { $('#pop').hidden = false; lockScroll(true); }
 const closePop = () => { $('#pop').hidden = true; lockScroll(false); };
 document.querySelectorAll('#pop [data-hide]').forEach(b => b.onclick = () => {
   const days = +b.dataset.hide;
-  if (days) try { localStorage.setItem(POP_KEY, Date.now() + days*864e5); } catch(e) {}
+  if (days) try { localStorage.setItem(POP_KEY, Date.now() + days * 864e5); } catch(e) {}
   closePop();
 });
-$('#pop .body a').addEventListener('click', closePop);
+$('#pop .pop-hao').addEventListener('click', closePop);
 
-/* ===== Hero: 배경 영상 + 검색창 ===== */
+/* ===== Hero: 배경 영상 정지/재생 + 검색 → 제작 분야로 이동 ===== */
 const video = $('#heroVideo');
-const PAUSE_ICO = $('#vPause').innerHTML, PLAY_ICO = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5v14l12-7z"/></svg>';
-$('#vPause').onclick = () => {
-  video.paused ? video.play() : video.pause();
-  $('#vPause').innerHTML = video.paused ? PLAY_ICO : PAUSE_ICO;
-};
-// 검색창 placeholder 타이핑 효과
-const q = $('#heroQ');
-let si0 = 0, ci = 0, del = false;
-(function typeHint(){
-  const word = SEARCH_WORDS[si0];
-  if (document.activeElement !== q) q.placeholder = word.slice(0, ci);
-  if (!del && ci < word.length) ci++;
-  else if (!del) { del = true; return setTimeout(typeHint, 1600); }
-  else if (ci > 0) ci--;
-  else { del = false; si0 = (si0 + 1) % SEARCH_WORDS.length; }
-  setTimeout(typeHint, del ? 45 : 110);
-})();
-q.addEventListener('focus', () => { q.placeholder = '필요한 인쇄물을 입력하세요'; });
-// 검색: 제작 분야 → 포트폴리오 → 없으면 견적 문의로 안내
-function findAndGo(word){
-  const w = word.replace(/\s/g,'');
-  const has = s => s.replace(/\s/g,'').includes(w) || w.includes(s.replace(/\s/g,'').slice(0,3));
-  const sIdx = SERVICES.findIndex(s => has(s.t) || s.tags.some(has));
-  if (sIdx > -1) {
-    goTo('#services');
-    setTimeout(() => { goS(sIdx - si); const c = document.querySelectorAll('.s-card')[sIdx]; c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); }, 700);
-    return;
-  }
-  const wIdx = WORKS.findIndex(x => has(x.t) || has(x.g) || has(x.k));
-  if (wIdx > -1) {
-    goTo('#works');
-    $('#workGrid').classList.add('in'); $('#works').classList.add('cards-in');   // 검색으로 왔을 땐 카드를 바로 보여줌
-    setTimeout(() => document.querySelectorAll(`.w-card[data-s="${WORKS[wIdx].s}"]`).forEach(c => { c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); }), 700);
-    return;
-  }
-  const hint = $('#heroHint');
-  hint.textContent = `'${word}' 제작도 상담해 드립니다. 견적 문의로 이동합니다.`;
-  hint.classList.add('on');
-  setTimeout(() => { hint.classList.remove('on'); goTo('#contact'); }, 1400);
+$('#vPause').onclick = e => { video.paused ? video.play() : video.pause(); e.currentTarget.textContent = video.paused ? '▶' : '❚❚'; };
+$('#heroSearch').addEventListener('submit', e => { e.preventDefault(); goTo('#services'); });
+
+/* ===== 배경 문구 2단계: 앞(진하게) 블러 인 → 카드 등장 → 뒤(연하게)로 물러남 ===== */
+function bgSequence(frontEl, backEl, lines, onCards){
+  frontEl.innerHTML = backEl.innerHTML = words(lines);
+  const ws = [...frontEl.querySelectorAll('span')];
+  ws.forEach((s, i) => s.style.transitionDelay = (i * .14) + 's');
+  const inDone = (ws.length - 1) * 140 + 1000;
+  frontEl.classList.add('in');
+  setTimeout(onCards, inDone + 300);
+  setTimeout(() => { frontEl.classList.add('out'); backEl.classList.add('in'); }, inDone + 800);
 }
-$('#heroSearch').addEventListener('submit', e => {
-  e.preventDefault();
-  findAndGo(q.value.trim() || SEARCH_WORDS[si0]);
-});
 
-/* ===== PUBLIC WORKS ===== */
-// 배경 큰 문구: ① 카드 앞에서 단어별로 블러가 풀리며 날아 들어옴(진한 색) → ② 연해지며 카드 뒤로 물러남
-const bgHTML = WORKS_BG.map(line => `<p>${line.split(' ').map(w => `<span>${w}</span>`).join(' ')}</p>`).join('');
-$('#worksBg').innerHTML = $('#worksBgBack').innerHTML = bgHTML;
-const bgWords = [...$('#worksBg').querySelectorAll('span')];
-bgWords.forEach((s,i) => s.style.transitionDelay = (i * .14) + 's');
-new IntersectionObserver((es, ob) => es.forEach(e => {
-  if (!e.isIntersecting) return;
-  ob.disconnect();
-  $('#worksBg').classList.add('in');
-  const inDone = (bgWords.length - 1) * 140 + 1000;   // 마지막 단어까지 다 들어온 시점
-  // ② 문구가 다 보인 뒤 잠깐 멈췄다가 카드가 날아 들어오고, ③ 카드가 도착할 즈음 문구는 뒤로 물러남
-  setTimeout(() => { $('#workGrid').classList.add('in'); $('#works').classList.add('cards-in'); }, inDone + 400);
-  setTimeout(() => { $('#worksBg').classList.add('out'); $('#worksBgBack').classList.add('in'); }, inDone + 900);
-}), {threshold:.3}).observe($('#works'));
-
-// 카드 2줄 — 1줄은 왼쪽, 2줄은 오른쪽으로 계속 흐름(끊김 없이 2배로 복제)
-const cardHTML = x => `
-    <a class="w-card" href="#works" data-s="${x.s}">
-      <div class="txt"><small>${x.g}</small><h3>${x.t}</h3><span class="y en">${x.y}</span><span class="chip ${x.c}">${x.k}</span></div>
-      <div class="thumb">
-        <img class="in" src="${W+x.s}-inner.jpg" alt="${x.t} 내지 디자인 - ${x.g} 인쇄물" loading="lazy">
-        <img class="cv" src="${W+x.s}-cover.jpg" alt="${x.t} 표지 디자인" loading="lazy">
-      </div>
-    </a>`;
+/* ===== 01 PUBLIC WORKS: 2줄 마키 (1줄 ←, 2줄 →) + range ===== */
+const tCard = x => `<a class="t-card" href="#"><div class="tx"><small class="t-g">${x.g}</small><h3>${x.t}</h3><time class="en">${x.y}</time><span class="chip ${CHIP[x.k]}">${x.k}</span></div><div class="ph"><img src="${W + x.s}-inner.jpg" alt="${x.t} 디자인 - ${x.g} 인쇄물" loading="lazy"></div></a>`;
 const half = Math.ceil(WORKS.length / 2);
 const rows = [
-  {el:$('#mRow1'), items:WORKS.slice(0, half), dir:-1, x:0, w:0, hover:false},
-  {el:$('#mRow2'), items:[...WORKS.slice(half), ...WORKS.slice(0, 1)], dir:1, x:0, w:0, hover:false}
+  {el:$('#tRow1'), items:WORKS.slice(0, half).map(tCard), dir:-1, x:0, w:0, hover:false},
+  {el:$('#tRow2'), items:[...WORKS.slice(half), WORKS[0]].map(tCard), dir:1, x:0, w:0, hover:false}
 ];
 rows.forEach(r => {
-  r.el.innerHTML = [...r.items, ...r.items].map(cardHTML).join('');
+  r.el.innerHTML = [...r.items, ...r.items].join('');
   r.el.addEventListener('mouseenter', () => r.hover = true);
   r.el.addEventListener('mouseleave', () => r.hover = false);
 });
-const measure = () => rows.forEach(r => { r.w = r.el.scrollWidth / 2; if (r.dir > 0 && !r.x) r.x = -r.w; });
-const SPEED = 38;   // px/초
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const measureRows = () => rows.forEach(r => { r.w = r.el.scrollWidth / 2; if (r.dir > 0 && !r.x) r.x = -r.w; });
 let dragging = false, last = performance.now();
-function tick(now){
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function tick(now){
   const dt = Math.min(.05, (now - last) / 1000); last = now;
   rows.forEach(r => {
     if (!r.w) return;
-    if (!reduce && !dragging && !r.hover && $('#lb').hidden) r.x += r.dir * SPEED * dt;
+    if (!RM && !dragging && !r.hover) r.x += r.dir * 38 * dt;
     if (r.x <= -r.w) r.x += r.w;
     if (r.x > 0) r.x -= r.w;
     r.el.style.transform = `translate3d(${r.x}px,0,0)`;
   });
-  if (!dragging && rows[0].w) $('#mRange').value = Math.round(-rows[0].x / rows[0].w * 1000);
+  if (!dragging && rows[0].w) $('#tRange').value = Math.round(-rows[0].x / rows[0].w * 1000);
   requestAnimationFrame(tick);
-}
-// 하단 바로 직접 넘겨보기
-const range = $('#mRange');
-range.addEventListener('pointerdown', () => dragging = true);
+})(last);
+const tRange = $('#tRange');
+tRange.addEventListener('pointerdown', () => dragging = true);
 addEventListener('pointerup', () => dragging = false);
-range.addEventListener('input', () => {
-  const p = range.value / 1000;
-  rows[0].x = -p * rows[0].w;
-  rows[1].x = -rows[1].w + p * rows[1].w;
-});
-addEventListener('load', measure); addEventListener('resize', measure); measure();
-requestAnimationFrame(tick);
-$('#workGrid').addEventListener('click', e => {
-  const card = e.target.closest('.w-card'); if (!card) return;
-  e.preventDefault();
-  const x = WORKS.find(w => w.s === card.dataset.s);
-  $('#lbTit').textContent = x.t;
-  $('#lbSub').textContent = `${x.g} · ${x.y} · ${x.k}`;
-  $('#lbCover').src = W + x.s + '-cover.jpg'; $('#lbCover').alt = x.t + ' 표지';
-  $('#lbInner').src = W + x.s + '-inner.jpg'; $('#lbInner').alt = x.t + ' 내지';
-  $('#lb').hidden = false; lockScroll(true);
-});
-const closeLb = () => { $('#lb').hidden = true; lockScroll(false); };
-$('#lb').addEventListener('click', e => { if (e.target.id === 'lb' || e.target.closest('.x')) closeLb(); });
-addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#lb').hidden) closeLb(); });
+tRange.addEventListener('input', () => { const p = tRange.value / 1000; rows[0].x = -p * rows[0].w; rows[1].x = -rows[1].w + p * rows[1].w; });
+addEventListener('load', measureRows); addEventListener('resize', measureRows); measureRows();
+new IntersectionObserver((es, ob) => es.forEach(e => {
+  if (!e.isIntersecting) return; ob.disconnect();
+  bgSequence($('#tBg'), $('#tBgBack'), TODAY_BG, () => { $('#tMarquee').classList.add('in'); $('#works').classList.add('cards-in'); });
+}), {threshold:.3}).observe($('#works'));
 
-/* ===== Info slider ===== */
-const iSlides = [...document.querySelectorAll('.info-slide')]; let ii = 0;
-const goInfo = d => { iSlides[ii].classList.remove('on'); ii = (ii + d + iSlides.length) % iSlides.length; iSlides[ii].classList.add('on'); };
-document.querySelectorAll('#infoSlider [data-dir]').forEach(b => b.onclick = () => goInfo(+b.dataset.dir));
-setInterval(() => goInfo(1), 7000);
+/* ===== 02 Information: 슬라이더 ===== */
+const iSlides = [...document.querySelectorAll('.info-slide')], iDots = [...document.querySelectorAll('#infoDots i')]; let ii = 0;
+const goInfo = d => { iSlides[ii].classList.remove('on'); iDots[ii].classList.remove('on'); ii = (ii + d + iSlides.length) % iSlides.length; iSlides[ii].classList.add('on'); iDots[ii].classList.add('on'); };
+document.querySelectorAll('#infoSlider [data-dir]').forEach(b => b.onclick = e => { e.preventDefault(); goInfo(+b.dataset.dir); });
+setInterval(() => goInfo(1), 6000);
 
-/* ===== WHY ===== */
-$('#whyTabs').innerHTML = WHY.map((w,i) => `<button class="${i?'':'on'}">${w.k}</button>`).join('');
-$('#whyCards').innerHTML = WHY.map((w,i) => `
-  <article class="why-card${i?'':' on'}" style="background-image:url('${W + w.img}')">
-    <span class="label">${w.k}</span>
-    <span class="num en">0${i+1} / 0${WHY.length}</span>
-    <p>${w.p}</p>
-    <div class="desc">${w.d}</div>
-    <ul>${w.tags.map(t=>`<li>${t}</li>`).join('')}</ul>
-    <a class="more" href="#contact" aria-label="상담하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-  </article>`).join('');
-$('#whyTabs').onclick = e => {
-  if (e.target.tagName !== 'BUTTON') return;
-  const idx = [...e.currentTarget.children].indexOf(e.target);
-  [...e.currentTarget.children].forEach((b,i) => b.classList.toggle('on', i === idx));
-  document.querySelectorAll('.why-card').forEach((c,i) => c.classList.toggle('on', i === idx));
-};
-
-/* ===== SERVICES slider ===== */
-$('#sTrack').innerHTML = SERVICES.map(x => `
-  <article class="s-card">
-    <div class="thumb"><img src="${x.i}" alt="${x.t} 디자인 제작" loading="lazy"></div>
-    <div class="txt"><small>${x.n}</small><h3>${x.t}</h3><p>${x.p}</p>
-    <div class="tags">${x.tags.map(t=>`<span>${t}</span>`).join('')}</div></div>
-  </article>`).join('');
-let si = 0;
-const perView = () => innerWidth <= 640 ? 1 : innerWidth <= 1024 ? 2 : 3;
-const goS = d => {
-  si = Math.max(0, Math.min(SERVICES.length - perView(), si + d));
-  $('#sTrack').style.transform = `translateX(${-si * ($('.s-card').offsetWidth + 24)}px)`;
-};
-$('#sPrev').onclick = () => goS(-1); $('#sNext').onclick = () => goS(1);
-addEventListener('resize', () => goS(0));
-
-/* ===== PROCESS pinned horizontal scroll ===== */
-$('#pTrack').innerHTML = PROCESS.map((x,i) => `
-  <div class="p-card"><span class="step en">0${i+1}</span><h3>${x.t}</h3><p>${x.p}</p><span class="when">${x.w}</span></div>`).join('');
-const proc = $('#process'), track = $('#pTrack');
-function onProc(){
-  const r = proc.getBoundingClientRect();
-  const total = proc.offsetHeight - innerHeight;
-  const prog = Math.min(1, Math.max(0, -r.top / total));
-  const dist = track.scrollWidth - innerWidth;
-  track.style.transform = `translateX(${innerWidth*0.3 - prog * (dist + innerWidth*0.3)}px)`;
+/* ===== 03 WHY: 고정 → 배경 문구 → 카드 4장 차례로 올라옴 ===== */
+$('#whyCards').innerHTML = WHY.map(w => `<a class="w-card" href="#" style="background-image:url('${W + w.img}')"><span class="lab">${w.lab}</span><div class="bot"><i class="w-ico">${ICO[w.ico]}</i><b class="en">${w.en}</b><span>${w.ko}</span></div></a>`).join('');
+const why = $('#why'), wCards = [...document.querySelectorAll('.w-card')];
+let whyTextStarted = false;
+function onWhy(){
+  if (innerWidth <= 1024) return;
+  const r = why.getBoundingClientRect();
+  const p = clamp(-r.top / (why.offsetHeight - innerHeight));
+  if (!whyTextStarted && r.top < innerHeight * .4) { whyTextStarted = true; bgSequence($('#wBg'), $('#wBgBack'), WHY_BG, () => {}); }
+  wCards.forEach((c, i) => { const t = ease(seg(p, .12 + i * .1, .42 + i * .1)); c.style.opacity = t; c.style.transform = `translateY(${120 * (1 - t)}px)`; });
 }
-addEventListener('scroll', onProc, {passive:true}); addEventListener('resize', onProc); onProc();
+addEventListener('scroll', onWhy, {passive:true}); onWhy();
 
-/* ===== FAQ (+ FAQPage 스키마 자동 생성: 화면 문구와 동일) ===== */
-$('#faqList').innerHTML = FAQ.map((f,i) => `<details${i?'':' open'}><summary><b>Q${i+1}</b>${f.q}</summary><div class="a">${f.a}</div></details>`).join('');
-const ld = document.createElement('script');
-ld.type = 'application/ld+json';
-ld.textContent = JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(f=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))});
-document.head.appendChild(ld);
+/* ===== 04 WHAT WE MAKE: 카드 슬라이더 + 점 ===== */
+$('#rTrack').innerHTML = SERVICES.map((x, i) => `<a class="r-card" href="#"><div class="ph"><img src="${W + x.i}" alt="${x.t} 디자인 제작" loading="lazy"></div><div class="tx"><small class="en r-n">0${i + 1}</small><h3>${x.t}</h3><p>${x.p}</p><div class="tags">${x.tags.map(t => `<span>${t}</span>`).join('')}</div></div></a>`).join('');
+function slider(track, items, dotsEl, prev, next, gap){
+  let i = 0;
+  dotsEl.innerHTML = items.map((_, k) => `<i class="${k ? '' : 'on'}"></i>`).join('');
+  const dots = [...dotsEl.children];
+  const go = d => {
+    const card = track.firstElementChild; const per = Math.max(1, Math.floor((innerWidth - 80) / (card.offsetWidth + gap)));
+    i = clamp(i + d, 0, Math.max(0, items.length - per));
+    track.style.transform = `translateX(${-i * (card.offsetWidth + gap)}px)`;
+    dots.forEach((dt, k) => dt.classList.toggle('on', k === i));
+  };
+  prev.onclick = () => go(-1); next.onclick = () => go(1); addEventListener('resize', () => go(0));
+}
+slider($('#rTrack'), SERVICES, $('#rDots'), $('#rPrev'), $('#rNext'), 30);
 
-/* ===== ABOUT ① SINCE: 스크롤 진행도에 따라 연도 롤링 → 제목 자리로 이동 → 문구 등장 ===== */
-(() => {
-  const FROM = 2013, TO = 2026;
-  const sec = $('section.since'), stick = $('.since-stick'), num = $('#sinceNum'), slot = $('.since-slot');
-  // 일의 자리: 3,4,…,9,0,…,6 / 십의 자리: 1,2
-  const ones = [], tens = [];
-  for (let y = FROM; y <= TO; y++) ones.push(y % 10);
-  for (let d = Math.floor(FROM / 10) % 10; d <= Math.floor(TO / 10) % 10; d++) tens.push(d);
-  $('#reelOnes').innerHTML = ones.map(d => `<i>${d}</i>`).join('');
-  $('#reelTens').innerHTML = tens.map(d => `<i>${d}</i>`).join('');
-  const steps = TO - FROM;
-  const tensFlip = ones.indexOf(0, 1);   // 2019→2020 넘어가는 순간
-  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-  const seg = (p, a, b) => clamp((p - a) / (b - a));
-  const ease = t => 1 - Math.pow(1 - t, 3);
-  const lines = [...document.querySelectorAll('.since-final span')];
-  // 연도별 이정표 (HISTORY) 그리기
-  $('#msNav').innerHTML = HISTORY.map(h => `<li>${h.y}</li>`).join('');
-  $('#msStage').innerHTML = HISTORY.map(h => `
-    <article class="ms"><p class="yr">${h.y}</p><h3>${h.t}</h3><p>${h.d}</p><ul>${h.tags.map(t => `<li>${t}</li>`).join('')}</ul></article>`).join('');
-  const navLis = [...document.querySelectorAll('#msNav li')], cards = [...document.querySelectorAll('#msStage .ms')];
-  // 스크롤 진행도 → 표시 연도: 이정표마다 굴러가서(roll) 잠시 머무름(hold)
-  const ROLL0 = .26, ROLL_END = .86;   // 첫 이정표 이후 롤링 구간
-  const span = (ROLL_END - ROLL0) / (HISTORY.length - 1);
-  const inout = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  function yearAt(p){
-    if (p <= ROLL0) return HISTORY[0].y;
-    const k = Math.min(HISTORY.length - 2, Math.floor((p - ROLL0) / span));
-    const local = (p - ROLL0 - k * span) / span;            // 0~1: 앞 45%는 굴러가고 나머지는 머무름
-    return HISTORY[k].y + (HISTORY[k + 1].y - HISTORY[k].y) * inout(clamp(local / .45));
-  }
-  let L = {};
-  function measure(){
-    const sr = stick.getBoundingClientRect(), tr = slot.getBoundingClientRect();
-    const w = num.offsetWidth, h = num.offsetHeight;
-    L = {sx:(sr.width - w) / 2, sy:(sr.height - h) / 2 - sr.height * .04,
-         ex:tr.left - sr.left, ey:tr.top - sr.top, es:tr.height / h};
-  }
-  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;   // 움직임 줄이기: 마지막 상태로 바로 표시
-  if (RM) sec.style.height = '100vh';
-  function update(){
-    const r = sec.getBoundingClientRect();
-    const p = RM ? 1 : clamp(-r.top / (sec.offsetHeight - innerHeight));
-    // 1) 가운데 큰 '2013' → 왼쪽 위 제목 자리로 이동·축소 (0.06~0.16)
-    const m = ease(seg(p, .06, .16));
-    const x = L.sx + (L.ex - L.sx) * m, y = L.sy + (L.ey - L.sy) * m, s = 1 + (L.es - 1) * m;
-    num.style.transform = `translate(${x}px,${y}px) scale(${s})`;
-    num.style.opacity = 1;
-    // 2) 연도 롤링: 이정표 연도마다 멈춤 (2013 → 2023 → 2024 → 2025 → 2026)
-    const year = RM ? TO : yearAt(p), yp = year - FROM;
-    $('#reelOnes').style.transform = `translateY(${-yp}em)`;
-    $('#reelTens').style.transform = `translateY(${-clamp(yp - (tensFlip - 1))}em)`;
-    // 고정되어 있는 동안엔 오른쪽 아래 빠른 상담 버튼이 문장을 가리지 않도록 숨김
-    $('.quick').classList.toggle('hide-since', r.top <= 0 && r.bottom > innerHeight * .5);
-    // 3) SINCE · 설명 문구 (0.13~0.22)
-    const a = ease(seg(p, .13, .2)), b = ease(seg(p, .16, .24));
-    $('.since-sm').style.cssText = `opacity:${a};transform:translateY(${12 * (1 - a)}px)`;
-    $('.since-desc').style.cssText = `opacity:${a};transform:translateY(${14 * (1 - a)}px)`;
-    $('.since-txt').style.cssText = `opacity:${b};transform:translateY(${40 * (1 - b)}px)`;
-    // 4) 이정표 카드: 지금 연도에 해당하는 카드만 표시 (0.18~0.88), 그 뒤엔 큰 문장으로 교체
-    const showMs = !RM && p >= .18 && p < .88;
-    let cur = -1;
-    HISTORY.forEach((h, i) => { if (year >= h.y - .5) cur = i; });
-    $('#msNav').style.opacity = showMs ? 1 : 0;
-    navLis.forEach((li, i) => { li.classList.toggle('on', i === cur); li.classList.toggle('done', i < cur); });
-    cards.forEach((c, i) => c.classList.toggle('on', showMs && i === cur));
-    lines.forEach((ln, i) => { const t = RM ? 1 : ease(seg(p, .89 + i * .025, .93 + i * .025)); ln.style.transform = `translateY(${105 * (1 - t)}%)`; });
-  }
-  const run = () => { measure(); update(); };
-  addEventListener('scroll', update, {passive:true});
-  addEventListener('resize', run);
-  addEventListener('load', run);
-  document.fonts && document.fonts.ready.then(run);
-  run();
-})();
+/* ===== 05 PROCESS: 고정 + 2열 시차 스크롤 → 마지막에 설비 사진·십자 ===== */
+const insCard = x => `<a class="ins-card" href="#" style="background-image:url('${PROC + x.img}')"><span class="chip ${x.cc || ''}">${x.c}</span><div class="bd"><small>${x.s}</small><h3>${x.t}</h3><p>${x.p}</p></div><span class="go">→</span></a>`;
+$('#insColA').innerHTML = PROCESS.filter((_, i) => i % 2 === 0).map(insCard).join('');
+$('#insColB').innerHTML = PROCESS.filter((_, i) => i % 2 === 1).map(insCard).join('');
+const ins = $('#process'), cA = $('#insColA'), cB = $('#insColB');
+function onIns(){
+  const r = ins.getBoundingClientRect();
+  const p = clamp(-r.top / (ins.offsetHeight - innerHeight));
+  const vh = innerHeight, m = seg(p, 0, .82);
+  cA.style.transform = `translateY(${vh * .55 - m * (cA.scrollHeight + vh * .55)}px)`;
+  cB.style.transform = `translateY(${vh * .95 - m * (cB.scrollHeight + vh * .85)}px)`;
+  const end = seg(p, .8, .95);
+  $('#insShade').style.opacity = 1 - end * .9;
+  $('#insBig').style.opacity = 1 - end;
+  $('#insCross').style.opacity = seg(p, .86, .96);
+}
+addEventListener('scroll', onIns, {passive:true}); addEventListener('resize', onIns); onIns();
+
+/* ===== 06 SINCE 2013: 연혁 카드 슬라이더 ===== */
+$('#lTrack').innerHTML = HISTORY.map(x => `<a class="l-card ms" href="#works"><div class="ph"><img src="${W + x.i}" alt="" loading="lazy"><b class="en">${x.y}</b></div><h3>${x.t}</h3><time class="en">${x.y === 'NOW' ? 'TODAY' : 'YEAR ' + x.y}</time></a>`).join('');
+slider($('#lTrack'), HISTORY, $('#lDots'), $('#lPrev'), $('#lNext'), 26);
 
 /* ===== Scroll reveal ===== */
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.15});
