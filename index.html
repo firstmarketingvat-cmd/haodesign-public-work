@@ -32,7 +32,10 @@
   --wrap:1440px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* Lenis 부드러운 스크롤 (관성 스크롤) */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
 body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;color:var(--text);background:#fff;word-break:keep-all;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 ul,ol{list-style:none}
@@ -837,6 +840,7 @@ section.since{position:relative;height:720vh;background:#fff}
   <a class="q3" href="#hero" aria-label="맨 위로">TOP</a>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 /* ===== 데이터 (문구는 여기만 고치면 됩니다) ===== */
 const W = 'assets/works/';   // 공공기관 포트폴리오 PDF에서 뽑은 표지(-cover) · 내지(-inner)
@@ -909,6 +913,22 @@ const FAQ = [
 
 const $ = s => document.querySelector(s);
 
+/* ===== Lenis: 휠 스크롤을 관성 있게 보간 → 스크롤 연동 효과(SINCE 롤링 · PROCESS · 카드)도 매끄럽게 ===== */
+let lenis = null;
+if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  lenis = new Lenis({lerp: .09, smoothWheel: true, wheelMultiplier: 1});
+  const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+  requestAnimationFrame(raf);
+}
+const goTo = target => lenis ? lenis.scrollTo(target, {duration: 1.2}) : (typeof target === 'number' ? scrollTo({top: target, behavior: 'smooth'}) : document.querySelector(target).scrollIntoView({behavior: 'smooth'}));
+// 페이지 안 링크(#…)도 Lenis로 부드럽게 이동 (포트폴리오 카드처럼 자체 클릭 처리하는 링크는 제외)
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]'); if (!a || a.closest('#workGrid')) return;
+  const id = a.getAttribute('href'); if (id.length < 2 || !document.querySelector(id)) return;
+  e.preventDefault(); goTo(id);
+});
+const lockScroll = on => lenis && (on ? lenis.stop() : lenis.start());
+
 /* ===== Header / menu ===== */
 // 메뉴 이름 → 이동할 섹션 (없는 항목은 '#')
 const LINK = {'회사소개':'#about','하오디자인 소개':'#about','제작설비':'#facility','오시는길':'#contact','회사소개서':'#info',
@@ -927,20 +947,21 @@ const onScroll = () => {
   $('.quick').classList.toggle('on', scrollY > innerHeight * .6);
 };
 addEventListener('scroll', onScroll, {passive:true}); onScroll();
-$('#hamBtn').onclick = () => innerWidth > 1024 ? header.classList.toggle('is-open') : $('#drawer').classList.add('on');
-$('#drawerX').onclick = () => $('#drawer').classList.remove('on');
-$('#drawer').addEventListener('click', e => { if (e.target.closest('a')) $('#drawer').classList.remove('on'); });
+$('#hamBtn').onclick = () => { if (innerWidth > 1024) header.classList.toggle('is-open'); else { $('#drawer').classList.add('on'); lockScroll(true); } };
+$('#drawerX').onclick = () => { $('#drawer').classList.remove('on'); lockScroll(false); };
+$('#drawer').addEventListener('click', e => { if (e.target.closest('a')) { $('#drawer').classList.remove('on'); lockScroll(false); } });
 
 /* ===== Popup ===== */
 const POP_KEY = 'haoPublicPopUntil';
 let until = 0; try { until = +localStorage.getItem(POP_KEY) || 0; } catch(e) {}
-if (Date.now() > until) $('#pop').hidden = false;
+if (Date.now() > until) { $('#pop').hidden = false; lockScroll(true); }
+const closePop = () => { $('#pop').hidden = true; lockScroll(false); };
 document.querySelectorAll('#pop [data-hide]').forEach(b => b.onclick = () => {
   const days = +b.dataset.hide;
   if (days) try { localStorage.setItem(POP_KEY, Date.now() + days*864e5); } catch(e) {}
-  $('#pop').hidden = true;
+  closePop();
 });
-$('#pop .body a').addEventListener('click', () => $('#pop').hidden = true);
+$('#pop .body a').addEventListener('click', closePop);
 
 /* ===== Hero: 배경 영상 + 검색창 ===== */
 const video = $('#heroVideo');
@@ -968,13 +989,13 @@ function findAndGo(word){
   const has = s => s.replace(/\s/g,'').includes(w) || w.includes(s.replace(/\s/g,'').slice(0,3));
   const sIdx = SERVICES.findIndex(s => has(s.t) || s.tags.some(has));
   if (sIdx > -1) {
-    $('#services').scrollIntoView({behavior:'smooth'});
+    goTo('#services');
     setTimeout(() => { goS(sIdx - si); const c = document.querySelectorAll('.s-card')[sIdx]; c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); }, 700);
     return;
   }
   const wIdx = WORKS.findIndex(x => has(x.t) || has(x.g) || has(x.k));
   if (wIdx > -1) {
-    $('#works').scrollIntoView({behavior:'smooth'});
+    goTo('#works');
     $('#workGrid').classList.add('in'); $('#works').classList.add('cards-in');   // 검색으로 왔을 땐 카드를 바로 보여줌
     setTimeout(() => document.querySelectorAll(`.w-card[data-s="${WORKS[wIdx].s}"]`).forEach(c => { c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash'); }), 700);
     return;
@@ -982,7 +1003,7 @@ function findAndGo(word){
   const hint = $('#heroHint');
   hint.textContent = `'${word}' 제작도 상담해 드립니다. 견적 문의로 이동합니다.`;
   hint.classList.add('on');
-  setTimeout(() => { hint.classList.remove('on'); $('#contact').scrollIntoView({behavior:'smooth'}); }, 1400);
+  setTimeout(() => { hint.classList.remove('on'); goTo('#contact'); }, 1400);
 }
 $('#heroSearch').addEventListener('submit', e => {
   e.preventDefault();
@@ -1059,10 +1080,11 @@ $('#workGrid').addEventListener('click', e => {
   $('#lbSub').textContent = `${x.g} · ${x.y} · ${x.k}`;
   $('#lbCover').src = W + x.s + '-cover.jpg'; $('#lbCover').alt = x.t + ' 표지';
   $('#lbInner').src = W + x.s + '-inner.jpg'; $('#lbInner').alt = x.t + ' 내지';
-  $('#lb').hidden = false;
+  $('#lb').hidden = false; lockScroll(true);
 });
-$('#lb').addEventListener('click', e => { if (e.target.id === 'lb' || e.target.closest('.x')) $('#lb').hidden = true; });
-addEventListener('keydown', e => { if (e.key === 'Escape') $('#lb').hidden = true; });
+const closeLb = () => { $('#lb').hidden = true; lockScroll(false); };
+$('#lb').addEventListener('click', e => { if (e.target.id === 'lb' || e.target.closest('.x')) closeLb(); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#lb').hidden) closeLb(); });
 
 /* ===== Info slider ===== */
 const iSlides = [...document.querySelectorAll('.info-slide')]; let ii = 0;
