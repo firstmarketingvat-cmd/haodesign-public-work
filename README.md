@@ -10,6 +10,7 @@
 
 - `index.html` — 페이지 전체 (HTML + CSS + JS 한 파일)
 - `assets/works/` — 공공기관 포트폴리오 PDF에서 뽑은 표지(`*-cover.jpg`) · 내지(`*-inner.jpg`)
+- `assets/works/mockup/` — 구글 드라이브 포트폴리오 목업 사진(`*-mock.jpg`, PUBLIC WORKS 카드용)
 - `assets/hero.mp4`, `assets/hero-poster.jpg` — 메인 배경 영상 (위 포트폴리오 페이지로 제작)
 - `assets/about/` — ABOUT · FACILITY 섹션의 제작설비 사진(인쇄 · 후가공 · 재단)
 - `tools/render_pdfs.py` — PDF → 표지·내지 JPG 변환 (PyMuPDF, Pillow)
@@ -22,6 +23,15 @@
 2. `python tools/render_pdfs.py` 실행 → `assets/works/슬러그-cover.jpg`, `슬러그-inner.jpg` 생성
 3. `index.html`의 `WORKS` 배열에 `{..., s:'슬러그'}` 한 줄 추가
 4. (선택) 배경 영상에도 넣으려면 `tools/make_hero_video.py`의 `SCENES` 수정 후 실행
+
+### 목업 사진으로 넣는 법 (구글 드라이브 포트폴리오 목업)
+
+목업 원본: [포트폴리오 목업 드라이브](https://drive.google.com/drive/folders/1kM-ruyBk6Jfr7tgnHKg9_kqi-U4_21eu) — 공공기관 · 공기업 · 지자체 · 교육청 · 연구기관 · 공공 재단 작업만 골라 씁니다. 지금 쓰는 파일 목록은 `tools/mockup_sources.txt`.
+
+1. 드라이브에서 목업 PNG를 `슬러그_번호.png`로 받기
+2. `tools/make_mockup_cards.py`의 `PICK`에 `'슬러그':'파일명'` 추가 → `python tools/make_mockup_cards.py <PNG폴더> assets/works/mockup`
+   (빈 배경을 잘라 카드 비율 840×597 JPG로 저장 → `assets/works/mockup/슬러그-mock.jpg`)
+3. `WORKS`에 `{..., s:'슬러그', m:1}` 추가 (`m:1`이면 목업 사진, 없으면 PDF 내지 사진). 날짜를 모르면 `y:''` → 날짜 줄을 숨깁니다
 
 ## 레이아웃 · 효과
 
@@ -63,7 +73,7 @@ UNIST 메인(1920px 실측)의 레이아웃과 효과를 그대로 쓰고, 내�
 |---|---|
 | `MENU` / `LINK` | 상단 메뉴 · 전체메뉴 / 메뉴별 이동할 섹션 |
 | `TODAY_BG` | PUBLIC WORKS 뒤의 큰 배경 문구 |
-| `WORKS` | PUBLIC WORKS 포트폴리오 — 앞 절반은 1줄(←), 나머지는 2줄(→). 마우스를 올리면 멈춤 |
+| `WORKS` / `CHIP` | PUBLIC WORKS 포트폴리오 — 앞 절반은 1줄(←), 나머지는 2줄(→). 마우스를 올리면 멈춤 / 분류 칩 색(브로슈어 네이비 · 리플렛·팜플렛 스틸 · 포스터 버밀리언) |
 | `WHY_BG` / `WHY` | WHY HAO DESIGN 배경 문구 / 카드 4장 |
 | `SERVICES` | WHAT WE MAKE 카드 |
 | `PROCESS` | PROCESS 6단계 카드 (사진은 haodesign.co.kr 회사소개의 제작과정 사진) |

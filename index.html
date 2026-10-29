@@ -337,7 +337,7 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
 .logo img{height:46px}
 .user-box .um{font-family:Pretendard,sans-serif;font-size:15px;letter-spacing:0}
 .util .lang a{font-family:Prompt,sans-serif;font-weight:700;color:var(--navy)}
-.c-cat{background:#1f3450}.c-leaf{background:var(--steel)}
+.c-cat{background:#1f3450}.c-leaf{background:var(--steel)}.c-post{background:var(--red)}
 .hero{background:var(--navy) url("assets/hero-poster.jpg?v=6") center/cover}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,44,.05),rgba(14,27,44,0) 30%,rgba(14,27,44,.35) 62%,rgba(14,27,44,.75));pointer-events:none}
@@ -706,18 +706,35 @@ const MENU = [
 ];
 const LINK = {'회사소개':'#about','공공 포트폴리오':'#works','제작 분야':'#services','진행 절차':'#process','연혁':'#since','견적문의':'#contact'};
 const TODAY_BG = ['CLEAR &', 'CREDIBLE', 'PRINT FOR', 'PUBLIC SERVICE'];
-const CHIP = {'브로슈어·카탈로그':'c-cat', '리플렛':'c-leaf'};
+const CHIP = {'브로슈어·카탈로그':'c-cat', '리플렛':'c-leaf', '팜플렛':'c-leaf', '포스터':'c-post'};
 // 공공 분야 포트폴리오 (하오디자인 실제 납품작, 파일명 날짜 기준)
+// m:1 = 목업 사진(assets/works/mockup/슬러그-mock.jpg, 구글 드라이브 포트폴리오 목업), 없으면 PDF 내지(슬러그-inner.jpg)
 const WORKS = [
   {k:'브로슈어·카탈로그',g:'연구기관',y:'2026.06',t:'나노기술연구회 브로슈어 16P',s:'nano'},
   {k:'브로슈어·카탈로그',g:'의료재단',y:'2026.06',t:'한국의료재단 종합검진센터 브로슈어 24P',s:'kmf-brochure'},
   {k:'리플렛',g:'의료재단',y:'2026.03',t:'한국의료재단 4단 리플렛',s:'kmf-leaflet'},
+  {k:'브로슈어·카탈로그',g:'국립대학병원',y:'2025.12',t:'서울대병원 응급환자 전원연계망 사용자 가이드',s:'snuh',m:1},
   {k:'브로슈어·카탈로그',g:'공공기관',y:'2025.06',t:'자동차손해배상진흥원 브로슈어',s:'kaib'},
+  {k:'포스터',g:'공제회',y:'2025.06',t:'어린이집안전공제회 홍보 포스터',s:'csia',m:1},
+  {k:'팜플렛',g:'공공기관',y:'2025.05',t:'한국특허정보원 영문 기관 소개 팜플렛',s:'kipi',m:1},
+  {k:'포스터',g:'정부출연연구기관',y:'2025.04',t:'한국세라믹기술원 이천분원 포스터',s:'kicet',m:1},
+  {k:'포스터',g:'공공기관',y:'2025',t:'한국장애인고용공단 직업능력개발훈련 우수사례 공모전 포스터',s:'kead',m:1},
+  {k:'브로슈어·카탈로그',g:'공공기관',y:'2025.03',t:'식품안전정보원 브로슈어 20P',s:'foodsafety',m:1},
   {k:'브로슈어·카탈로그',g:'정부 산하기관',y:'2025.03',t:'대불자유무역지역 카탈로그',s:'daebul-fez'},
   {k:'리플렛',g:'협회',y:'2025.03',t:'한국공기청정협회 3단 리플렛',s:'kaca'},
+  {k:'리플렛',g:'공기업',y:'2024.11',t:'한국전력공사 고덕 변환소 3단 리플렛',s:'kepco',m:1},
   {k:'브로슈어·카탈로그',g:'국제단체',y:'2024.11',t:'국제로타리 연수회 브로슈어',s:'rotary'},
+  {k:'리플렛',g:'지자체',y:'2024.10',t:'강남구보건소 2단 리플렛',s:'gangnam',m:1},
+  {k:'포스터',g:'재단법인',y:'2024.09',t:'부산테크노파크 부산 재난안전 포럼 포스터',s:'btp',m:1},
+  {k:'팜플렛',g:'교육청',y:'2024.07',t:'서울특별시교육청 교육시설관리부 팜플렛',s:'sen',m:1},
   {k:'브로슈어·카탈로그',g:'공기업',y:'2024.07',t:'한국토지주택공사(LH) 브로슈어 28P',s:'lh'},
-  {k:'브로슈어·카탈로그',g:'협회',y:'2024.03',t:'한국공작기계협회 해외전시 디렉토리',s:'komma'}
+  {k:'포스터',g:'지자체',y:'2024.04',t:'서초구청 구민 자전거보험 안내 포스터',s:'seocho',m:1},
+  {k:'포스터',g:'정부출연연구기관',y:'2024.04',t:'한국과학기술연구원(KIST) 워크숍 포스터',s:'kist',m:1},
+  {k:'브로슈어·카탈로그',g:'협회',y:'2024.03',t:'한국공작기계협회 해외전시 디렉토리',s:'komma',m:1},
+  {k:'팜플렛',g:'지자체',y:'2023.12',t:'고령군 투자유치 팜플렛',s:'goryeong',m:1},
+  {k:'리플렛',g:'공공기관',y:'2022.11',t:'한국지식재산보호원 리플렛',s:'koipa',m:1},
+  {k:'리플렛',g:'재단',y:'2022.05',t:'재생의료진흥재단 리플렛',s:'regen',m:1},
+  {k:'브로슈어·카탈로그',g:'공공기관',y:'',t:'대구문화예술진흥원 브로슈어',s:'daegu',m:1}
 ];
 const WHY_BG = ['TRUSTED', 'DESIGN FOR', 'PUBLIC', 'SERVICE'];
 const ICO = {
@@ -831,7 +848,7 @@ function bgSequence(frontEl, backEl, lines, onCards){
 }
 
 /* ===== 01 PUBLIC WORKS: 2줄 마키 (1줄 ←, 2줄 →) + range ===== */
-const tCard = x => `<a class="t-card" href="#"><div class="tx"><small class="t-g">${x.g}</small><h3>${x.t}</h3><time class="en">${x.y}</time><span class="chip ${CHIP[x.k]}">${x.k}</span></div><div class="ph"><img src="${W + x.s}-inner.jpg" alt="${x.t} 디자인 - ${x.g} 인쇄물" loading="lazy"></div></a>`;
+const tCard = x => `<a class="t-card" href="#"><div class="tx"><small class="t-g">${x.g}</small><h3>${x.t}</h3>${x.y ? `<time class="en">${x.y}</time>` : ''}<span class="chip ${CHIP[x.k]}">${x.k}</span></div><div class="ph"><img src="${W + (x.m ? 'mockup/' + x.s + '-mock.jpg' : x.s + '-inner.jpg')}" alt="${x.t} 디자인 - ${x.g} 인쇄물" loading="lazy"></div></a>`;
 const half = Math.ceil(WORKS.length / 2);
 const rows = [
   {el:$('#tRow1'), items:WORKS.slice(0, half).map(tCard), dir:-1, x:0, w:0, hover:false},
