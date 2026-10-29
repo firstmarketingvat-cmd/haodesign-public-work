@@ -36,7 +36,9 @@ UNIST 메인(1920px 실측)의 레이아웃과 효과를 그대로 쓰고, 내�
 | WHY HAO DESIGN | 화면 고정, 배경 문구 → 세로 카드 4장이 차례로 올라옴 |
 | WHAT WE MAKE | 카드 슬라이더(점 · 화살표) |
 | PROCESS | 화면 고정, 2열 카드가 서로 다른 속도로 올라감 → 마지막에 설비 사진 + 십자 |
+| ABOUT HAO DESIGN | 회사 이야기 · 메시지 · 가치 3가지 · 제작설비 (스크롤 시 페이드 업) |
 | SINCE 2013 | 연혁 카드 슬라이더 |
+| FAQ | 아코디언 5문항 |
 | 전체 | Lenis 부드러운 스크롤(움직임 줄이기 설정이면 기본 스크롤) |
 
 ## 색상 (네이비 미드나잇 + 하오 버밀리언)
@@ -65,14 +67,17 @@ UNIST 메인(1920px 실측)의 레이아웃과 효과를 그대로 쓰고, 내�
 | `WHY_BG` / `WHY` | WHY HAO DESIGN 배경 문구 / 카드 4장 |
 | `SERVICES` | WHAT WE MAKE 카드 |
 | `PROCESS` | PROCESS 6단계 카드 (사진은 haodesign.co.kr 회사소개의 제작과정 사진) |
-| `HISTORY` | SINCE 2013 연혁 카드 (연도 순서대로 `{y, t, i}`) |
+| `HISTORY` / `HISTORY_IMG` | SINCE 2013 연혁 카드 (연도 순서대로 `{y, t, d, tags}`) / 연도별 카드 이미지 |
+| `FAQ` | FAQ 섹션 (FAQPage 스키마 자동 생성) |
+
+회사소개(ABOUT HAO DESIGN: 회사 이야기 · 메시지 · 가치 · 제작설비)는 데이터 배열이 아니라 `index.html`의 `<section class="about" id="about">` HTML에 직접 들어 있습니다.
 
 로고 · 캐릭터 · 제작과정 사진은 haodesign.co.kr 서버를 직접 참조하고, 나머지 이미지 · 영상은 `assets/` 안에 있습니다.
 
 ## 게시 전 확인할 것
 
 - 회사소개서 · 온라인 견적 · 패밀리 사이트 · 운영 채널 링크 (현재 임시 링크)
-- 이전 버전(회사소개 SINCE 타임라인 · FAQ · CTA 포함)은 git 기록의 `73045c9` 커밋에 있습니다
+- 이전 버전(회사소개 SINCE 연도 롤링 · CTA 밴드 포함)은 git 기록의 `73045c9` 커밋에 있습니다 (내용은 현재 레이아웃에 다시 반영됨)
 
 ## 함께 수정하는 방법
 

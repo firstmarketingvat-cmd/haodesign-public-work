@@ -379,6 +379,109 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
   .slogan-tx,.slogan-sub{text-align:left}
   .logo img{height:36px}
 }
+
+/* ---------- ABOUT HAO DESIGN (이전 버전 회사소개 내용 · 클론 스타일 위에 얹음) ---------- */
+.about{--ink:var(--navy);--ink-2:#1f3450;--bg-soft:var(--ivory);--radius:20px;--text:#121c29;padding:120px 0 120px;background:#fff}
+.about .inner{max-width:1509px;margin:0 auto;padding:0 40px}
+.about .about-top{margin-top:56px}
+.about .ab-h{margin-top:14px;font-size:clamp(28px,2.6vw,44px);line-height:1.3;font-weight:800;letter-spacing:-.02em;color:var(--navy)}
+.about .ab-h em{font-style:normal;color:var(--red)}
+.about .lead{margin-top:18px;font-size:18px;line-height:1.7;font-weight:600;color:#1f3450}
+.about .ab-quote{margin-top:30px;padding-left:18px;border-left:3px solid var(--red);font-size:19px;font-weight:700;line-height:1.6;color:var(--navy)}
+.about .ab-quote em{font-style:normal;color:var(--red)}
+
+.about{background:#fff}
+.about-top{display:grid;grid-template-columns:1.05fr 1fr;gap:80px;align-items:center}
+.about .eyebrow{font-family:Prompt,sans-serif;font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--red)}
+.about h2{margin-top:16px;font-size:clamp(30px,3.4vw,48px);line-height:1.3;font-weight:800;letter-spacing:-.02em}
+.about h2 em{font-style:normal;color:var(--red)}
+.about .lead{margin-top:22px;font-size:19px;line-height:1.7;font-weight:600;color:var(--ink-2)}
+.about .body p{margin-top:16px;font-size:16px;line-height:1.85;color:#3c4757}
+.about-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.about-facts li{height:38px;padding:0 16px;border:1px solid var(--line);border-radius:20px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ink-2);background:var(--bg-soft)}
+.about-facts b{font-family:Prompt,sans-serif;color:var(--red)}
+.about-visual{position:relative;height:540px}
+.about-visual img{position:absolute;border-radius:14px;box-shadow:0 24px 60px rgba(14,27,44,.18);object-fit:cover;background:#fff}
+.about-visual .v1{left:0;top:30px;width:52%;height:440px}
+.about-visual .v2{right:0;top:110px;width:60%;height:340px;object-fit:contain;padding:14px}
+.about-visual .since-badge{position:absolute;left:38%;bottom:0;background:var(--ink);color:#fff;border-radius:6px 6px 22px 6px;padding:22px 26px;box-shadow:0 14px 34px rgba(14,27,44,.3)}
+.about-visual .since-badge small{display:block;font-family:Prompt,sans-serif;font-size:12px;letter-spacing:.2em;color:var(--steel)}
+.about-visual .since-badge b{display:block;margin-top:4px;font-family:Prompt,sans-serif;font-size:40px;line-height:1}
+.about-visual .since-badge span{display:block;margin-top:8px;font-size:13px;opacity:.85}
+.msg{display:grid;grid-template-columns:1fr 1.15fr;gap:70px;align-items:center;margin-top:110px;padding:56px;border-radius:28px;background:var(--ink);color:#fff;overflow:hidden;position:relative}
+.msg::after{content:"";position:absolute;right:-120px;top:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(232,56,23,.32),rgba(232,56,23,0) 70%);pointer-events:none}
+.msg-ph{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--ink-2)}
+.msg-ph img{width:100%;height:100%;object-fit:cover}
+.msg-tx{position:relative;z-index:1}
+.msg-tx small{font-size:13px;font-weight:700;letter-spacing:.2em;color:var(--steel)}
+.msg-tx h3{margin-top:12px;font-size:clamp(26px,2.6vw,40px);line-height:1.3}
+.msg-tx p{margin-top:16px;font-size:16px;line-height:1.85;color:rgba(255,255,255,.78)}
+.msg-tx .sign{margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:18px;font-weight:700;color:#fff}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.values li{position:relative;padding:40px 36px 38px;border-radius:var(--radius);background:var(--bg-soft);border:1px solid var(--line);overflow:hidden}
+.values li::after{content:attr(data-n);position:absolute;right:24px;top:14px;font-family:Prompt,sans-serif;font-size:70px;font-weight:800;color:rgba(14,27,44,.05)}
+.values small{font-family:Prompt,sans-serif;font-size:13px;font-weight:700;letter-spacing:.16em;color:var(--steel)}
+.values h3{margin-top:10px;font-size:23px}
+.values p{margin-top:14px;font-size:15.5px;line-height:1.75;color:var(--gray)}
+.facility{margin-top:110px;scroll-margin-top:calc(var(--header-h) + 30px)}
+.facility-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.facility-head h3{font-size:clamp(24px,2.4vw,32px);line-height:1.35}
+.facility-head h3 small{display:block;font-family:Prompt,sans-serif;font-size:14px;letter-spacing:.2em;color:var(--red);margin-bottom:10px}
+.facility-head p{max-width:520px;font-size:15.5px;line-height:1.75;color:var(--gray)}
+.fac-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.fac-grid article{border-radius:var(--radius);overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px rgba(14,27,44,.06)}
+.fac-grid .ph{aspect-ratio:16/9;overflow:hidden;background:var(--bg-soft)}
+.fac-grid .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.fac-grid article:hover .ph img{transform:scale(1.05)}
+.fac-grid .tx{padding:28px 28px 32px}
+.fac-grid .tx small{font-family:Prompt,sans-serif;font-size:13px;font-weight:700;color:var(--red)}
+.fac-grid h4{margin-top:6px;font-size:21px;line-height:1.4}
+.fac-grid p{margin-top:12px;font-size:15px;line-height:1.75;color:var(--gray)}
+.fac-grid .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.fac-grid .chips span{height:28px;padding:0 12px;border-radius:14px;background:var(--bg-soft);border:1px solid var(--line);font-size:12.5px;display:flex;align-items:center;color:#45505e}
+
+
+.about h2.s-tit{margin-top:0;font-size:28px;line-height:1.1;letter-spacing:.02em;font-weight:700;color:var(--ink)}
+/* 이전 버전 연혁 · 담당자 안내 목록 · FAQ */
+.info-slide ul{margin-top:20px;display:grid;gap:9px;font-size:15px;color:#3c4757}
+.info-slide li::before{content:"✓";color:var(--red);font-weight:800;margin-right:10px}
+.l-card .l-d{margin-top:8px;font-size:13.5px;line-height:1.65;color:#5e6977;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.l-card .l-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.l-card .l-tags span{height:24px;padding:0 10px;border-radius:12px;border:1px solid var(--line);background:var(--ivory);font-size:11.5px;font-weight:600;color:#1f3450;display:flex;align-items:center}
+.faq2{padding:110px 0 120px;background:var(--ivory)}
+.faq2 .faq-list{width:min(1100px,calc(100% - 80px));margin:50px auto 0}
+.faq2 details{border-top:1px solid #dcd8d0;background:transparent}
+.faq2 details:last-child{border-bottom:1px solid #dcd8d0}
+.faq2 summary{list-style:none;cursor:pointer;display:flex;gap:16px;align-items:flex-start;padding:24px 4px;font-size:18px;font-weight:700;line-height:1.5;color:var(--navy)}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary b{font-family:Prompt,sans-serif;color:var(--red)}
+.faq2 summary::after{content:"+";margin-left:auto;font-size:26px;font-weight:300;line-height:1;color:#999}
+.faq2 details[open] summary::after{content:"–"}
+.faq2 .a{padding:0 4px 26px 40px;color:#45505e;font-size:16px;line-height:1.8}
+@media (max-width:1024px){
+  .about .about-top{grid-template-columns:1fr;gap:50px}
+  .about .about-visual{height:460px}
+  .about .values,.about .fac-grid{grid-template-columns:1fr}
+  .about .values{margin-top:40px}
+  .about .facility{margin-top:70px}
+  .about .msg{grid-template-columns:1fr;gap:30px;padding:32px;margin-top:70px}
+}
+@media (max-width:640px){
+  .about{padding:80px 0}
+  .about .inner{padding:0 16px}
+  .about .lead{font-size:16px}
+  .about .lead br{display:none}
+  .about .about-visual{height:350px}
+  .about .about-visual .v1{top:10px;height:290px;width:54%}
+  .about .about-visual .v2{top:70px;height:210px;width:62%;padding:8px}
+  .about .about-visual .since-badge{left:auto;right:8px;padding:16px 18px}
+  .about .about-visual .since-badge b{font-size:30px}
+  .about .values li{padding:30px 26px}
+  .about .fac-grid .tx{padding:22px 22px 26px}
+  .faq2 .faq-list{width:calc(100% - 32px)}
+  .faq2 summary{font-size:16px}
+  .faq2 .a{padding-left:4px}
+}
 </style>
 </head>
 <body>
@@ -404,7 +507,7 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
   <div class="header-inner">
     <h1 class="logo"><a href="#"><img src="https://haodesign.co.kr/resource/home/assets/images/logo-o.png?version=20200113" alt="하오디자인"></a></h1>
     <ul class="gnb" id="gnb"></ul>
-    <ul class="util"><li><a href="#info">회사소개서</a></li><li><a href="#faq-info">FAQ</a></li><li class="lang"><a href="tel:1666-2027">1666-2027</a></li></ul>
+    <ul class="util"><li><a href="#info">회사소개서</a></li><li><a href="#faq">FAQ</a></li><li class="lang"><a href="tel:1666-2027">1666-2027</a></li></ul>
     <div class="user-box">
       <a class="um" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg><span>견적문의</span></a>
       <button class="ub" id="searchBtn" aria-label="검색"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 4h12v8M4 4v12h8"/><path d="M14 14l6 6"/></svg></button>
@@ -441,17 +544,90 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
     <h2 class="s-tit reveal">Information for 담당자</h2>
     <div class="info-wrap reveal">
       <div class="info-slider" id="infoSlider">
-        <a class="info-slide on" href="#contact" style="background-image:url('assets/works/kmf-brochure-inner.jpg')"><p>견적부터 정산까지,<br>행정 서류를 먼저 챙겨 드립니다.</p><span class="go">견적 서류 요청하기 →</span></a>
-        <a class="info-slide" href="#process" style="background-image:url('assets/works/daebul-fez-inner.jpg')"><p>납품일만 정해 주세요.<br>일정은 거꾸로 계산합니다.</p><span class="go">진행 절차 보기 →</span></a>
+        <a class="info-slide on" href="#contact" style="background-image:url('assets/works/kmf-brochure-inner.jpg')"><p>견적부터 정산까지,<br>행정 서류를 먼저 챙겨 드립니다.</p><ul><li>항목별 견적서(디자인 · 인쇄 · 후가공 분리)</li><li>사업자등록증 · 통장사본 등 회사 서류</li><li>납품 후 정산 서류 안내</li></ul><span class="go">견적 서류 요청하기 →</span></a>
+        <a class="info-slide" href="#process" style="background-image:url('assets/works/daebul-fez-inner.jpg')"><p>납품일만 정해 주세요.<br>일정은 거꾸로 계산합니다.</p><ul><li>원고 확정일 · 시안 보고일 · 최종 검수일 역산</li><li>내부 결재 일정을 반영한 수정 회차 설계</li><li>인쇄 · 후가공 · 배송 기간까지 포함</li></ul><span class="go">진행 절차 보기 →</span></a>
         <div class="sl-arr"><button data-dir="-1" aria-label="이전">‹</button><button data-dir="1" aria-label="다음">›</button></div>
         <div class="dots info-dots" id="infoDots"><i class="on"></i><i></i></div>
       </div>
       <div class="info-banners">
         <a class="wide" href="#"><strong>회사소개서 받기</strong><span>내부 보고용으로 바로 쓰실 수 있는 하오디자인 소개 자료</span><img src="https://haodesign.co.kr/resource/home/assets/images/character.webp" alt="하오디자인 캐릭터"></a>
-        <a href="#faq-info" id="faq-info"><strong>자주 묻는 질문</strong><span>예산 · 일정 · 수정 횟수</span>
+        <a href="#faq"><strong>자주 묻는 질문</strong><span>예산 · 일정 · 수정 횟수</span>
           <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="8" y="10" width="48" height="36" rx="6"/><path d="M20 46l-6 10 16-10"/><path d="M27 24a5 5 0 1 1 7 4.6c-1.4.6-2 1.6-2 3V33"/><circle cx="32" cy="38" r="1.2" fill="currentColor"/></svg></a>
         <a href="#process"><strong>제작 설비</strong><span>인쇄 · 후가공 품질 직접 관리</span>
           <svg class="ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="14" y="8" width="36" height="16" rx="2"/><rect x="6" y="24" width="52" height="22" rx="4"/><rect x="16" y="38" width="32" height="18" rx="2"/><path d="M22 46h20M22 51h14"/><circle cx="48" cy="32" r="2" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT HAO DESIGN — 이전 버전 회사소개 내용 (회사 이야기 · 메시지 · 가치 · 제작설비) -->
+  <section class="about" id="about">
+    <div class="inner">
+      <h2 class="s-tit reveal">ABOUT HAO DESIGN</h2>
+      <div class="about-top">
+        <div class="reveal">
+          <p class="eyebrow">SINCE 2013</p>
+          <h3 class="ab-h">기관의 말이 시민에게<br>정확히 닿도록, <em>2013년부터</em></h3>
+          <p class="lead">하오디자인은 인쇄 디자인 한 길을 걸어온 팀입니다.<br>기획부터 납품까지, 하나의 팀이 끝까지 책임집니다.</p>
+          <div class="body">
+            <p>하오디자인은 차별화된 디자인으로 수많은 브랜드와 기관의 성장을 함께해 왔습니다. 최고의 결과물을 언제나 첫 번째 과제로 삼아 온 덕분에, 해마다 한 걸음씩 더 성장하고 있습니다.</p>
+            <p>하오디자인의 가장 큰 자산은 사람입니다. 다양한 경험과 노하우를 가진 전문가들이 모여, 하나의 결과를 위해 함께 고민합니다. 기관과 시민 모두가 만족하는 디자인, 그것 하나만 생각합니다.</p>
+            <p>공기업 · 정부 산하기관 · 의료재단 · 협회 — 기관마다 쓰는 언어와 규정이 다릅니다. 그 기관의 언어를 먼저 이해하고, 해외 협력기관을 위한 다국어까지 한 번에 담아냅니다.</p>
+          </div>
+          <ul class="about-facts">
+            <li><b>2013</b>인쇄 디자인 전문</li>
+            <li><b>4,500+</b>누적 제작</li>
+            <li><b>98%</b>재의뢰율</li>
+            <li><b>ONE TEAM</b>기획부터 납품까지</li>
+          </ul>
+          <p class="ab-quote">잘 만든 인쇄물 한 권은 기관이 건네는 <em>가장 믿을 만한</em> 안내서입니다.</p>
+        </div>
+        <div class="about-visual reveal" aria-hidden="true">
+          <img class="v1" src="assets/works/kmf-brochure-cover.jpg" alt="">
+          <img class="v2" src="assets/works/lh-inner.jpg" alt="">
+          <div class="since-badge"><small>SINCE</small><b>2013</b><span>국내외 기업 · 관공서 제작</span></div>
+        </div>
+      </div>
+
+      <!-- 하오디자인의 메시지 (haodesign.co.kr 회사소개 '디자인은 소통이다' 요약) -->
+      <div class="msg reveal">
+        <div class="msg-ph"><img src="https://haodesign.co.kr/resource/home/assets/images/sub1-1/sub1-1-2.jpg" alt="성과를 함께 기뻐하는 하오디자인 팀원들" loading="lazy"></div>
+        <div class="msg-tx">
+          <small class="en">OUR MESSAGE</small>
+          <h3>“디자인은 소통입니다.”</h3>
+          <p>고객과 디자이너가 처음 마주 앉으면, 둘 사이에는 딱 탁자 하나만큼의 거리가 있습니다. 디자인은 그 거리를 좁히는 데서 시작됩니다. 아이디어를 풀고, 조립하고, 지우고 다시 쓰며 생각과 생각의 거리가 0이 되는 순간 — 좋은 결과물은 어김없이 찾아옵니다.</p>
+          <p>그래서 하오디자인은 외주에 기대지 않고, 하나부터 열까지 직접 기획하고 직접 만듭니다. 첫 만남부터 마지막 악수까지, 우리의 생각이 기관에 제대로 닿는지 끝까지 살핍니다.</p>
+          <p class="sign">어제보다 나은 결과를 위해, 항상 처음처럼 일하겠습니다.</p>
+        </div>
+      </div>
+
+      <ul class="values">
+        <li class="reveal" data-n="01"><small>CREATIVE</small><h3>차별화된 디자인</h3><p>대기업 · 공기업 등 다양한 제작 경험으로 더 섬세하고 트렌디한 결과물을 드립니다. 상황과 시간을 읽고, 기관의 격에 맞게 빛나는 디자인을 약속합니다.</p></li>
+        <li class="reveal" data-n="02"><small>PROFESSIONAL</small><h3>분야별 전문가</h3><p>가장 자신 있고 잘하는 분야를 맡은 대표 전문가들이, 높은 완성도와 기관의 만족을 최우선 목표로 삼습니다.</p></li>
+        <li class="reveal" data-n="03"><small>PROCESS</small><h3>1:1 전담 시스템</h3><p>기관과 사업의 특성을 고려해 콘텐츠를 기획하고, 니즈에 맞춘 1:1 전담 프로세스로 진행합니다. 함께 일하는 동안은 오직 그 기관에만 집중합니다.</p></li>
+      </ul>
+
+      <div class="facility" id="facility">
+        <div class="facility-head reveal">
+          <h3><small>FACILITY</small>인쇄 · 후가공까지 직접 관리합니다</h3>
+          <p>디자인이 좋아도 실물이 어긋나면 소용없습니다. 용지 선택부터 인쇄기 세팅, 후가공, 납품 직전 검수까지 하오디자인이 직접 확인합니다.</p>
+        </div>
+        <div class="fac-grid">
+          <article class="reveal">
+            <div class="ph"><img src="assets/about/print.gif" alt="하오디자인 제작설비 - 옵셋 인쇄 공정" loading="lazy"></div>
+            <div class="tx"><small>01 PRINTING</small><h4>용도에 맞는 인쇄 방식</h4><p>배포 수량 · 예산 · 사용 기간에 맞춰 가장 적합한 용지와 인쇄 방식을 고릅니다. 합리적인 가격과 품질이 함께 가도록 전 과정을 관리합니다.</p>
+              <div class="chips"><span>스노우지</span><span>아트지</span><span>랑데뷰</span><span>아르떼</span><span>몽블랑</span><span>옵셋 · UV 인쇄</span></div></div>
+          </article>
+          <article class="reveal">
+            <div class="ph"><img src="assets/about/finish.jpg" alt="하오디자인 제작설비 - 코팅 후가공" loading="lazy"></div>
+            <div class="tx"><small>02 POST-PROCESSING</small><h4>꼭 필요한 후가공만</h4><p>후가공은 완성도를 높이지만 단가도 함께 오릅니다. 기관 예산 안에서 효과가 가장 큰 후가공만 골라 제안합니다.</p>
+              <div class="chips"><span>금 · 은박</span><span>일반 코팅</span><span>부분 UV</span></div></div>
+          </article>
+          <article class="reveal">
+            <div class="ph"><img src="assets/about/quality.jpg" alt="하오디자인 제작설비 - 재단 및 품질 관리" loading="lazy"></div>
+            <div class="tx"><small>03 QUALITY</small><h4>직접 해 온다는 약속</h4><p>인쇄기 세팅, 건조, 코팅, 재단까지 직접 확인합니다. 국내외 기업 · 관공서 제작으로 쌓은 노하우로 납품 기준에 맞는 품질을 지킵니다.</p>
+              <div class="chips"><span>인쇄 감리</span><span>재단 · 제본 검수</span><span>납품 전 최종 확인</span></div></div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -490,6 +666,11 @@ button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
     <div class="l-wrap reveal"><div class="l-track" id="lTrack"></div></div>
     <div class="ctrl l-foot"><div class="dots" id="lDots"></div><div class="arr"><button id="lPrev" aria-label="이전">‹</button><button id="lNext" aria-label="다음">›</button></div><a class="more" href="https://haodesign.co.kr/" target="_blank" rel="noopener">포트폴리오 전체보기</a></div>
   </section>
+  <!-- FAQ — 이전 버전 내용 -->
+  <section class="faq2" id="faq">
+    <h2 class="s-tit reveal">FAQ</h2>
+    <div class="faq-list reveal" id="faqList"></div>
+  </section>
 </main>
 
 <footer class="footer" id="contact">
@@ -523,7 +704,7 @@ const MENU = [
   ['연혁',['SINCE 2013','공공 포트폴리오']],
   ['견적문의',['온라인 견적','전화 상담 1666-2027']]
 ];
-const LINK = {'회사소개':'#info','공공 포트폴리오':'#works','제작 분야':'#services','진행 절차':'#process','연혁':'#since','견적문의':'#contact'};
+const LINK = {'회사소개':'#about','공공 포트폴리오':'#works','제작 분야':'#services','진행 절차':'#process','연혁':'#since','견적문의':'#contact'};
 const TODAY_BG = ['CLEAR &', 'CREDIBLE', 'PRINT FOR', 'PUBLIC SERVICE'];
 const CHIP = {'브로슈어·카탈로그':'c-cat', '리플렛':'c-leaf'};
 // 공공 분야 포트폴리오 (하오디자인 실제 납품작, 파일명 날짜 기준)
@@ -568,14 +749,21 @@ const PROCESS = [
   {c:'STEP 05',cc:'b',img:'sub1-1_31.jpg',s:'제작 완료 · 최종 검수',t:'전문 검수팀이<br>품질을 지킵니다',p:'제작된 결과물을 꼼꼼하게 자체 검수해 균일한 품질을 약속합니다.'},
   {c:'STEP 06',cc:'g',img:'sub1-1_32.jpg',s:'최종 납품',t:'요청하신 일정과 장소로<br>납품합니다',p:'인연은 계속되기에, 부끄러움 없는 완성된 결과물을 요청하신 대로 납품합니다.'}
 ];
-// 연혁 (실제 납품 포트폴리오 날짜 · 회사 정보 기준)
+// 연혁 — 이전 버전 내용 (실제 납품 포트폴리오 날짜 · 회사 정보 기준). i 는 카드 이미지
 const HISTORY = [
-  {y:'2013',t:'하오디자인의 시작 — 인쇄 디자인 한 길',i:'nano-cover.jpg'},
-  {y:'2023',t:'우정사업본부 · 한국지식재산보호원 등 공공 포트폴리오',i:'kaib-cover.jpg'},
-  {y:'2024',t:'한국공작기계협회 · LH · 국제로타리 제작',i:'lh-cover.jpg'},
-  {y:'2025',t:'대불자유무역지역 · 자동차손해배상진흥원 · 협회',i:'daebul-fez-cover.jpg'},
-  {y:'2026',t:'한국의료재단 · 나노기술연구회, 누적 4,500건+',i:'kmf-brochure-cover.jpg'},
-  {y:'NOW',t:'재의뢰율 98% — 오늘도 처음처럼',i:'rotary-cover.jpg'}
+  {y:2013, t:'하오디자인의 시작', d:'카탈로그 · 브로슈어 · 리플렛 · 포스터. 손에 잡히는 인쇄물 한 길로 첫발을 내디뎠습니다.', tags:['인쇄 디자인 전문','기획부터 납품까지']},
+  {y:2023, t:'공공기관 포트폴리오를 쌓다', d:'우정사업본부 카다로그, 한국지식재산보호원 포스터, 전북대병원 유효성평가센터 카다로그 등 공공 분야 작업을 선보였습니다.', tags:['우정사업본부','한국지식재산보호원','전북대병원']},
+  {y:2024, t:'공기업 · 해외 전시까지', d:'한국공작기계협회 해외전시 디렉토리(3월), 한국토지주택공사 브로슈어 28P(7월), 국제로타리 연수회 브로슈어(11월)를 만들었습니다.', tags:['LH','한국공작기계협회','국제로타리']},
+  {y:2025, t:'정부 산하기관 · 협회로 넓히다', d:'대한보건의료정보관리사협회 리플렛, 대불자유무역지역 카탈로그 · 한국공기청정협회 리플렛(3월), 자동차손해배상진흥원 브로슈어(6월)를 맡았습니다.', tags:['대불자유무역지역','자동차손해배상진흥원','협회']},
+  {y:2026, t:'누적 4,500건, 재의뢰율 98%', d:'한국의료재단 리플렛 · 브로슈어 24P, 나노기술연구회 브로슈어 16P까지. 지금도 한 권 한 권을 처음처럼 만듭니다.', tags:['한국의료재단','나노기술연구회','4,500+ · 98%']}
+];
+const HISTORY_IMG = {2013:'nano-cover.jpg',2023:'kaib-cover.jpg',2024:'lh-cover.jpg',2025:'daebul-fez-cover.jpg',2026:'kmf-brochure-cover.jpg'};
+const FAQ = [
+  {q:'기관 로고 사용 규정이 까다로운데, 맞춰서 작업이 가능한가요?',a:'가능합니다. 착수 전에 기관 CI 매뉴얼(로고 여백 · 전용 색상 · 금지 사례)을 받아 체크리스트로 정리하고, 공동 주최 · 후원 기관 로고 배열 순서까지 시안 단계에서 함께 확인합니다.'},
+  {q:'납품 날짜가 정해져 있는데 일정이 촉박합니다. 어떻게 진행되나요?',a:'납품일을 기준으로 원고 확정일 · 시안 보고일 · 최종 검수일을 거꾸로 계산한 일정표를 첫 상담에서 드립니다. 인쇄 · 후가공 · 배송 기간까지 포함해 무리 없는 일정인지 먼저 판단해 드립니다.'},
+  {q:'견적서나 회사 서류는 어떤 것을 받을 수 있나요?',a:'디자인 · 인쇄 · 후가공을 나눈 항목별 견적서와 사업자등록증 등 회사 서류를 준비해 드립니다. 기관별로 필요한 서류 양식이 다르면 말씀해 주세요. 가능한 범위에서 맞춰 드립니다.'},
+  {q:'원고가 길고 어려운 보고서 문장뿐인데 정리도 해 주시나요?',a:'네. 긴 문안을 핵심 메시지 · 수치 · 절차로 나눠 인포그래픽과 표로 재구성하는 정보 설계 단계를 거칩니다. 의미가 바뀌지 않도록 담당자님 확인을 받은 뒤 디자인에 들어갑니다.'},
+  {q:'외국인 대상 안내물도 함께 만들 수 있나요?',a:'중국어 · 영어 · 일본어 · 프랑스어 등 다국어 디자인이 가능합니다. 언어마다 글자 길이가 달라지는 점을 고려해 국문판과 같은 디자인 시스템으로 판형을 맞춰 제작합니다.'}
 ];
 
 const $ = s => document.querySelector(s);
@@ -733,7 +921,12 @@ function onIns(){
 addEventListener('scroll', onIns, {passive:true}); addEventListener('resize', onIns); onIns();
 
 /* ===== 06 SINCE 2013: 연혁 카드 슬라이더 ===== */
-$('#lTrack').innerHTML = HISTORY.map(x => `<a class="l-card ms" href="#works"><div class="ph"><img src="${W + x.i}" alt="" loading="lazy"><b class="en">${x.y}</b></div><h3>${x.t}</h3><time class="en">${x.y === 'NOW' ? 'TODAY' : 'YEAR ' + x.y}</time></a>`).join('');
+$('#lTrack').innerHTML = HISTORY.map(x => `<a class="l-card ms" href="#works"><div class="ph"><img src="${W + HISTORY_IMG[x.y]}" alt="" loading="lazy"><b class="en">${x.y}</b></div><h3>${x.t}</h3><p class="l-d">${x.d}</p><div class="l-tags">${x.tags.map(g => `<span>${g}</span>`).join('')}</div></a>`).join('');
+/* ===== FAQ (이전 버전 내용) + FAQPage 스키마 ===== */
+$('#faqList').innerHTML = FAQ.map((f, i) => `<details${i ? '' : ' open'}><summary><b>Q${i + 1}</b>${f.q}</summary><div class="a">${f.a}</div></details>`).join('');
+{ const ld = document.createElement('script'); ld.type = 'application/ld+json';
+  ld.textContent = JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(f => ({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))});
+  document.head.appendChild(ld); }
 slider($('#lTrack'), HISTORY, $('#lDots'), $('#lPrev'), $('#lNext'), 26);
 
 /* ===== Scroll reveal ===== */
